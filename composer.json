@@ -1,10 +1,17 @@
 {
-    "name": "pronamic/wp-money",
-    "license": "GPL-3.0-or-later" ,
+	"name": "pronamic/wp-money",
+	"license": "GPL-3.0-or-later" ,
 	"autoload": {
 		"psr-4": {
 			"Pronamic\\WordPress\\Money\\": "src"
 		}
 	},
-    "require": {}
+	"config": {
+		"platform": {
+			"php": "5.3.3"
+		}
+	},
+	"require": {
+		"php": "^5.3"
+	}
 }
