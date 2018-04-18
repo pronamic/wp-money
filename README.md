@@ -1,5 +1,18 @@
 # WordPress Money
 
+## WordPress Filters
+
+### pronamic_money_default_format
+
+```php
+function prefix_pronamic_money_default_format( $format ) {
+	/* translators: 1: currency symbol, 2: amount, 3: currency code */
+	return _x( '%1$s%2$s', 'default money format', 'pronamic-ideal' );
+}
+
+add_filter( 'pronamic_money_default_format', 'prefix_pronamic_money_default_format' );
+```
+
 ## Inspiration
 
 *	https://github.com/datasets/currency-codes
