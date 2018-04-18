@@ -77,6 +77,10 @@ class Currency {
 		return $this->symbol;
 	}
 
+	public function get_number_decimals() {
+		return $this->number_decimals;
+	}
+
 	public static function get_instance( $alphabetic_code ) {
 		$currencies = Currencies::get_currencies();
 
