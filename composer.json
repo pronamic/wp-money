@@ -13,5 +13,14 @@
 	},
 	"require": {
 		"php": "^5.3"
+	},
+	"require-dev": {
+		"php-coveralls/php-coveralls": "^1.1",
+		"phpmd/phpmd": "^2.4",
+		"phpunit/phpunit": "^4.8",
+		"wp-coding-standards/wpcs": "^0.14.1",
+		"wimg/php-compatibility": "^8.1",
+		"johnpbloch/wordpress": "^4.9",
+		"wp-phpunit/wp-phpunit": "^4.9"
 	}
 }
