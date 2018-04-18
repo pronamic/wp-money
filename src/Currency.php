@@ -18,11 +18,18 @@ namespace Pronamic\WordPress\Money;
  */
 class Currency {
 	/**
-	 * Code.
+	 * Alphabetic code.
 	 *
 	 * @var string
 	 */
-	private $code;
+	private $alphabetic_code;
+
+	/**
+	 * Numeric code.
+	 *
+	 * @var string
+	 */
+	private $numeric_code;
 
 	/**
 	 * Symbol.
@@ -48,15 +55,33 @@ class Currency {
 	/**
 	 * Construct and initialize currency object.
 	 *
-	 * @var string $code
-	 * @var string $symbol
+	 * @var string $alphabetic_code
+	 * @var string $numeric_code
 	 * @var string $name
+	 * @var string $symbol
 	 * @var int    $number_decimals
 	 */
-	public function __construct( $code, $symbol, $name, $number_decimals = 2 ) {
-		$this->code            = $code;
-		$this->symbol          = $symbol;
+	public function __construct( $alphabetic_code, $numeric_code, $name, $symbol, $number_decimals = 2 ) {
+		$this->alphabetic_code = $alphabetic_code;
+		$this->numeric_code    = $numeric_code;
 		$this->name            = $name;
+		$this->symbol          = $symbol;
 		$this->number_decimals = $number_decimals;
+	}
+
+	public function get_alphabetic_code() {
+		return $this->alphabetic_code;
+	}
+
+	public function get_symbol() {
+		return $this->symbol;
+	}
+
+	public static function get_instance( $alphabetic_code ) {
+		$currencies = Currencies::get_currencies();
+
+		if ( array_key_exists( $alphabetic_code, $currencies ) ) {
+			return $currencies[ $alphabetic_code ];
+		}
 	}
 }

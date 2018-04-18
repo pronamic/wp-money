@@ -34,11 +34,16 @@ class Money {
 	/**
 	 * Construct and initialize money object.
 	 *
-	 * @var float         $amount
-	 * @var Currency|null $currency
+	 * @var float                $amount
+	 * @var Currency|string|null $currency
 	 */
 	public function __construct( $amount = 0, $currency = null ) {
 		$this->amount   = $amount;
+
+		if ( is_string( $currency ) ) {
+			$currency = Currency::get_instance( $currency );
+		}
+
 		$this->currency = $currency;
 	}
 
@@ -60,7 +65,7 @@ class Money {
 				$format,
 				$this->currency->get_symbol(),
 				number_format_i18n( $this->amount, $this->currency->get_number_decimals() ),
-				$this->currency->get_code(),
+				$this->currency->get_alphabetic_code()
 			);
 		}
 

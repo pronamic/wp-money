@@ -22,6 +22,7 @@ add_filter( 'pronamic_money_default_format', 'prefix_pronamic_money_default_form
 *	https://github.com/Torann/laravel-currency
 *	https://github.com/davidkalosi/js-money
 *	https://github.com/scurker/currency.js
+*	https://github.com/woocommerce/woocommerce/blob/3.3.5/includes/wc-core-functions.php#L284-L464
 *	https://github.com/woocommerce/woocommerce/blob/3.3.5/i18n/locale-info.php
 *	http://trigeminal.fmsinc.com/samples/setlocalesample2.asp
 *	http://moneyphp.org/
@@ -30,3 +31,4 @@ add_filter( 'pronamic_money_default_format', 'prefix_pronamic_money_default_form
 *	https://yarnpkg.com/en/packages?q=money
 *	https://yarnpkg.com/en/packages?q=currency
 *	https://www.currency-iso.org/en/home.html
+*	https://docs.oracle.com/javase/7/docs/api/java/util/Currency.html
