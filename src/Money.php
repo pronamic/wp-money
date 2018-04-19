@@ -112,4 +112,13 @@ class Money {
 
 		$this->currency = $currency;
 	}
+
+	/**
+	 * Create a string representation of this money object.
+	 *
+	 * @return string
+	 */
+	public function __toString() {
+		return $this->format_i18n();
+	}
 }
