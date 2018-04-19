@@ -30,8 +30,8 @@ return array(
 	array(
 		'alphabetic_code' => 'NLG',
 		'numeric_code'    => null,
-		'name'            => __( 'Dutch Guilder', 'pronamic-money' ),
-		'symbol'          => 'ƒ',
+		'name'            => __( 'Gulden', 'pronamic-money' ),
+		'symbol'          => 'G',
 		'number_decimals' => 4,
 	),
 	array(
