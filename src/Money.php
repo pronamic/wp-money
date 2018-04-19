@@ -38,13 +38,8 @@ class Money {
 	 * @var Currency|string|null $currency
 	 */
 	public function __construct( $amount = 0, $currency = null ) {
-		$this->amount   = $amount;
-
-		if ( is_string( $currency ) ) {
-			$currency = Currency::get_instance( $currency );
-		}
-
-		$this->currency = $currency;
+		$this->set_amount( $amount );
+		$this->set_currency( $currency );
 	}
 
 	public static function get_default_format() {
@@ -76,5 +71,45 @@ class Money {
 		}
 
 		return number_format_i18n( $this->amount, 2 );
+	}
+
+	/**
+	 * Get amount.
+	 *
+	 * @return float float amount.
+	 */
+	public function get_amount() {
+		return $this->amount;
+	}
+
+	/**
+	 * Set amount.
+	 *
+	 * @param float $amount Amount.
+	 */
+	public function set_amount( $amount ) {
+		$this->amount = $amount;
+	}
+
+	/**
+	 * Get currency.
+	 *
+	 * @return Currency
+	 */
+	public function get_currency() {
+		return $this->currency;
+	}
+
+	/**
+	 * Set currency.
+	 *
+	 * @param string $currency Currency.
+	 */
+	public function set_currency( $currency ) {
+		if ( is_string( $currency ) ) {
+			$currency = Currency::get_instance( $currency );
+		}
+
+		$this->currency = $currency;
 	}
 }
