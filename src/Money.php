@@ -34,8 +34,8 @@ class Money {
 	/**
 	 * Construct and initialize money object.
 	 *
-	 * @var float                $amount
-	 * @var Currency|string|null $currency
+	 * @param float                $amount
+	 * @param Currency|string|null $currency
 	 */
 	public function __construct( $amount = 0, $currency = null ) {
 		$this->set_amount( $amount );

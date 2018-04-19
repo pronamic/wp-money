@@ -55,11 +55,11 @@ class Currency {
 	/**
 	 * Construct and initialize currency object.
 	 *
-	 * @var string $alphabetic_code
-	 * @var string $numeric_code
-	 * @var string $name
-	 * @var string $symbol
-	 * @var int    $number_decimals
+	 * @param string $alphabetic_code
+	 * @param string $numeric_code
+	 * @param string $name
+	 * @param string $symbol
+	 * @param int    $number_decimals
 	 */
 	public function __construct( $alphabetic_code, $numeric_code, $name, $symbol, $number_decimals = 2 ) {
 		$this->alphabetic_code = $alphabetic_code;
