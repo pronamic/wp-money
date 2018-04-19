@@ -81,6 +81,10 @@ class Currency {
 		return $this->number_decimals;
 	}
 
+	public function get_numeric_code() {
+		return $this->numeric_code;
+	}
+
 	public static function get_instance( $alphabetic_code ) {
 		$currencies = Currencies::get_currencies();
 
