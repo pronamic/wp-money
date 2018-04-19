@@ -1,0 +1,30 @@
+{
+	"name": "wp-money",
+	"version": "1.0.0",
+	"description": "WordPress Money library.",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/pronamic/wp-money.git"
+	},
+	"keywords": [
+		"pronamic",
+		"wordpress",
+		"money",
+		"currency",
+		"currencies"
+	],
+	"license": "GPL-3.0-or-later",
+	"bugs": {
+		"url": "https://github.com/pronamic/wp-money/issues"
+	},
+	"homepage": "https://github.com/pronamic/wp-money#readme",
+	"devDependencies": {
+		"grunt": "^1.0.2",
+		"grunt-checktextdomain": "^1.0.1",
+		"grunt-phpcs": "^0.4.0",
+		"grunt-phplint": "0.1.0",
+		"grunt-phpunit": "^0.3.6",
+		"grunt-wp-i18n": "^1.0.2",
+		"load-grunt-tasks": "^3.5.2"
+	}
+}

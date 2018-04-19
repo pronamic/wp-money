@@ -4,5 +4,8 @@
 # dotenv
 .env
 
+# Node.js
+/node_modules/
+
 # WordPress
 /wordpress/

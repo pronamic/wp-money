@@ -21,8 +21,9 @@
 		"php": "^5.3"
 	},
 	"require-dev": {
-		"koodimonni-language/nl_NL": "*",
+		"koodimonni-language/de_DE": "*",
 		"koodimonni-language/fr_FR": "*",
+		"koodimonni-language/nl_NL": "*",
 		"php-coveralls/php-coveralls": "^1.1",
 		"phpmd/phpmd": "^2.4",
 		"phpunit/phpunit": "^4.8",
@@ -38,5 +39,10 @@
 			"vendor/wp-phpunit/wp-phpunit/data/languages/plugins/": ["vendor:koodimonni-plugin-language"],
 			"vendor/wp-phpunit/wp-phpunit/data/languages/themes/": ["vendor:koodimonni-theme-language"]
 		}
-    }
+	},
+	"scripts": {
+		"post-autoload-dump": [
+			"for file in languages/*.mo ; do ln -f -s ../../../../../../$file vendor/wp-phpunit/wp-phpunit/data/languages/plugins/. ; done"
+		]
+	}
 }

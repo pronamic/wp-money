@@ -47,6 +47,15 @@ class Money {
 		$this->currency = $currency;
 	}
 
+	public static function get_default_format() {
+		/* translators: 1: currency symbol, 2: amount, 3: currency code */
+		$format = _x( '%1$s%2$s %3$s', 'money format', 'pronamic-money' );
+
+		$format = apply_filters( 'pronamic_money_default_format', $format );
+
+		return $format;
+	}
+
 	/**
 	 * Format i18n.
 	 *
@@ -54,10 +63,7 @@ class Money {
 	 */
 	public function format_i18n( $format = null ) {
 		if ( is_null( $format ) ) {
-			/* translators: 1: currency symbol, 2: amount, 3: currency code */
-			$format = _x( '%1$s%2$s %3$s', 'money format', 'pronamic-money' );
-
-			$format = apply_filters( 'pronamic_money_default_format', $format );
+			$format = self::get_default_format();
 		}
 
 		if ( isset( $this->currency ) ) {
