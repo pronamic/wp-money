@@ -40,6 +40,23 @@ class Currencies {
 	}
 
 	/**
+	 * Get currency.
+	 *
+	 * @param string $alphabetic_code Alphabetic currency code.
+	 *
+	 * @return Currency
+	 */
+	public static function get_currency( $alphabetic_code ) {
+		$currencies = self::get_currencies();
+
+		if ( isset( $currencies[ $alphabetic_code ] ) ) {
+			return $currencies[ $alphabetic_code ];
+		}
+
+		return null;
+	}
+
+	/**
 	 * Load currencies.
 	 *
 	 * @see https://github.com/moneyphp/money/blob/v3.1.3/src/Currencies/ISOCurrencies.php#L90-L102
