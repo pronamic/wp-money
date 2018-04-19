@@ -14,6 +14,12 @@ php:
 - nightly
 - hhvm
 
+env:
+- WP_TESTS_DB_NAME=wordpress_test
+- WP_TESTS_DB_USER=root
+- WP_TESTS_DB_PASS=
+- WP_TESTS_DB_HOST=localhost
+
 matrix:
   include:
     - php: 5.3
