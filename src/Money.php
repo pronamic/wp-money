@@ -34,14 +34,19 @@ class Money {
 	/**
 	 * Construct and initialize money object.
 	 *
-	 * @param float                $amount
-	 * @param Currency|string|null $currency
+	 * @param string|int|float     $amount   Amount.
+	 * @param Currency|string|null $currency Currency.
 	 */
 	public function __construct( $amount = 0, $currency = null ) {
 		$this->set_amount( $amount );
 		$this->set_currency( $currency );
 	}
 
+	/**
+	 * Get default format.
+	 *
+	 * @return string
+	 */
 	public static function get_default_format() {
 		/* translators: 1: currency symbol, 2: amount, 3: currency code */
 		$format = _x( '%1$s%2$s %3$s', 'money format', 'pronamic-money' );
@@ -53,6 +58,8 @@ class Money {
 
 	/**
 	 * Format i18n.
+	 *
+	 * @param string|null $format Format.
 	 *
 	 * @return string
 	 */
@@ -85,10 +92,10 @@ class Money {
 	/**
 	 * Set amount.
 	 *
-	 * @param float $amount Amount.
+	 * @param mixed $amount Amount.
 	 */
 	public function set_amount( $amount ) {
-		$this->amount = $amount;
+		$this->amount = floatval( $amount );
 	}
 
 	/**
@@ -106,11 +113,13 @@ class Money {
 	 * @param string $currency Currency.
 	 */
 	public function set_currency( $currency ) {
-		if ( is_string( $currency ) ) {
-			$currency = Currency::get_instance( $currency );
+		if ( is_object( $currency ) && is_a( $currency, __NAMESPACE__ . '\Currency' ) ) {
+			$this->currency = $currency;
+
+			return;
 		}
 
-		$this->currency = $currency;
+		$this->currency = Currency::get_instance( $currency );
 	}
 
 	/**

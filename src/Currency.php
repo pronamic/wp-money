@@ -54,42 +54,109 @@ class Currency {
 
 	/**
 	 * Construct and initialize currency object.
-	 *
-	 * @param string $alphabetic_code
-	 * @param string $numeric_code
-	 * @param string $name
-	 * @param string $symbol
-	 * @param int    $number_decimals
 	 */
-	public function __construct( $alphabetic_code, $numeric_code, $name, $symbol, $number_decimals = 2 ) {
-		$this->alphabetic_code = $alphabetic_code;
-		$this->numeric_code    = $numeric_code;
-		$this->name            = $name;
-		$this->symbol          = $symbol;
-		$this->number_decimals = $number_decimals;
+	public function __construct() {
+		$this->set_number_decimals( 2 );
 	}
 
+	/**
+	 * Get alphabetic code.
+	 *
+	 * @return string
+	 */
 	public function get_alphabetic_code() {
 		return $this->alphabetic_code;
 	}
 
-	public function get_symbol() {
-		return $this->symbol;
+	/**
+	 * Set alphabetic code.
+	 *
+	 * @param string $alphabetic_code Alphabetic code.
+	 */
+	public function set_alphabetic_code( $alphabetic_code ) {
+		$this->alphabetic_code = $alphabetic_code;
 	}
 
-	public function get_number_decimals() {
-		return $this->number_decimals;
-	}
-
+	/**
+	 * Get numeric code.
+	 *
+	 * @return string
+	 */
 	public function get_numeric_code() {
 		return $this->numeric_code;
 	}
 
-	public static function get_instance( $alphabetic_code ) {
-		$currencies = Currencies::get_currencies();
+	/**
+	 * Set numeric code.
+	 *
+	 * @param string $numeric_code Numeric code.
+	 */
+	public function set_numeric_code( $numeric_code ) {
+		$this->numeric_code = $numeric_code;
+	}
 
-		if ( array_key_exists( $alphabetic_code, $currencies ) ) {
-			return $currencies[ $alphabetic_code ];
-		}
+	/**
+	 * Get symbol.
+	 *
+	 * @return string
+	 */
+	public function get_symbol() {
+		return $this->symbol;
+	}
+
+	/**
+	 * Set symbol.
+	 *
+	 * @param string $symbol Symbol.
+	 */
+	public function set_symbol( $symbol ) {
+		$this->symbol = $symbol;
+	}
+
+	/**
+	 * Get number decimals.
+	 *
+	 * @return int
+	 */
+	public function get_number_decimals() {
+		return $this->number_decimals;
+	}
+
+	/**
+	 * Set number decimals.
+	 *
+	 * @param int $number_decimals Number of decimals.
+	 */
+	public function set_number_decimals( $number_decimals ) {
+		$this->number_decimals = intval( $number_decimals );
+	}
+
+	/**
+	 * Get instance.
+	 *
+	 * @param string $alphabetic_code Alphabetic code.
+	 *
+	 * @return Currency
+	 */
+	public static function get_instance( $alphabetic_code ) {
+		return Currencies::get_currency( $alphabetic_code );
+	}
+
+	/**
+	 * Get name.
+	 *
+	 * @return string
+	 */
+	public function get_name() {
+		return $this->name;
+	}
+
+	/**
+	 * Set name.
+	 *
+	 * @param string $name Currency name.
+	 */
+	public function set_name( $name ) {
+		$this->name = $name;
 	}
 }

@@ -14,7 +14,7 @@ namespace Pronamic\WordPress\Money;
  * Currencies
  *
  * @see https://github.com/moneyphp/money/blob/v3.1.3/resources/currency.php
- * 
+ *
  * @author Remco Tolsma
  * @version 1.0
  */
@@ -47,13 +47,15 @@ class Currencies {
 	 * @return Currency
 	 */
 	public static function get_currency( $alphabetic_code ) {
+		$currency = new Currency();
+
 		$currencies = self::get_currencies();
 
 		if ( isset( $currencies[ $alphabetic_code ] ) ) {
-			return $currencies[ $alphabetic_code ];
+			$currency = $currencies[ $alphabetic_code ];
 		}
 
-		return null;
+		return $currency;
 	}
 
 	/**
@@ -61,6 +63,8 @@ class Currencies {
 	 *
 	 * @see https://github.com/moneyphp/money/blob/v3.1.3/src/Currencies/ISOCurrencies.php#L90-L102
 	 * @return array
+	 *
+	 * @throws \RuntimeException Throws runtime exception if currencies could not be loaded from file.
 	 */
 	private static function load_currencies() {
 		$file = __DIR__ . '/../resources/currencies.php';
@@ -71,13 +75,13 @@ class Currencies {
 			$data = require $file;
 
 			foreach ( $data as $info ) {
-				$currency = new Currency(
-					$info['alphabetic_code'],
-					$info['numeric_code'],
-					$info['name'],
-					$info['symbol'],
-					$info['number_decimals']
-				);
+				$currency = new Currency();
+
+				$currency->set_alphabetic_code( $info['alphabetic_code'] );
+				$currency->set_numeric_code( $info['numeric_code'] );
+				$currency->set_name( $info['name'] );
+				$currency->set_symbol( $info['symbol'] );
+				$currency->set_number_decimals( $info['number_decimals'] );
 
 				$currencies[ $currency->get_alphabetic_code() ] = $currency;
 			}
