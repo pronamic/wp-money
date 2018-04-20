@@ -1,5 +1,14 @@
 # WordPress Money
 
+## Non-breaking space
+
+In the money format it is smart to use a non-breaking space:
+
+> In word processing and digital typesetting, a non-breaking space (" "), also called no-break space, non-breakable space (NBSP), hard space,
+> or fixed space, is a space character that prevents an automatic line break at its position.
+
+Source: https://en.wikipedia.org/wiki/Non-breaking_space#Keyboard_entry_method
+
 ## WordPress Filters
 
 ### pronamic_money_default_format

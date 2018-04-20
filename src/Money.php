@@ -48,8 +48,9 @@ class Money {
 	 * @return string
 	 */
 	public static function get_default_format() {
-		/* translators: 1: currency symbol, 2: amount, 3: currency code */
-		$format = _x( '%1$s%2$s %3$s', 'money format', 'pronamic-money' );
+		/* translators: 1: currency symbol, 2: amount, 3: currency code, note: use non-breaking space! */
+		$format = _x( '%1$s%2$s %3$s', 'money format', 'pronamic-money' );
+		// Note:               ↳ Non-breaking space
 
 		$format = apply_filters( 'pronamic_money_default_format', $format );
 
