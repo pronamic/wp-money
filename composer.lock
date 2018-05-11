@@ -2793,12 +2793,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wp-phpunit/wp-phpunit.git",
-                "reference": "b077a55f4a012891f6ca67c1e636a22b8e2b6dcb"
+                "reference": "b95a287e89ef56e867bdde497b3bf017686325f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wp-phpunit/wp-phpunit/zipball/b077a55f4a012891f6ca67c1e636a22b8e2b6dcb",
-                "reference": "b077a55f4a012891f6ca67c1e636a22b8e2b6dcb",
+                "url": "https://api.github.com/repos/wp-phpunit/wp-phpunit/zipball/b95a287e89ef56e867bdde497b3bf017686325f9",
+                "reference": "b95a287e89ef56e867bdde497b3bf017686325f9",
                 "shasum": ""
             },
             "type": "library",
@@ -2809,7 +2809,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "GPL-2.0+"
+                "GPL-2.0-or-later"
             ],
             "authors": [
                 {
@@ -2828,7 +2828,7 @@
                 "test",
                 "wordpress"
             ],
-            "time": "2018-01-17T17:40:44+00:00"
+            "time": "2018-05-06T14:44:48+00:00"
         }
     ],
     "aliases": [],
