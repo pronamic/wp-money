@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d60ea62a97a857aa36ba735c54ee612a",
+    "content-hash": "05805182fbf11bc3ee1584b98afeec58",
     "packages": [],
     "packages-dev": [
         {
@@ -286,6 +286,841 @@
             "time": "2018-01-29T14:49:29+00:00"
         },
         {
+            "name": "koodimonni-language/de_de",
+            "version": "4.9.5",
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/translation/core/4.9.5/de_DE.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "koodimonni-plugin-language/akismet-de_de": "*",
+                "koodimonni-plugin-language/bbpress-de_de": "*",
+                "koodimonni-plugin-language/woocommerce-de_de": "*",
+                "koodimonni-plugin-language/wordpress-importer-de_de": "*",
+                "koodimonni-theme-language/twentyeleven-de_de": "*",
+                "koodimonni-theme-language/twentyfifteen-de_de": "*",
+                "koodimonni-theme-language/twentyfourteen-de_de": "*",
+                "koodimonni-theme-language/twentysixteen-de_de": "*",
+                "koodimonni-theme-language/twentyten-de_de": "*",
+                "koodimonni-theme-language/twentythirteen-de_de": "*",
+                "koodimonni-theme-language/twentytwelve-de_de": "*",
+                "koodimonni/composer-dropin-installer": ">=0.2.3"
+            },
+            "type": "wordpress-language",
+            "description": "Full Wordpress translation (including themes and core plugins) for German - de_de",
+            "keywords": [
+                "Full-Package",
+                "Translation",
+                "Wordpress",
+                "de_de",
+                "twentysixteen"
+            ]
+        },
+        {
+            "name": "koodimonni-language/fr_fr",
+            "version": "4.9.5",
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/translation/core/4.9.5/fr_FR.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "koodimonni-plugin-language/akismet-fr_fr": "*",
+                "koodimonni-plugin-language/bbpress-fr_fr": "*",
+                "koodimonni-plugin-language/woocommerce-fr_fr": "*",
+                "koodimonni-plugin-language/wordpress-importer-fr_fr": "*",
+                "koodimonni-theme-language/twentyeleven-fr_fr": "*",
+                "koodimonni-theme-language/twentyfifteen-fr_fr": "*",
+                "koodimonni-theme-language/twentyfourteen-fr_fr": "*",
+                "koodimonni-theme-language/twentysixteen-fr_fr": "*",
+                "koodimonni-theme-language/twentyten-fr_fr": "*",
+                "koodimonni-theme-language/twentythirteen-fr_fr": "*",
+                "koodimonni-theme-language/twentytwelve-fr_fr": "*",
+                "koodimonni/composer-dropin-installer": ">=0.2.3"
+            },
+            "type": "wordpress-language",
+            "description": "Full Wordpress translation (including themes and core plugins) for French (France) - fr_fr",
+            "keywords": [
+                "Full-Package",
+                "Translation",
+                "Wordpress",
+                "fr_fr",
+                "twentysixteen"
+            ]
+        },
+        {
+            "name": "koodimonni-language/nl_nl",
+            "version": "4.9.5",
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/translation/core/4.9.5/nl_NL.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "koodimonni-plugin-language/akismet-nl_nl": "*",
+                "koodimonni-plugin-language/bbpress-nl_nl": "*",
+                "koodimonni-plugin-language/woocommerce-nl_nl": "*",
+                "koodimonni-plugin-language/wordpress-importer-nl_nl": "*",
+                "koodimonni-theme-language/twentyeleven-nl_nl": "*",
+                "koodimonni-theme-language/twentyfifteen-nl_nl": "*",
+                "koodimonni-theme-language/twentyfourteen-nl_nl": "*",
+                "koodimonni-theme-language/twentysixteen-nl_nl": "*",
+                "koodimonni-theme-language/twentyten-nl_nl": "*",
+                "koodimonni-theme-language/twentythirteen-nl_nl": "*",
+                "koodimonni-theme-language/twentytwelve-nl_nl": "*",
+                "koodimonni/composer-dropin-installer": ">=0.2.3"
+            },
+            "type": "wordpress-language",
+            "description": "Full Wordpress translation (including themes and core plugins) for Dutch - nl_nl",
+            "keywords": [
+                "Full-Package",
+                "Translation",
+                "Wordpress",
+                "nl_nl",
+                "twentysixteen"
+            ]
+        },
+        {
+            "name": "koodimonni-plugin-language/akismet-de_de",
+            "version": "4.0.3",
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/translation/plugin/akismet/4.0.3/de_DE.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "koodimonni/composer-dropin-installer": ">=0.2.3"
+            },
+            "type": "wordpress-language",
+            "description": "Wordpress akismet translation for German - de_de",
+            "keywords": [
+                "Translation",
+                "Wordpress",
+                "akismet",
+                "de_de"
+            ]
+        },
+        {
+            "name": "koodimonni-plugin-language/akismet-fr_fr",
+            "version": "4.0.3",
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/translation/plugin/akismet/4.0.3/fr_FR.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "koodimonni/composer-dropin-installer": ">=0.2.3"
+            },
+            "type": "wordpress-language",
+            "description": "Wordpress akismet translation for French (France) - fr_fr",
+            "keywords": [
+                "Translation",
+                "Wordpress",
+                "akismet",
+                "fr_fr"
+            ]
+        },
+        {
+            "name": "koodimonni-plugin-language/akismet-nl_nl",
+            "version": "4.0.3",
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/translation/plugin/akismet/4.0.3/nl_NL.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "koodimonni/composer-dropin-installer": ">=0.2.3"
+            },
+            "type": "wordpress-language",
+            "description": "Wordpress akismet translation for Dutch - nl_nl",
+            "keywords": [
+                "Translation",
+                "Wordpress",
+                "akismet",
+                "nl_nl"
+            ]
+        },
+        {
+            "name": "koodimonni-plugin-language/bbpress-de_de",
+            "version": "2.5.14",
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/translation/plugin/bbpress/2.5.14/de_DE.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "koodimonni/composer-dropin-installer": ">=0.2.3"
+            },
+            "type": "wordpress-language",
+            "description": "Wordpress bbpress translation for German - de_de",
+            "keywords": [
+                "Translation",
+                "Wordpress",
+                "bbpress",
+                "de_de"
+            ]
+        },
+        {
+            "name": "koodimonni-plugin-language/bbpress-fr_fr",
+            "version": "2.5.14",
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/translation/plugin/bbpress/2.5.14/fr_FR.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "koodimonni/composer-dropin-installer": ">=0.2.3"
+            },
+            "type": "wordpress-language",
+            "description": "Wordpress bbpress translation for French (France) - fr_fr",
+            "keywords": [
+                "Translation",
+                "Wordpress",
+                "bbpress",
+                "fr_fr"
+            ]
+        },
+        {
+            "name": "koodimonni-plugin-language/bbpress-nl_nl",
+            "version": "2.5.14",
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/translation/plugin/bbpress/2.5.14/nl_NL.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "koodimonni/composer-dropin-installer": ">=0.2.3"
+            },
+            "type": "wordpress-language",
+            "description": "Wordpress bbpress translation for Dutch - nl_nl",
+            "keywords": [
+                "Translation",
+                "Wordpress",
+                "bbpress",
+                "nl_nl"
+            ]
+        },
+        {
+            "name": "koodimonni-plugin-language/woocommerce-de_de",
+            "version": "3.3.5",
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/translation/plugin/woocommerce/3.3.5/de_DE.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "koodimonni/composer-dropin-installer": ">=0.2.3"
+            },
+            "type": "wordpress-language",
+            "description": "Wordpress woocommerce translation for German - de_de",
+            "keywords": [
+                "Translation",
+                "Wordpress",
+                "de_de",
+                "woocommerce"
+            ]
+        },
+        {
+            "name": "koodimonni-plugin-language/woocommerce-fr_fr",
+            "version": "3.3.5",
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/translation/plugin/woocommerce/3.3.5/fr_FR.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "koodimonni/composer-dropin-installer": ">=0.2.3"
+            },
+            "type": "wordpress-language",
+            "description": "Wordpress woocommerce translation for French (France) - fr_fr",
+            "keywords": [
+                "Translation",
+                "Wordpress",
+                "fr_fr",
+                "woocommerce"
+            ]
+        },
+        {
+            "name": "koodimonni-plugin-language/woocommerce-nl_nl",
+            "version": "3.3.5",
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/translation/plugin/woocommerce/3.3.5/nl_NL.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "koodimonni/composer-dropin-installer": ">=0.2.3"
+            },
+            "type": "wordpress-language",
+            "description": "Wordpress woocommerce translation for Dutch - nl_nl",
+            "keywords": [
+                "Translation",
+                "Wordpress",
+                "nl_nl",
+                "woocommerce"
+            ]
+        },
+        {
+            "name": "koodimonni-plugin-language/wordpress-importer-de_de",
+            "version": "0.6.4",
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/translation/plugin/wordpress-importer/0.6.4/de_DE.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "koodimonni/composer-dropin-installer": ">=0.2.3"
+            },
+            "type": "wordpress-language",
+            "description": "Wordpress wordpress-importer translation for German - de_de",
+            "keywords": [
+                "Translation",
+                "Wordpress",
+                "de_de",
+                "wordpress-importer"
+            ]
+        },
+        {
+            "name": "koodimonni-plugin-language/wordpress-importer-fr_fr",
+            "version": "0.6.4",
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/translation/plugin/wordpress-importer/0.6.4/fr_FR.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "koodimonni/composer-dropin-installer": ">=0.2.3"
+            },
+            "type": "wordpress-language",
+            "description": "Wordpress wordpress-importer translation for French (France) - fr_fr",
+            "keywords": [
+                "Translation",
+                "Wordpress",
+                "fr_fr",
+                "wordpress-importer"
+            ]
+        },
+        {
+            "name": "koodimonni-plugin-language/wordpress-importer-nl_nl",
+            "version": "0.6.4",
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/translation/plugin/wordpress-importer/0.6.4/nl_NL.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "koodimonni/composer-dropin-installer": ">=0.2.3"
+            },
+            "type": "wordpress-language",
+            "description": "Wordpress wordpress-importer translation for Dutch - nl_nl",
+            "keywords": [
+                "Translation",
+                "Wordpress",
+                "nl_nl",
+                "wordpress-importer"
+            ]
+        },
+        {
+            "name": "koodimonni-theme-language/twentyeleven-de_de",
+            "version": "2.7",
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/translation/theme/twentyeleven/2.7/de_DE.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "koodimonni/composer-dropin-installer": ">=0.2.3"
+            },
+            "type": "wordpress-language",
+            "description": "Wordpress twentyeleven translation for German - de_de",
+            "keywords": [
+                "Translation",
+                "Wordpress",
+                "de_de",
+                "twentyeleven"
+            ]
+        },
+        {
+            "name": "koodimonni-theme-language/twentyeleven-fr_fr",
+            "version": "2.7",
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/translation/theme/twentyeleven/2.7/fr_FR.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "koodimonni/composer-dropin-installer": ">=0.2.3"
+            },
+            "type": "wordpress-language",
+            "description": "Wordpress twentyeleven translation for French (France) - fr_fr",
+            "keywords": [
+                "Translation",
+                "Wordpress",
+                "fr_fr",
+                "twentyeleven"
+            ]
+        },
+        {
+            "name": "koodimonni-theme-language/twentyeleven-nl_nl",
+            "version": "2.7",
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/translation/theme/twentyeleven/2.7/nl_NL.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "koodimonni/composer-dropin-installer": ">=0.2.3"
+            },
+            "type": "wordpress-language",
+            "description": "Wordpress twentyeleven translation for Dutch - nl_nl",
+            "keywords": [
+                "Translation",
+                "Wordpress",
+                "nl_nl",
+                "twentyeleven"
+            ]
+        },
+        {
+            "name": "koodimonni-theme-language/twentyfifteen-de_de",
+            "version": "1.9",
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/translation/theme/twentyfifteen/1.9/de_DE.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "koodimonni/composer-dropin-installer": ">=0.2.3"
+            },
+            "type": "wordpress-language",
+            "description": "Wordpress twentyfifteen translation for German - de_de",
+            "keywords": [
+                "Translation",
+                "Wordpress",
+                "de_de",
+                "twentyfifteen"
+            ]
+        },
+        {
+            "name": "koodimonni-theme-language/twentyfifteen-fr_fr",
+            "version": "1.9",
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/translation/theme/twentyfifteen/1.9/fr_FR.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "koodimonni/composer-dropin-installer": ">=0.2.3"
+            },
+            "type": "wordpress-language",
+            "description": "Wordpress twentyfifteen translation for French (France) - fr_fr",
+            "keywords": [
+                "Translation",
+                "Wordpress",
+                "fr_fr",
+                "twentyfifteen"
+            ]
+        },
+        {
+            "name": "koodimonni-theme-language/twentyfifteen-nl_nl",
+            "version": "1.9",
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/translation/theme/twentyfifteen/1.9/nl_NL.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "koodimonni/composer-dropin-installer": ">=0.2.3"
+            },
+            "type": "wordpress-language",
+            "description": "Wordpress twentyfifteen translation for Dutch - nl_nl",
+            "keywords": [
+                "Translation",
+                "Wordpress",
+                "nl_nl",
+                "twentyfifteen"
+            ]
+        },
+        {
+            "name": "koodimonni-theme-language/twentyfourteen-de_de",
+            "version": "2.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/translation/theme/twentyfourteen/2.1/de_DE.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "koodimonni/composer-dropin-installer": ">=0.2.3"
+            },
+            "type": "wordpress-language",
+            "description": "Wordpress twentyfourteen translation for German - de_de",
+            "keywords": [
+                "Translation",
+                "Wordpress",
+                "de_de",
+                "twentyfourteen"
+            ]
+        },
+        {
+            "name": "koodimonni-theme-language/twentyfourteen-fr_fr",
+            "version": "2.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/translation/theme/twentyfourteen/2.1/fr_FR.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "koodimonni/composer-dropin-installer": ">=0.2.3"
+            },
+            "type": "wordpress-language",
+            "description": "Wordpress twentyfourteen translation for French (France) - fr_fr",
+            "keywords": [
+                "Translation",
+                "Wordpress",
+                "fr_fr",
+                "twentyfourteen"
+            ]
+        },
+        {
+            "name": "koodimonni-theme-language/twentyfourteen-nl_nl",
+            "version": "2.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/translation/theme/twentyfourteen/2.1/nl_NL.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "koodimonni/composer-dropin-installer": ">=0.2.3"
+            },
+            "type": "wordpress-language",
+            "description": "Wordpress twentyfourteen translation for Dutch - nl_nl",
+            "keywords": [
+                "Translation",
+                "Wordpress",
+                "nl_nl",
+                "twentyfourteen"
+            ]
+        },
+        {
+            "name": "koodimonni-theme-language/twentysixteen-de_de",
+            "version": "1.4",
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/translation/theme/twentysixteen/1.4/de_DE.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "koodimonni/composer-dropin-installer": ">=0.2.3"
+            },
+            "type": "wordpress-language",
+            "description": "Wordpress twentysixteen translation for German - de_de",
+            "keywords": [
+                "Translation",
+                "Wordpress",
+                "de_de",
+                "twentysixteen"
+            ]
+        },
+        {
+            "name": "koodimonni-theme-language/twentysixteen-fr_fr",
+            "version": "1.4",
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/translation/theme/twentysixteen/1.4/fr_FR.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "koodimonni/composer-dropin-installer": ">=0.2.3"
+            },
+            "type": "wordpress-language",
+            "description": "Wordpress twentysixteen translation for French (France) - fr_fr",
+            "keywords": [
+                "Translation",
+                "Wordpress",
+                "fr_fr",
+                "twentysixteen"
+            ]
+        },
+        {
+            "name": "koodimonni-theme-language/twentysixteen-nl_nl",
+            "version": "1.4",
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/translation/theme/twentysixteen/1.4/nl_NL.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "koodimonni/composer-dropin-installer": ">=0.2.3"
+            },
+            "type": "wordpress-language",
+            "description": "Wordpress twentysixteen translation for Dutch - nl_nl",
+            "keywords": [
+                "Translation",
+                "Wordpress",
+                "nl_nl",
+                "twentysixteen"
+            ]
+        },
+        {
+            "name": "koodimonni-theme-language/twentyten-de_de",
+            "version": "2.4",
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/translation/theme/twentyten/2.4/de_DE.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "koodimonni/composer-dropin-installer": ">=0.2.3"
+            },
+            "type": "wordpress-language",
+            "description": "Wordpress twentyten translation for German - de_de",
+            "keywords": [
+                "Translation",
+                "Wordpress",
+                "de_de",
+                "twentyten"
+            ]
+        },
+        {
+            "name": "koodimonni-theme-language/twentyten-fr_fr",
+            "version": "2.4",
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/translation/theme/twentyten/2.4/fr_FR.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "koodimonni/composer-dropin-installer": ">=0.2.3"
+            },
+            "type": "wordpress-language",
+            "description": "Wordpress twentyten translation for French (France) - fr_fr",
+            "keywords": [
+                "Translation",
+                "Wordpress",
+                "fr_fr",
+                "twentyten"
+            ]
+        },
+        {
+            "name": "koodimonni-theme-language/twentyten-nl_nl",
+            "version": "2.4",
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/translation/theme/twentyten/2.4/nl_NL.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "koodimonni/composer-dropin-installer": ">=0.2.3"
+            },
+            "type": "wordpress-language",
+            "description": "Wordpress twentyten translation for Dutch - nl_nl",
+            "keywords": [
+                "Translation",
+                "Wordpress",
+                "nl_nl",
+                "twentyten"
+            ]
+        },
+        {
+            "name": "koodimonni-theme-language/twentythirteen-de_de",
+            "version": "2.3",
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/translation/theme/twentythirteen/2.3/de_DE.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "koodimonni/composer-dropin-installer": ">=0.2.3"
+            },
+            "type": "wordpress-language",
+            "description": "Wordpress twentythirteen translation for German - de_de",
+            "keywords": [
+                "Translation",
+                "Wordpress",
+                "de_de",
+                "twentythirteen"
+            ]
+        },
+        {
+            "name": "koodimonni-theme-language/twentythirteen-fr_fr",
+            "version": "2.3",
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/translation/theme/twentythirteen/2.3/fr_FR.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "koodimonni/composer-dropin-installer": ">=0.2.3"
+            },
+            "type": "wordpress-language",
+            "description": "Wordpress twentythirteen translation for French (France) - fr_fr",
+            "keywords": [
+                "Translation",
+                "Wordpress",
+                "fr_fr",
+                "twentythirteen"
+            ]
+        },
+        {
+            "name": "koodimonni-theme-language/twentythirteen-nl_nl",
+            "version": "2.3",
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/translation/theme/twentythirteen/2.3/nl_NL.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "koodimonni/composer-dropin-installer": ">=0.2.3"
+            },
+            "type": "wordpress-language",
+            "description": "Wordpress twentythirteen translation for Dutch - nl_nl",
+            "keywords": [
+                "Translation",
+                "Wordpress",
+                "nl_nl",
+                "twentythirteen"
+            ]
+        },
+        {
+            "name": "koodimonni-theme-language/twentytwelve-de_de",
+            "version": "2.4",
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/translation/theme/twentytwelve/2.4/de_DE.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "koodimonni/composer-dropin-installer": ">=0.2.3"
+            },
+            "type": "wordpress-language",
+            "description": "Wordpress twentytwelve translation for German - de_de",
+            "keywords": [
+                "Translation",
+                "Wordpress",
+                "de_de",
+                "twentytwelve"
+            ]
+        },
+        {
+            "name": "koodimonni-theme-language/twentytwelve-fr_fr",
+            "version": "2.4",
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/translation/theme/twentytwelve/2.4/fr_FR.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "koodimonni/composer-dropin-installer": ">=0.2.3"
+            },
+            "type": "wordpress-language",
+            "description": "Wordpress twentytwelve translation for French (France) - fr_fr",
+            "keywords": [
+                "Translation",
+                "Wordpress",
+                "fr_fr",
+                "twentytwelve"
+            ]
+        },
+        {
+            "name": "koodimonni-theme-language/twentytwelve-nl_nl",
+            "version": "2.4",
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/translation/theme/twentytwelve/2.4/nl_NL.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "koodimonni/composer-dropin-installer": ">=0.2.3"
+            },
+            "type": "wordpress-language",
+            "description": "Wordpress twentytwelve translation for Dutch - nl_nl",
+            "keywords": [
+                "Translation",
+                "Wordpress",
+                "nl_nl",
+                "twentytwelve"
+            ]
+        },
+        {
+            "name": "koodimonni/composer-dropin-installer",
+            "version": "1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Koodimonni/Composer-Dropin-Installer.git",
+                "reference": "a749f19e3a3bc05529190961ed7529592b20138e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Koodimonni/Composer-Dropin-Installer/zipball/a749f19e3a3bc05529190961ed7529592b20138e",
+                "reference": "a749f19e3a3bc05529190961ed7529592b20138e",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*-dev"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "Koodimonni\\Composer\\Dropin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "Koodimonni\\Composer\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "WTFPL"
+            ],
+            "authors": [
+                {
+                    "name": "Onni Hakala",
+                    "email": "onni@koodimonni.fi",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Install packages or a few files from packages into custom paths without overwriting existing stuff.",
+            "time": "2018-02-04T10:52:01+00:00"
+        },
+        {
             "name": "pdepend/pdepend",
             "version": "2.2.0",
             "source": {
@@ -501,23 +1336,23 @@
         },
         {
             "name": "phpspec/prophecy",
-            "version": "1.7.5",
+            "version": "1.7.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/prophecy.git",
-                "reference": "dfd6be44111a7c41c2e884a336cc4f461b3b2401"
+                "reference": "33a7e3c4fda54e912ff6338c48823bd5c0f0b712"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/dfd6be44111a7c41c2e884a336cc4f461b3b2401",
-                "reference": "dfd6be44111a7c41c2e884a336cc4f461b3b2401",
+                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/33a7e3c4fda54e912ff6338c48823bd5c0f0b712",
+                "reference": "33a7e3c4fda54e912ff6338c48823bd5c0f0b712",
                 "shasum": ""
             },
             "require": {
                 "doctrine/instantiator": "^1.0.2",
                 "php": "^5.3|^7.0",
                 "phpdocumentor/reflection-docblock": "^2.0|^3.0.2|^4.0",
-                "sebastian/comparator": "^1.1|^2.0",
+                "sebastian/comparator": "^1.1|^2.0|^3.0",
                 "sebastian/recursion-context": "^1.0|^2.0|^3.0"
             },
             "require-dev": {
@@ -560,7 +1395,7 @@
                 "spy",
                 "stub"
             ],
-            "time": "2018-02-19T10:16:54+00:00"
+            "time": "2018-04-18T13:57:24+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -1815,6 +2650,52 @@
             "time": "2015-07-26T08:59:42+00:00"
         },
         {
+            "name": "vlucas/phpdotenv",
+            "version": "v2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vlucas/phpdotenv.git",
+                "reference": "91064290f5b53a09bdff1b939d7f69fb0e7531b5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/91064290f5b53a09bdff1b939d7f69fb0e7531b5",
+                "reference": "91064290f5b53a09bdff1b939d7f69fb0e7531b5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Dotenv\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD"
+            ],
+            "authors": [
+                {
+                    "name": "Vance Lucas",
+                    "email": "vance@vancelucas.com",
+                    "homepage": "http://www.vancelucas.com"
+                }
+            ],
+            "description": "Loads environment variables from `.env` to `getenv()`, `$_ENV` and `$_SERVER` automagically.",
+            "homepage": "http://github.com/vlucas/phpdotenv",
+            "keywords": [
+                "dotenv",
+                "env",
+                "environment"
+            ],
+            "time": "2015-05-30T16:15:01+00:00"
+        },
+        {
             "name": "wimg/php-compatibility",
             "version": "8.1.0",
             "source": {
@@ -1912,12 +2793,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wp-phpunit/wp-phpunit.git",
-                "reference": "b077a55f4a012891f6ca67c1e636a22b8e2b6dcb"
+                "reference": "b95a287e89ef56e867bdde497b3bf017686325f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wp-phpunit/wp-phpunit/zipball/b077a55f4a012891f6ca67c1e636a22b8e2b6dcb",
-                "reference": "b077a55f4a012891f6ca67c1e636a22b8e2b6dcb",
+                "url": "https://api.github.com/repos/wp-phpunit/wp-phpunit/zipball/b95a287e89ef56e867bdde497b3bf017686325f9",
+                "reference": "b95a287e89ef56e867bdde497b3bf017686325f9",
                 "shasum": ""
             },
             "type": "library",
@@ -1928,7 +2809,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "GPL-2.0+"
+                "GPL-2.0-or-later"
             ],
             "authors": [
                 {
@@ -1947,7 +2828,7 @@
                 "test",
                 "wordpress"
             ],
-            "time": "2018-01-17T17:40:44+00:00"
+            "time": "2018-05-06T14:44:48+00:00"
         }
     ],
     "aliases": [],
@@ -1956,7 +2837,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^5.3"
+        "php": ">=5.3"
     },
     "platform-dev": [],
     "platform-overrides": {

@@ -1,0 +1,44 @@
+# Copyright (C) 2018 Pronamic
+# This file is distributed under the GPL-3.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Pronamic Money 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/pronamic-money\n"
+"POT-Creation-Date: 2018-04-20 12:41:17+00:00\n"
+"PO-Revision-Date: 2018-04-20 14:43+0100\n"
+"Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
+"Language-Team: Pronamic <info@pronamic.eu>\n"
+"Language: nl_NL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.4\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#. Plugin Name of the plugin/theme
+msgid "Pronamic Money"
+msgstr "Pronamic Money"
+
+#. Plugin URI of the plugin/theme
+msgid "https://www.pronamic.eu/plugins/pronamic-money/"
+msgstr "https://www.pronamic.eu/plugins/pronamic-money/"
+
+#. Description of the plugin/theme
+msgid "WordPress Money library."
+msgstr "WordPress Money bibliotheek."
+
+#. Author of the plugin/theme
+msgid "Pronamic"
+msgstr "Pronamic"
+
+#. Author URI of the plugin/theme
+msgid "https://www.pronamic.eu/"
+msgstr "https://www.pronamic.nl/"
+
+#. translators: 1: currency symbol, 2: amount, 3: currency code, note: use non
+#. breaking space!
+#: src/Money.php:52
+msgctxt "money format"
+msgid "%1$s%2$s %3$s"
+msgstr "%1$s %2$s"
