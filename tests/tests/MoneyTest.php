@@ -20,6 +20,52 @@ use WP_UnitTestCase;
  */
 class MoneyTest extends WP_UnitTestCase {
 	/**
+	 * Setup.
+	 */
+	public function setUp() {
+		parent::setUp();
+
+		if ( version_compare( PHP_VERSION, '5.4', '<' ) ) {
+			add_filter( 'number_format_i18n', array( $this, 'maybe_fix_multibyte_number_format' ), 10, 3 );
+		}
+	}
+
+	/**
+	 * Maybe fix multibyte number format.
+	 *
+	 * @link https://github.com/WordPress/WordPress/blob/4.9.6/wp-includes/functions.php#L206-L237
+	 *
+	 * @global WP_Locale $wp_locale
+	 *
+	 * @param float $number   The number to convert based on locale.
+	 * @param int   $decimals Optional. Precision of the number of decimal places. Default 0.
+	 * @return string Converted number in string format.
+	 */
+	public function maybe_fix_multibyte_number_format( $formatted, $number, $decimals ) {
+		global $wp_locale;
+
+		if ( empty( $wp_locale ) ) {
+			return $formatted;
+		}
+
+		$dec_point     = $wp_locale->number_format['decimal_point'];
+		$thousands_sep = $wp_locale->number_format['thousands_sep'];
+
+		if ( 1 === strlen( $dec_point ) && 1 === strlen( $thousands_sep ) ) {
+			return $formatted;
+		}
+
+		$formatted = number_format( $number, $decimals, 'd', 't' );
+
+		$formatted = strtr( $formatted, array(
+			'd' => $dec_point,
+			't' => $thousands_sep,
+		) );
+
+		return $formatted;
+	}
+
+	/**
 	 * Test default format.
 	 *
 	 * @see https://github.com/WordPress/WordPress/blob/4.9.5/wp-includes/l10n.php
@@ -69,22 +115,7 @@ class MoneyTest extends WP_UnitTestCase {
 		$this->assertEquals( $expected, $value, 'Locale: ' . get_locale() . ' Money format: ' . Money::get_default_format() . ' Test: ' . _x( '%1$s%2$s %3$s', 'money format', 'pronamic-money' ) );
 	}
 
-	public static function fix_expected_php53( $value ) {
-		// PHP < 5.4.0 does not support multiple bytes in thousands separator.
-		if ( version_compare( PHP_VERSION, '5.4', '<' ) ) {
-			$nbsp = ' ';
-
-			$replace = chr( ord( $nbsp ) );
-
-			$value = str_replace( $nbsp, $replace, $value );
-		}
-
-		return $value;
-	}
-
 	public function format_provider() {
-
-
 		// Note: Switching from nl_NL to fr_FR back to nl_NL is not working correctly (bug?).
 		return array(
 			// Dutch
@@ -96,7 +127,7 @@ class MoneyTest extends WP_UnitTestCase {
 			array( 'en_US', 'EUR', 49.7512, '€49.75 EUR' ),
 			array( 'en_US', 'USD', 1234567890.1234, '$1,234,567,890.12 USD' ),
 			// French
-			array( 'fr_FR', 'USD', 1234567890.1234, '$' . self::fix_expected_php53( '1 234 567 890,12' ) . ' USD' ),
+			array( 'fr_FR', 'USD', 1234567890.1234, '$1 234 567 890,12 USD' ),
 		);
 	}
 }
