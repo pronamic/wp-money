@@ -69,7 +69,9 @@ class MoneyTest extends WP_UnitTestCase {
 		// @link https://core.trac.wordpress.org/ticket/10373
 		if ( version_compare( PHP_VERSION, '5.4', '<' ) ) {
 			// PHP < 5.4.0 does not support multiple bytes in thousands separator.
-			$expected = str_replace( array( '&nbsp;', '&#160;' ), ' ', $expected );
+			$nbsp = ' ';
+
+			$expected = str_replace( $nbsp, chr( ord( $nbsp ) ), $expected );
 		}
 
 		$this->assertEquals( $locale, get_locale() );
