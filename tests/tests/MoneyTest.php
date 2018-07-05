@@ -41,9 +41,9 @@ class MoneyTest extends WP_UnitTestCase {
 	public function default_format_provider() {
 		// Note: Switching from nl_NL to fr_FR back to nl_NL is not working correctly (bug?).
 		return array(
-			array( 'en_US', '%1$s%2$s %3$s' ),
-			array( 'fr_FR', '%1$s%2$s %3$s' ),
-			array( 'nl_NL', '%1$s %2$s' ),
+			array( 'en_US', '%1$s%2$s %3$s' ),
+			array( 'fr_FR', '%1$s%2$s %3$s' ),
+			array( 'nl_NL', '%1$s %2$s' ),
 		);
 	}
 
@@ -77,15 +77,15 @@ class MoneyTest extends WP_UnitTestCase {
 		// Note: Switching from nl_NL to fr_FR back to nl_NL is not working correctly (bug?).
 		return array(
 			// Dutch
-			array( 'nl_NL', 'EUR', 49.7512, '€ 49,75' ),
-			array( 'nl_NL', 'NLG', 49.7512, 'ƒ 49,7512' ),
-			array( 'nl_NL', 'USD', 49.7512, '$ 49,75' ),
-			array( 'nl_NL', 'USD', 1234567890.1234, '$ 1.234.567.890,12' ),
+			array( 'nl_NL', 'EUR', 49.7512, '€ 49,75' ),
+			array( 'nl_NL', 'NLG', 49.7512, 'ƒ 49,7512' ),
+			array( 'nl_NL', 'USD', 49.7512, '$ 49,75' ),
+			array( 'nl_NL', 'USD', 1234567890.1234, '$ 1.234.567.890,12' ),
 			// English
-			array( 'en_US', 'EUR', 49.7512, '€49.75 EUR' ),
-			array( 'en_US', 'USD', 1234567890.1234, '$1,234,567,890.12 USD' ),
+			array( 'en_US', 'EUR', 49.7512, '€49.75 EUR' ),
+			array( 'en_US', 'USD', 1234567890.1234, '$1,234,567,890.12 USD' ),
 			// French
-			array( 'fr_FR', 'USD', 1234567890.1234, '$1 234 567 890,12 USD' ),
+			array( 'fr_FR', 'USD', 1234567890.1234, '$1 234 567 890,12 USD' ),
 		);
 	}
 }
