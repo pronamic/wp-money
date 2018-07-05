@@ -65,6 +65,13 @@ class MoneyTest extends WP_UnitTestCase {
 
 		$value = $money->format_i18n();
 
+		// Expect space instead of non-breaking space with PHP < 5.4.
+		// @link https://core.trac.wordpress.org/ticket/10373
+		if ( version_compare( PHP_VERSION, '5.4', '<' ) ) {
+			// PHP < 5.4.0 does not support multiple bytes in thousands separator.
+			$expected = str_replace( array( '&nbsp;', '&#160;' ), ' ', $expected );
+		}
+
 		$this->assertEquals( $locale, get_locale() );
 		$this->assertEquals( $expected, $value, 'Locale: ' . get_locale() . ' Money format: ' . Money::get_default_format() . ' Test: ' . _x( '%1$s%2$s %3$s', 'money format', 'pronamic-money' ) );
 	}
