@@ -28,9 +28,7 @@ class MoneyTest extends WP_UnitTestCase {
 	 */
 	public function test_default_format( $locale, $expected ) {
 		// Note: Switching from nl_NL to fr_FR back to nl_NL is not working correctly (bug?).
-		if ( $locale !== get_locale() ) {
-			switch_to_locale( $locale );
-		}
+		switch_to_locale( $locale );
 
 		$value = Money::get_default_format();
 
@@ -61,9 +59,7 @@ class MoneyTest extends WP_UnitTestCase {
 	 */
 	public function test_format( $locale, $currency, $amount, $expected ) {
 		// Note: Switching from nl_NL to fr_FR back to nl_NL is not working correctly (bug?).
-		if ( $locale !== get_locale() ) {
-			switch_to_locale( $locale );
-		}
+		switch_to_locale( $locale );
 
 		$money = new Money( $amount, $currency );
 
