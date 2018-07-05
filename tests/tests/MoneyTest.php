@@ -74,7 +74,7 @@ class MoneyTest extends WP_UnitTestCase {
 		return array(
 			// Dutch
 			array( 'nl_NL', 'EUR', 49.7512, '€ 49,75' ),
-			array( 'nl_NL', 'NLG', 49.7512, 'ƒ 49,7512' ),
+			array( 'nl_NL', 'NLG', 49.7512, 'G 49,7512' ),
 			array( 'nl_NL', 'USD', 49.7512, '$ 49,75' ),
 			array( 'nl_NL', 'USD', 1234567890.1234, '$ 1.234.567.890,12' ),
 			// English
