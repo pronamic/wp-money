@@ -78,7 +78,22 @@ class MoneyTest extends WP_UnitTestCase {
 		$this->assertEquals( $expected, $value, 'Locale: ' . get_locale() . ' Money format: ' . Money::get_default_format() . ' Test: ' . _x( '%1$s%2$s %3$s', 'money format', 'pronamic-money' ) );
 	}
 
+	public static function fix_expected_php53( $value ) {
+		// PHP < 5.4.0 does not support multiple bytes in thousands separator.
+		if ( version_compare( PHP_VERSION, '5.4', '<' ) ) {
+			$nbsp = ' ';
+
+			$replace = chr( ord( $nbsp ) );
+
+			$value = str_replace( $nbsp, $replace, $value );
+		}
+
+		return $value;
+	}
+
 	public function format_provider() {
+
+
 		// Note: Switching from nl_NL to fr_FR back to nl_NL is not working correctly (bug?).
 		return array(
 			// Dutch
@@ -90,7 +105,7 @@ class MoneyTest extends WP_UnitTestCase {
 			array( 'en_US', 'EUR', 49.7512, '€49.75 EUR' ),
 			array( 'en_US', 'USD', 1234567890.1234, '$1,234,567,890.12 USD' ),
 			// French
-			array( 'fr_FR', 'USD', 1234567890.1234, '$1 234 567 890,12 USD' ),
+			array( 'fr_FR', 'USD', 1234567890.1234, '$' . self::fix_expected_php53( '1 234 567 890,12' ) . ' USD' ),
 		);
 	}
 }
