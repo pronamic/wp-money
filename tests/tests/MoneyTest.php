@@ -32,8 +32,8 @@ class MoneyTest extends WP_UnitTestCase {
 
 		$value = Money::get_default_format();
 
-		$this->assertEquals( get_locale(), $locale );
-		$this->assertEquals( $value, $expected );
+		$this->assertEquals( $locale, get_locale() );
+		$this->assertEquals( $expected, $value );
 	}
 
 	public function default_format_provider() {
@@ -65,8 +65,8 @@ class MoneyTest extends WP_UnitTestCase {
 
 		$value = $money->format_i18n();
 
-		$this->assertEquals( get_locale(), $locale );
-		$this->assertEquals( $value, $expected, 'Locale: ' . get_locale() . ' Money format: ' . Money::get_default_format() . ' Test: ' . _x( '%1$s%2$s %3$s', 'money format', 'pronamic-money' ) );
+		$this->assertEquals( $locale, get_locale() );
+		$this->assertEquals( $expected, $value, 'Locale: ' . get_locale() . ' Money format: ' . Money::get_default_format() . ' Test: ' . _x( '%1$s%2$s %3$s', 'money format', 'pronamic-money' ) );
 	}
 
 	public function format_provider() {
