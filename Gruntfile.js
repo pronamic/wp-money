@@ -17,7 +17,8 @@ module.exports = function( grunt ) {
 		phpcs: {
 			core: {
 				src: [
-					'src/**/*.php'
+					'src/**/*.php',
+					'tests/src/**/*.php'
 				]
 			},
 			options: {

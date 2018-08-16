@@ -113,6 +113,7 @@ class MoneyTest extends WP_UnitTestCase {
 		$value = $money->format_i18n();
 
 		$this->assertEquals( $locale, get_locale() );
+		/* translators: 1: currency symbol, 2: amount, 3: currency code, note: use non-breaking space! */
 		$this->assertEquals( $expected, $value, 'Locale: ' . get_locale() . ' Money format: ' . Money::get_default_format() . ' Test: ' . _x( '%1$s%2$s %3$s', 'money format', 'pronamic-money' ) );
 	}
 
