@@ -13,8 +13,9 @@ namespace Pronamic\WordPress\Money;
 /**
  * Parser
  *
- * @author Remco Tolsma
- * @version 1.0
+ * @author  Remco Tolsma
+ * @version 1.1.0
+ * @since   1.1.0
  */
 class Parser {
 	/**

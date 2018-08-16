@@ -15,8 +15,9 @@ use WP_UnitTestCase;
 /**
  * Parser
  *
- * @author Remco Tolsma
- * @version 1.0
+ * @author  Remco Tolsma
+ * @version 1.1.0
+ * @since   1.1.0
  */
 class ParserTest extends WP_UnitTestCase {
 	/**
