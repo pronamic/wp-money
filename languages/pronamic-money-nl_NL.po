@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pronamic Money 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/pronamic-money\n"
-"POT-Creation-Date: 2018-04-20 12:41:17+00:00\n"
-"PO-Revision-Date: 2018-04-20 14:43+0100\n"
+"POT-Creation-Date: 2018-08-16 09:55:50+00:00\n"
+"PO-Revision-Date: 2018-08-16 11:56+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.eu>\n"
 "Language: nl_NL\n"
@@ -36,9 +36,9 @@ msgstr "Pronamic"
 msgid "https://www.pronamic.eu/"
 msgstr "https://www.pronamic.nl/"
 
-#. translators: 1: currency symbol, 2: amount, 3: currency code, note: use non
-#. breaking space!
-#: src/Money.php:52
+#. translators: 1: currency symbol, 2: amount, 3: currency code, note: use
+#. non-breaking space!
+#: src/Money.php:53
 msgctxt "money format"
 msgid "%1$s%2$s %3$s"
 msgstr "%1$s %2$s"
