@@ -19,7 +19,7 @@
 	},
 	"homepage": "https://github.com/pronamic/wp-money#readme",
 	"devDependencies": {
-		"grunt": "^1.0.2",
+		"grunt": "^1.0.3",
 		"grunt-checktextdomain": "^1.0.1",
 		"grunt-phpcs": "^0.4.0",
 		"grunt-phplint": "0.1.0",
