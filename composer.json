@@ -27,22 +27,18 @@
 		"php-coveralls/php-coveralls": "^1.1",
 		"phpmd/phpmd": "^2.4",
 		"phpunit/phpunit": "^4.8",
-		"wp-coding-standards/wpcs": "^0.14.1",
+		"wp-coding-standards/wpcs": "^1.0",
 		"wimg/php-compatibility": "^8.1",
 		"johnpbloch/wordpress": "^4.9",
 		"wp-phpunit/wp-phpunit": "^4.9",
 		"vlucas/phpdotenv": "^2.0"
 	},
-	"extra": {
-		"dropin-paths": {
-			"vendor/wp-phpunit/wp-phpunit/data/languages/": ["vendor:koodimonni-language"],
-			"vendor/wp-phpunit/wp-phpunit/data/languages/plugins/": ["vendor:koodimonni-plugin-language"],
-			"vendor/wp-phpunit/wp-phpunit/data/languages/themes/": ["vendor:koodimonni-theme-language"]
-		}
-	},
 	"scripts": {
 		"post-autoload-dump": [
-			"for file in languages/*.mo ; do ln -f -s ../../../../../../$file vendor/wp-phpunit/wp-phpunit/data/languages/plugins/. ; done"
+			"for file in languages/*.mo ; do ln -f -s ../../../../../../$file vendor/wp-phpunit/wp-phpunit/data/languages/plugins/. ; done",
+			"for file in vendor/koodimonni-language/*/* ; do ln -f -s ../../../../../$file vendor/wp-phpunit/wp-phpunit/data/languages/. ; done",
+			"for file in vendor/koodimonni-plugin-language/*/* ; do ln -f -s ../../../../../$file vendor/wp-phpunit/wp-phpunit/data/languages/plugins/. ; done",
+			"for file in vendor/koodimonni-theme-language/*/* ; do ln -f -s ../../../../../$file vendor/wp-phpunit/wp-phpunit/data/languages/themes/. ; done"
 		]
 	}
 }

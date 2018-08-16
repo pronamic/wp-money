@@ -15,8 +15,9 @@ namespace Pronamic\WordPress\Money;
  *
  * @see https://github.com/moneyphp/money/blob/v3.1.3/resources/currency.php
  *
- * @author Remco Tolsma
- * @version 1.0
+ * @author  Remco Tolsma
+ * @version 1.0.0
+ * @since   1.0.0
  */
 class Currencies {
 	/**

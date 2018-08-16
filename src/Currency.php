@@ -13,8 +13,9 @@ namespace Pronamic\WordPress\Money;
 /**
  * Currency
  *
- * @author Remco Tolsma
- * @version 1.0
+ * @author  Remco Tolsma
+ * @version 1.0.0
+ * @since   1.0.0
  */
 class Currency {
 	/**

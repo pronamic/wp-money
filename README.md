@@ -24,6 +24,7 @@ add_filter( 'pronamic_money_default_format', 'prefix_pronamic_money_default_form
 
 ## Inspiration
 
+*	http://php.net/manual/en/function.money-format.php
 *	https://github.com/datasets/currency-codes
 *	https://github.com/cknow/laravel-money
 *	https://github.com/akaunting/money
@@ -42,3 +43,5 @@ add_filter( 'pronamic_money_default_format', 'prefix_pronamic_money_default_form
 *	https://www.currency-iso.org/en/home.html
 *	https://docs.oracle.com/javase/7/docs/api/java/util/Currency.html
 *	https://wp-languages.github.io/
+*	http://php.net/manual/en/function.sscanf.php
+*	http://php.net/manual/en/numberformatter.create.php
