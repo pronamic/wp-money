@@ -92,6 +92,15 @@ class Money {
 	}
 
 	/**
+	 * Get cents.
+	 *
+	 * @return float 
+	 */
+	public function get_cents() {
+		return $this->amount * 100;
+	}
+
+	/**
 	 * Set amount.
 	 *
 	 * @param mixed $amount Amount.

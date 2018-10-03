@@ -132,4 +132,17 @@ class MoneyTest extends WP_UnitTestCase {
 			array( 'fr_FR', 'USD', 1234567890.1234, '$1 234 567 890,12 USD' ),
 		);
 	}
+
+	/**
+	 * Test cents.
+	 */
+	public function test_cents() {
+		$money = new Money( 100.65, 'EUR' );
+
+		$this->assertEquals( 10065, $money->get_cents() );
+
+		$money = new Money( 0.00010, 'BTC' );
+
+		$this->assertEquals( 0.01, $money->get_cents() );
+	}
 }
