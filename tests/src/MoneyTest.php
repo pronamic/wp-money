@@ -69,7 +69,7 @@ class MoneyTest extends WP_UnitTestCase {
 	/**
 	 * Test default format.
 	 *
-	 * @see https://github.com/WordPress/WordPress/blob/4.9.5/wp-includes/l10n.php
+	 * @link https://github.com/WordPress/WordPress/blob/4.9.5/wp-includes/l10n.php
 	 *
 	 * @dataProvider default_format_provider
 	 */
@@ -95,7 +95,7 @@ class MoneyTest extends WP_UnitTestCase {
 	/**
 	 * Test format.
 	 *
-	 * @see https://github.com/WordPress/WordPress/blob/4.9.5/wp-includes/l10n.php
+	 * @link https://github.com/WordPress/WordPress/blob/4.9.5/wp-includes/l10n.php
 	 *
 	 * @param float $amount
 	 * @param string $currency

@@ -23,6 +23,9 @@
  * @package   Pronamic\WordPress\Pay
  */
 
+/**
+ * Pronamic Money load plugin textdomain.
+ */
 function pronamic_money_load_plugin_textdomain() {
 	load_plugin_textdomain( 'pronamic-money', false, basename( dirname( __FILE__ ) ) . '/languages' );
 }

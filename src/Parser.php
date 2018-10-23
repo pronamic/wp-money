@@ -23,7 +23,8 @@ class Parser {
 	 *
 	 * @link https://github.com/wp-pay/core/blob/2.0.2/src/Core/Util.php#L128-L176
 	 *
-	 * @param string $money
+	 * @param string $string String to parse as money.
+	 *
 	 * @return Money
 	 */
 	public function parse( $string ) {
