@@ -63,7 +63,7 @@ class Currency {
 	/**
 	 * Get alphabetic code.
 	 *
-	 * @return string
+	 * @return null|string
 	 */
 	public function get_alphabetic_code() {
 		return $this->alphabetic_code;
@@ -81,7 +81,7 @@ class Currency {
 	/**
 	 * Get numeric code.
 	 *
-	 * @return string
+	 * @return null|string
 	 */
 	public function get_numeric_code() {
 		return $this->numeric_code;
@@ -99,7 +99,7 @@ class Currency {
 	/**
 	 * Get symbol.
 	 *
-	 * @return string
+	 * @return null|string
 	 */
 	public function get_symbol() {
 		return $this->symbol;
@@ -146,7 +146,7 @@ class Currency {
 	/**
 	 * Get name.
 	 *
-	 * @return string
+	 * @return null|string
 	 */
 	public function get_name() {
 		return $this->name;
