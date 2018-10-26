@@ -93,7 +93,7 @@ class Money {
 	/**
 	 * Get cents.
 	 *
-	 * @return float 
+	 * @return float
 	 */
 	public function get_cents() {
 		return $this->amount * 100;
