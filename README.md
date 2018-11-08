@@ -46,3 +46,5 @@ add_filter( 'pronamic_money_default_format', 'prefix_pronamic_money_default_form
 *	http://php.net/manual/en/function.sscanf.php
 *	http://php.net/manual/en/numberformatter.create.php
 *	https://git.tibidono.com/package/money-datatype/blob/0.1.13/src/Money/TaxedMoney.php
+*	https://frontstuff.io/how-to-handle-monetary-values-in-javascript
+*	https://github.com/sarahdayan/dinero.js
