@@ -512,10 +512,10 @@
         },
         {
             "name": "koodimonni-plugin-language/woocommerce-de_de",
-            "version": "3.4.4",
+            "version": "3.5.1",
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/translation/plugin/woocommerce/3.4.4/de_DE.zip",
+                "url": "https://downloads.wordpress.org/translation/plugin/woocommerce/3.5.1/de_DE.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -533,10 +533,10 @@
         },
         {
             "name": "koodimonni-plugin-language/woocommerce-fr_fr",
-            "version": "3.4.4",
+            "version": "3.5.1",
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/translation/plugin/woocommerce/3.4.4/fr_FR.zip",
+                "url": "https://downloads.wordpress.org/translation/plugin/woocommerce/3.5.1/fr_FR.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -554,10 +554,10 @@
         },
         {
             "name": "koodimonni-plugin-language/woocommerce-nl_nl",
-            "version": "3.4.4",
+            "version": "3.5.1",
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/translation/plugin/woocommerce/3.4.4/nl_NL.zip",
+                "url": "https://downloads.wordpress.org/translation/plugin/woocommerce/3.5.1/nl_NL.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -2194,16 +2194,16 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "2.9.1",
+            "version": "2.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "dcbed1074f8244661eecddfc2a675430d8d33f62"
+                "reference": "2acf168de78487db620ab4bc524135a13cfe6745"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/dcbed1074f8244661eecddfc2a675430d8d33f62",
-                "reference": "dcbed1074f8244661eecddfc2a675430d8d33f62",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/2acf168de78487db620ab4bc524135a13cfe6745",
+                "reference": "2acf168de78487db620ab4bc524135a13cfe6745",
                 "shasum": ""
             },
             "require": {
@@ -2268,7 +2268,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2017-05-22T02:43:20+00:00"
+            "time": "2018-11-07T22:31:41+00:00"
         },
         {
             "name": "symfony/config",
@@ -2750,16 +2750,16 @@
         },
         {
             "name": "wp-coding-standards/wpcs",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git",
-                "reference": "539c6d74e6207daa22b7ea754d6f103e9abb2755"
+                "reference": "46d42828ce7355d8b3776e3171f2bda892d179b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WordPress-Coding-Standards/WordPress-Coding-Standards/zipball/539c6d74e6207daa22b7ea754d6f103e9abb2755",
-                "reference": "539c6d74e6207daa22b7ea754d6f103e9abb2755",
+                "url": "https://api.github.com/repos/WordPress-Coding-Standards/WordPress-Coding-Standards/zipball/46d42828ce7355d8b3776e3171f2bda892d179b4",
+                "reference": "46d42828ce7355d8b3776e3171f2bda892d179b4",
                 "shasum": ""
             },
             "require": {
@@ -2789,7 +2789,7 @@
                 "standards",
                 "wordpress"
             ],
-            "time": "2018-07-25T18:10:35+00:00"
+            "time": "2018-09-10T17:04:05+00:00"
         },
         {
             "name": "wp-phpunit/wp-phpunit",
