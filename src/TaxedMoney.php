@@ -96,12 +96,20 @@ class TaxedMoney extends Money {
 	 * @return Money
 	 */
 	public function get_excluding_tax() {
-		$value = $this->get_amount();
+		$amount = $this->get_amount();
 
-		if ( null !== $this->get_tax_amount() ) {
-			$value -= $this->get_tax_amount();
+		$use_bcmath = extension_loaded( 'bcmath' );
+
+		if ( $use_bcmath ) {
+			// Use non-locale aware float value.
+			// @link http://php.net/sprintf.
+			$value = sprintf( '%F', $this->get_amount() );
+
+			$amount = bcsub( $value, $this->get_tax_amount(), 8 );
+		} else {
+			$amount -= $this->get_tax_amount();
 		}
 
-		return new Money( $value, $this->get_currency() );
+		return new Money( $amount, $this->get_currency() );
 	}
 }
