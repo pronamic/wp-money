@@ -61,7 +61,7 @@ class TaxedMoney extends Money {
 	/**
 	 * Get tax amount.
 	 *
-	 * @return float Tax amount.
+	 * @return float|null Tax amount.
 	 */
 	public function get_tax_amount() {
 		return $this->tax_amount;
@@ -70,10 +70,19 @@ class TaxedMoney extends Money {
 	/**
 	 * Set tax amount.
 	 *
-	 * @param mixed $amount Tax amount.
+	 * @param float|null $amount Tax amount.
 	 */
 	public function set_tax_amount( $amount ) {
-		$this->tax_amount = floatval( $amount );
+		$this->tax_amount = ( null === $amount ? null : floatval( $amount ) );
+	}
+
+	/**
+	 * Has tax?
+	 *
+	 * @return bool
+	 */
+	public function has_tax() {
+		return ( null !== $this->get_tax_amount() );
 	}
 
 	/**
