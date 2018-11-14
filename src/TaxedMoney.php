@@ -49,12 +49,6 @@ class TaxedMoney extends Money {
 		}
 
 		$this->set_tax_amount( $tax_amount );
-
-		// Calculate tax percentage if tax amount is set.
-		if ( null === $tax_percentage && null !== $tax_amount ) {
-			$tax_percentage = round( ( $tax_amount / ( $amount - $tax_amount ) ) * 100, 2 );
-		}
-
 		$this->set_tax_percentage( $tax_percentage );
 	}
 
