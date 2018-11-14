@@ -105,7 +105,7 @@ class TaxedMoney extends Money {
 	 * @param string|int|float|null $percentage Tax percentage.
 	 */
 	public function set_tax_percentage( $percentage ) {
-		$this->tax_percentage = floatval( $percentage );
+		$this->tax_percentage = ( null === $percentage ? null : floatval( $percentage ) );
 	}
 
 	/**
