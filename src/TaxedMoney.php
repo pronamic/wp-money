@@ -121,7 +121,7 @@ class TaxedMoney extends Money {
 	 * @return Money
 	 */
 	public function get_including_tax() {
-		return new Money( $this->get_amount(), $this->get_currency() );
+		return new Money( $this->get_value(), $this->get_currency() );
 	}
 
 	/**
@@ -130,20 +130,20 @@ class TaxedMoney extends Money {
 	 * @return Money
 	 */
 	public function get_excluding_tax() {
-		$amount = $this->get_amount();
+		$value = $this->get_value();
 
 		$use_bcmath = extension_loaded( 'bcmath' );
 
 		if ( $use_bcmath ) {
 			// Use non-locale aware float value.
 			// @link http://php.net/sprintf.
-			$value = sprintf( '%F', $this->get_amount() );
+			$string = sprintf( '%F', $value );
 
-			$amount = bcsub( $value, $this->get_tax_value(), 8 );
+			$value = bcsub( $string, $this->get_tax_value(), 8 );
 		} else {
-			$amount -= $this->get_tax_value();
+			$value -= $this->get_tax_value();
 		}
 
-		return new Money( $amount, $this->get_currency() );
+		return new Money( $value, $this->get_currency() );
 	}
 }
