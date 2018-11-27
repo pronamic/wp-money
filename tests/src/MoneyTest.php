@@ -112,22 +112,22 @@ class MoneyTest extends WP_UnitTestCase {
 	 *
 	 * @param string $locale   Locale.
 	 * @param string $currency Money currency.
-	 * @param float  $amount   Money amount.
+	 * @param float  $value    Money value.
 	 * @param string $expected Expected format.
 	 *
 	 * @dataProvider format_provider
 	 */
-	public function test_format( $locale, $currency, $amount, $expected ) {
+	public function test_format( $locale, $currency, $value, $expected ) {
 		// Note: Switching from nl_NL to fr_FR back to nl_NL is not working correctly (bug?).
 		switch_to_locale( $locale );
 
-		$money = new Money( $amount, $currency );
+		$money = new Money( $value, $currency );
 
-		$value = $money->format_i18n();
+		$string = $money->format_i18n();
 
 		$this->assertEquals( $locale, get_locale() );
-		/* translators: 1: currency symbol, 2: amount, 3: currency code, note: use non-breaking space! */
-		$this->assertEquals( $expected, $value, 'Locale: ' . get_locale() . ' Money format: ' . Money::get_default_format() . ' Test: ' . _x( '%1$s%2$s %3$s', 'money format', 'pronamic-money' ) );
+		/* translators: 1: currency symbol, 2: amount value, 3: currency code, note: use non-breaking space! */
+		$this->assertEquals( $expected, $string, 'Locale: ' . get_locale() . ' Money format: ' . Money::get_default_format() . ' Test: ' . _x( '%1$s%2$s %3$s', 'money format', 'pronamic-money' ) );
 	}
 
 	/**

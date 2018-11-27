@@ -19,11 +19,11 @@ namespace Pronamic\WordPress\Money;
  */
 class Money {
 	/**
-	 * Amount.
+	 * Amount value.
 	 *
 	 * @var float
 	 */
-	private $amount;
+	private $value;
 
 	/**
 	 * Currency.
@@ -35,11 +35,11 @@ class Money {
 	/**
 	 * Construct and initialize money object.
 	 *
-	 * @param string|int|float     $amount   Amount.
+	 * @param string|int|float     $value    Amount value.
 	 * @param Currency|string|null $currency Currency.
 	 */
-	public function __construct( $amount = 0, $currency = null ) {
-		$this->set_amount( $amount );
+	public function __construct( $value = 0, $currency = null ) {
+		$this->set_value( $value );
 		$this->set_currency( $currency );
 	}
 
@@ -49,7 +49,7 @@ class Money {
 	 * @return string
 	 */
 	public static function get_default_format() {
-		/* translators: 1: currency symbol, 2: amount, 3: currency code, note: use non-breaking space! */
+		/* translators: 1: currency symbol, 2: amount value, 3: currency code, note: use non-breaking space! */
 		$format = _x( '%1$s%2$s %3$s', 'money format', 'pronamic-money' );
 		// Note:               ↳ Non-breaking space.
 		$format = apply_filters( 'pronamic_money_default_format', $format );
@@ -73,21 +73,33 @@ class Money {
 			return sprintf(
 				$format,
 				$this->currency->get_symbol(),
-				number_format_i18n( $this->amount, $this->currency->get_number_decimals() ),
+				number_format_i18n( $this->get_value(), $this->currency->get_number_decimals() ),
 				$this->currency->get_alphabetic_code()
 			);
 		}
 
-		return number_format_i18n( $this->amount, 2 );
+		return number_format_i18n( $this->get_value(), 2 );
+	}
+
+	/**
+	 * Get value.
+	 *
+	 * @return float Amount value.
+	 */
+	public function get_value() {
+		return $this->value;
 	}
 
 	/**
 	 * Get amount.
 	 *
-	 * @return float float amount.
+	 * @deprecated 1.2.0
+	 * @return float Amount value.
 	 */
 	public function get_amount() {
-		return $this->amount;
+		_deprecated_function( __METHOD__, '1.2.0', 'Money::get_value()' );
+
+		return $this->get_value();
 	}
 
 	/**
@@ -96,16 +108,28 @@ class Money {
 	 * @return float
 	 */
 	public function get_cents() {
-		return $this->amount * 100;
+		return $this->value * 100;
+	}
+
+	/**
+	 * Set value.
+	 *
+	 * @param mixed $value Amount value.
+	 */
+	public function set_value( $value ) {
+		$this->value = floatval( $value );
 	}
 
 	/**
 	 * Set amount.
 	 *
-	 * @param mixed $amount Amount.
+	 * @deprecated 1.2.0
+	 * @param mixed $value Amount value.
 	 */
-	public function set_amount( $amount ) {
-		$this->amount = floatval( $amount );
+	public function set_amount( $value ) {
+		_deprecated_function( __METHOD__, '1.2.0', 'Money::set_value()' );
+
+		$this->set_value( $value );
 	}
 
 	/**

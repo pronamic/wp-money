@@ -51,7 +51,7 @@ class ParserTest extends WP_UnitTestCase {
 
 		$money = $this->parser->parse( $string );
 
-		$this->assertEquals( $expected, $money->get_amount() );
+		$this->assertEquals( $expected, $money->get_value() );
 	}
 
 	/**
