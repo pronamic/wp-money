@@ -19,11 +19,11 @@ namespace Pronamic\WordPress\Money;
  */
 class TaxedMoney extends Money {
 	/**
-	 * Tax amount.
+	 * Tax value.
 	 *
 	 * @var float|null
 	 */
-	private $tax_amount;
+	private $tax_value;
 
 	/**
 	 * Tax percentage.
@@ -35,39 +35,52 @@ class TaxedMoney extends Money {
 	/**
 	 * Construct and initialize money object.
 	 *
-	 * @param string|int|float     $amount         Amount.
+	 * @param string|int|float     $value          Amount value.
 	 * @param Currency|string|null $currency       Currency.
-	 * @param string|int|float     $tax_amount     Tax amount.
+	 * @param string|int|float     $tax_value      Tax value.
 	 * @param string|int|float     $tax_percentage Tax percentage.
 	 */
-	public function __construct( $amount = 0, $currency = null, $tax_amount = null, $tax_percentage = null ) {
-		parent::__construct( $amount, $currency );
+	public function __construct( $value = 0, $currency = null, $tax_value = null, $tax_percentage = null ) {
+		parent::__construct( $value, $currency );
 
 		// Calculate tax amount if tax percentage is set.
-		if ( null === $tax_amount && null !== $tax_percentage ) {
-			$tax_amount = ( $amount / ( 100 + $tax_percentage ) ) * $tax_percentage;
+		if ( null === $tax_value && null !== $tax_percentage ) {
+			$tax_value = ( $value / ( 100 + $tax_percentage ) ) * $tax_percentage;
 		}
 
-		$this->set_tax_amount( $tax_amount );
+		$this->set_tax_value( $tax_value );
 		$this->set_tax_percentage( $tax_percentage );
 	}
 
 	/**
 	 * Get tax amount.
 	 *
-	 * @return float|null Tax amount.
+	 * @return Money|null Tax amount.
 	 */
 	public function get_tax_amount() {
-		return $this->tax_amount;
+		if ( null === $this->tax_value ) {
+			return null;
+		}
+
+		return new Money( $this->tax_value, $this->get_currency() );
 	}
 
 	/**
-	 * Set tax amount.
+	 * Get tax value.
 	 *
-	 * @param float|null $amount Tax amount.
+	 * @return float|null
 	 */
-	public function set_tax_amount( $amount ) {
-		$this->tax_amount = ( null === $amount ? null : floatval( $amount ) );
+	public function get_tax_value() {
+		return $this->tax_value;
+	}
+
+	/**
+	 * Set tax value.
+	 *
+	 * @param float|null $value Tax value.
+	 */
+	public function set_tax_value( $value ) {
+		$this->tax_value = ( null === $value ? null : floatval( $value ) );
 	}
 
 	/**
@@ -76,7 +89,7 @@ class TaxedMoney extends Money {
 	 * @return bool
 	 */
 	public function has_tax() {
-		return ( null !== $this->get_tax_amount() );
+		return ( null !== $this->get_tax_value() );
 	}
 
 	/**
@@ -126,9 +139,9 @@ class TaxedMoney extends Money {
 			// @link http://php.net/sprintf.
 			$value = sprintf( '%F', $this->get_amount() );
 
-			$amount = bcsub( $value, $this->get_tax_amount(), 8 );
+			$amount = bcsub( $value, $this->get_tax_value(), 8 );
 		} else {
-			$amount -= $this->get_tax_amount();
+			$amount -= $this->get_tax_value();
 		}
 
 		return new Money( $amount, $this->get_currency() );
