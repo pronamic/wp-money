@@ -13,11 +13,11 @@ namespace Pronamic\WordPress\Money;
 /**
  * Currencies
  *
- * @see https://github.com/moneyphp/money/blob/v3.1.3/src/Currencies/ISOCurrencies.php#L90-L102
- * @see https://github.com/moneyphp/money/blob/v3.1.3/resources/currency.php
- * 
+ * @link https://github.com/moneyphp/money/blob/v3.1.3/src/Currencies/ISOCurrencies.php#L90-L102
+ * @link https://github.com/moneyphp/money/blob/v3.1.3/resources/currency.php
+ *
  * @author Remco Tolsma
- * @version 1.0
+ * @version 1.2.0
  */
 return array(
 	array(

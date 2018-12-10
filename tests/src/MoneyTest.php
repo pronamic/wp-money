@@ -10,13 +10,14 @@
 
 namespace Pronamic\WordPress\Money;
 
+use WP_Locale;
 use WP_UnitTestCase;
 
 /**
  * Money
  *
  * @author Remco Tolsma
- * @version 1.1.0
+ * @version 1.2.0
  * @since   1.0.0
  */
 class MoneyTest extends WP_UnitTestCase {
@@ -36,11 +37,12 @@ class MoneyTest extends WP_UnitTestCase {
 	 *
 	 * @link https://github.com/WordPress/WordPress/blob/4.9.6/wp-includes/functions.php#L206-L237
 	 *
-	 * @global WP_Locale $wp_locale
+	 * @param string $formatted Formatted number.
+	 * @param float  $number    The number to convert based on locale.
+	 * @param int    $decimals  Optional. Precision of the number of decimal places. Default 0.
 	 *
-	 * @param float $number   The number to convert based on locale.
-	 * @param int   $decimals Optional. Precision of the number of decimal places. Default 0.
 	 * @return string Converted number in string format.
+	 * @global WP_Locale $wp_locale
 	 */
 	public function maybe_fix_multibyte_number_format( $formatted, $number, $decimals ) {
 		global $wp_locale;
@@ -58,10 +60,13 @@ class MoneyTest extends WP_UnitTestCase {
 
 		$formatted = number_format( $number, $decimals, 'd', 't' );
 
-		$formatted = strtr( $formatted, array(
-			'd' => $dec_point,
-			't' => $thousands_sep,
-		) );
+		$formatted = strtr(
+			$formatted,
+			array(
+				'd' => $dec_point,
+				't' => $thousands_sep,
+			)
+		);
 
 		return $formatted;
 	}
@@ -69,9 +74,12 @@ class MoneyTest extends WP_UnitTestCase {
 	/**
 	 * Test default format.
 	 *
-	 * @see https://github.com/WordPress/WordPress/blob/4.9.5/wp-includes/l10n.php
+	 * @link         https://github.com/WordPress/WordPress/blob/4.9.5/wp-includes/l10n.php
 	 *
 	 * @dataProvider default_format_provider
+	 *
+	 * @param string $locale   Locale to test.
+	 * @param string $expected Expected default format.
 	 */
 	public function test_default_format( $locale, $expected ) {
 		// Note: Switching from nl_NL to fr_FR back to nl_NL is not working correctly (bug?).
@@ -83,6 +91,11 @@ class MoneyTest extends WP_UnitTestCase {
 		$this->assertEquals( $expected, $value );
 	}
 
+	/**
+	 * Default format provider.
+	 *
+	 * @return array
+	 */
 	public function default_format_provider() {
 		// Note: Switching from nl_NL to fr_FR back to nl_NL is not working correctly (bug?).
 		return array(
@@ -95,41 +108,61 @@ class MoneyTest extends WP_UnitTestCase {
 	/**
 	 * Test format.
 	 *
-	 * @see https://github.com/WordPress/WordPress/blob/4.9.5/wp-includes/l10n.php
+	 * @link https://github.com/WordPress/WordPress/blob/4.9.5/wp-includes/l10n.php
 	 *
-	 * @param float $amount
-	 * @param string $currency
-	 * @param string $locale
-	 * @param string $expected
+	 * @param string $locale   Locale.
+	 * @param string $currency Money currency.
+	 * @param float  $value    Money value.
+	 * @param string $expected Expected format.
 	 *
 	 * @dataProvider format_provider
 	 */
-	public function test_format( $locale, $currency, $amount, $expected ) {
+	public function test_format( $locale, $currency, $value, $expected ) {
 		// Note: Switching from nl_NL to fr_FR back to nl_NL is not working correctly (bug?).
 		switch_to_locale( $locale );
 
-		$money = new Money( $amount, $currency );
+		$money = new Money( $value, $currency );
 
-		$value = $money->format_i18n();
+		$string = $money->format_i18n();
 
 		$this->assertEquals( $locale, get_locale() );
-		/* translators: 1: currency symbol, 2: amount, 3: currency code, note: use non-breaking space! */
-		$this->assertEquals( $expected, $value, 'Locale: ' . get_locale() . ' Money format: ' . Money::get_default_format() . ' Test: ' . _x( '%1$s%2$s %3$s', 'money format', 'pronamic-money' ) );
+		/* translators: 1: currency symbol, 2: amount value, 3: currency code, note: use non-breaking space! */
+		$this->assertEquals( $expected, $string, 'Locale: ' . get_locale() . ' Money format: ' . Money::get_default_format() . ' Test: ' . _x( '%1$s%2$s %3$s', 'money format', 'pronamic-money' ) );
 	}
 
+	/**
+	 * Format provider.
+	 *
+	 * @return array
+	 */
 	public function format_provider() {
 		// Note: Switching from nl_NL to fr_FR back to nl_NL is not working correctly (bug?).
 		return array(
-			// Dutch
+			// Dutch.
 			array( 'nl_NL', 'EUR', 49.7512, '€ 49,75' ),
 			array( 'nl_NL', 'NLG', 49.7512, 'G 49,7512' ),
 			array( 'nl_NL', 'USD', 49.7512, '$ 49,75' ),
 			array( 'nl_NL', 'USD', 1234567890.1234, '$ 1.234.567.890,12' ),
-			// English
+
+			// English.
 			array( 'en_US', 'EUR', 49.7512, '€49.75 EUR' ),
 			array( 'en_US', 'USD', 1234567890.1234, '$1,234,567,890.12 USD' ),
-			// French
+
+			// French.
 			array( 'fr_FR', 'USD', 1234567890.1234, '$1 234 567 890,12 USD' ),
 		);
+	}
+
+	/**
+	 * Test cents.
+	 */
+	public function test_cents() {
+		$money = new Money( 100.65, 'EUR' );
+
+		$this->assertEquals( 10065, $money->get_cents() );
+
+		$money = new Money( 0.00010, 'BTC' );
+
+		$this->assertEquals( 0.01, $money->get_cents() );
 	}
 }

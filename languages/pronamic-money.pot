@@ -2,9 +2,9 @@
 # This file is distributed under the GPL-3.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Pronamic Money 1.0.0\n"
+"Project-Id-Version: Pronamic Money 1.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/pronamic-money\n"
-"POT-Creation-Date: 2018-04-20 12:41:17+00:00\n"
+"POT-Creation-Date: 2018-08-16 09:55:50+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -33,9 +33,9 @@ msgstr ""
 msgid "https://www.pronamic.eu/"
 msgstr ""
 
-#: src/Money.php:52
-#. translators: 1: currency symbol, 2: amount, 3: currency code, note: use non
-#. breaking space!
+#: src/Money.php:53
+#. translators: 1: currency symbol, 2: amount, 3: currency code, note: use
+#. non-breaking space!
 msgctxt "money format"
 msgid "%1$s%2$s %3$s"
 msgstr ""

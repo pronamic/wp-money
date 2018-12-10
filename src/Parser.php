@@ -14,7 +14,7 @@ namespace Pronamic\WordPress\Money;
  * Parser
  *
  * @author  Remco Tolsma
- * @version 1.1.0
+ * @version 1.2.0
  * @since   1.1.0
  */
 class Parser {
@@ -23,7 +23,8 @@ class Parser {
 	 *
 	 * @link https://github.com/wp-pay/core/blob/2.0.2/src/Core/Util.php#L128-L176
 	 *
-	 * @param string $money
+	 * @param string $string String to parse as money.
+	 *
 	 * @return Money
 	 */
 	public function parse( $string ) {
@@ -47,7 +48,11 @@ class Parser {
 		}
 
 		// Split.
-		$position = strrpos( $string, $decimal_sep );
+		$position = false;
+
+		if ( is_string( $decimal_sep ) ) {
+			$position = strrpos( $string, $decimal_sep );
+		}
 
 		if ( false !== $position ) {
 			$full = substr( $string, 0, $position );

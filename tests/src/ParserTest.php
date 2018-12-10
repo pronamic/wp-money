@@ -16,7 +16,7 @@ use WP_UnitTestCase;
  * Parser
  *
  * @author  Remco Tolsma
- * @version 1.1.0
+ * @version 1.2.0
  * @since   1.1.0
  */
 class ParserTest extends WP_UnitTestCase {
@@ -51,7 +51,7 @@ class ParserTest extends WP_UnitTestCase {
 
 		$money = $this->parser->parse( $string );
 
-		$this->assertEquals( $expected, $money->get_amount() );
+		$this->assertEquals( $expected, $money->get_value() );
 	}
 
 	/**
