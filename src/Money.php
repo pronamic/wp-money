@@ -14,7 +14,7 @@ namespace Pronamic\WordPress\Money;
  * Money
  *
  * @author Remco Tolsma
- * @version 1.0.0
+ * @version 1.2.0
  * @since   1.0.0
  */
 class Money {

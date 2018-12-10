@@ -17,7 +17,7 @@ use WP_UnitTestCase;
  * Money
  *
  * @author Remco Tolsma
- * @version 1.1.0
+ * @version 1.2.0
  * @since   1.0.0
  */
 class MoneyTest extends WP_UnitTestCase {
