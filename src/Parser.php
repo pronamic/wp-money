@@ -48,7 +48,11 @@ class Parser {
 		}
 
 		// Split.
-		$position = strrpos( $string, $decimal_sep );
+		$position = false;
+
+		if ( is_string( $decimal_sep ) ) {
+			$position = strrpos( $string, $decimal_sep );
+		}
 
 		if ( false !== $position ) {
 			$full = substr( $string, 0, $position );
