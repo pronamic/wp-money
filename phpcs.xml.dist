@@ -1,11 +1,9 @@
 <?xml version="1.0"?>
 
 <ruleset name="Pronamic Money rules">
-	<config name="installed_paths" value="vendor/wp-coding-standards/wpcs,vendor/wimg/php-compatibility" />
-
 	<config name="minimum_supported_wp_version" value="4.7" />
 
-	<config name="testVersion" value="5.3-99.0"/>
+	<config name="testVersion" value="5.3-" />
 
 	<file>.</file>
 
@@ -18,8 +16,9 @@
 	<exclude-pattern>tests/wp-config.php</exclude-pattern>
 	<exclude-pattern>vendor/*</exclude-pattern>
 	<exclude-pattern>wordpress/*</exclude-pattern>
+	<exclude-pattern type="relative">^/wp-content/*</exclude-pattern>
 
-	<rule ref="PHPCompatibility" />
+	<rule ref="PHPCompatibilityWP" />
 
 	<rule ref="WordPress">
 		<exclude name="Generic.Files.LowercasedFilename.NotFound" />
