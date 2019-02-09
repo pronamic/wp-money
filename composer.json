@@ -22,9 +22,9 @@
 	},
 	"require-dev": {
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.5",
-		"koodimonni-language/de_DE": "*",
-		"koodimonni-language/fr_FR": "*",
-		"koodimonni-language/nl_NL": "*",
+		"koodimonni-language/de_de": "*",
+		"koodimonni-language/fr_fr": "*",
+		"koodimonni-language/nl_nl": "*",
 		"php-coveralls/php-coveralls": "^1.1",
 		"phpcompatibility/php-compatibility": "^9.1",
 		"phpcompatibility/phpcompatibility-wp": "^2.0",
