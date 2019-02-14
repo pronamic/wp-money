@@ -112,6 +112,30 @@ class Money {
 	}
 
 	/**
+	 * Get amount in minor units.
+	 *
+	 * Examples for value 10:
+	 *   JPY 0 decimals: 10
+	 *   EUR 2 decimals: 1000
+	 *   BHD 3 decimals: 10000
+	 *   NLG 4 decimals: 100000
+	 *
+	 * @return int
+	 */
+	public function get_minor_units() {
+		// Use 2 decimals by default (most common).
+		$decimals = 2;
+
+		// Get number of decimals from currency if available.
+		if ( $this->get_currency() ) {
+			$decimals = $this->currency->get_number_decimals();
+		}
+
+		// Return amount in minor units.
+		return (int) $this->value * pow( 10, $decimals );
+	}
+
+	/**
 	 * Set value.
 	 *
 	 * @param mixed $value Amount value.

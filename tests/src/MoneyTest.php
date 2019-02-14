@@ -165,4 +165,32 @@ class MoneyTest extends WP_UnitTestCase {
 
 		$this->assertEquals( 0.01, $money->get_cents() );
 	}
+
+	/**
+	 * Test minor units.
+	 *
+	 * @dataProvider minor_units_provider
+	 *
+	 * @param string $currency Currency.
+	 * @param int    $expected Expected value.
+	 */
+	public function test_minor_units( $currency, $expected ) {
+		$money = new Money( 10, $currency );
+
+		$this->assertEquals( $expected, $money->get_minor_units() );
+	}
+
+	/**
+	 * Minor units provider.
+	 *
+	 * @return array
+	 */
+	public function minor_units_provider() {
+		return array(
+			array( 'JPY', 10 ),
+			array( 'EUR', 1000 ),
+			array( 'BHD', 10000 ),
+			array( 'NLG', 100000 ),
+		);
+	}
 }
