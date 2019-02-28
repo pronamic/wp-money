@@ -132,7 +132,9 @@ class Money {
 		}
 
 		// Return amount in minor units.
-		return (int) $this->value * pow( 10, $decimals );
+		$minor_units = $this->value * pow( 10, $decimals );
+
+		return (int) $minor_units;
 	}
 
 	/**
