@@ -138,7 +138,7 @@ class Money {
 			$minor_units = $this->value * pow( 10, $decimals );
 		}
 
-		return (int) $minor_units;
+		return (int) (string) $minor_units;
 	}
 
 	/**
