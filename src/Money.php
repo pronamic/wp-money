@@ -132,7 +132,11 @@ class Money {
 		}
 
 		// Return amount in minor units.
-		$minor_units = $this->value * pow( 10, $decimals );
+		if ( function_exists( 'bcmul' ) ) {
+			$minor_units = bcmul( $this->value, pow( 10, $decimals ), 0 );
+		} else {
+			$minor_units = $this->value * pow( 10, $decimals );
+		}
 
 		return (int) $minor_units;
 	}
