@@ -21,28 +21,28 @@ class Currency {
 	/**
 	 * Alphabetic code.
 	 *
-	 * @var string
+	 * @var string|null
 	 */
 	private $alphabetic_code;
 
 	/**
 	 * Numeric code.
 	 *
-	 * @var string
+	 * @var string|null
 	 */
 	private $numeric_code;
 
 	/**
 	 * Symbol.
 	 *
-	 * @var string
+	 * @var string|null
 	 */
 	private $symbol;
 
 	/**
 	 * Name.
 	 *
-	 * @var string
+	 * @var string|null
 	 */
 	private $name;
 
@@ -63,7 +63,7 @@ class Currency {
 	/**
 	 * Get alphabetic code.
 	 *
-	 * @return null|string
+	 * @return string|null
 	 */
 	public function get_alphabetic_code() {
 		return $this->alphabetic_code;
@@ -72,7 +72,7 @@ class Currency {
 	/**
 	 * Set alphabetic code.
 	 *
-	 * @param string $alphabetic_code Alphabetic code.
+	 * @param string|null $alphabetic_code Alphabetic code.
 	 */
 	public function set_alphabetic_code( $alphabetic_code ) {
 		$this->alphabetic_code = $alphabetic_code;
@@ -81,7 +81,7 @@ class Currency {
 	/**
 	 * Get numeric code.
 	 *
-	 * @return null|string
+	 * @return string|null
 	 */
 	public function get_numeric_code() {
 		return $this->numeric_code;
@@ -90,7 +90,7 @@ class Currency {
 	/**
 	 * Set numeric code.
 	 *
-	 * @param string $numeric_code Numeric code.
+	 * @param string|null $numeric_code Numeric code.
 	 */
 	public function set_numeric_code( $numeric_code ) {
 		$this->numeric_code = $numeric_code;
@@ -99,7 +99,7 @@ class Currency {
 	/**
 	 * Get symbol.
 	 *
-	 * @return null|string
+	 * @return string|null
 	 */
 	public function get_symbol() {
 		return $this->symbol;
@@ -108,7 +108,7 @@ class Currency {
 	/**
 	 * Set symbol.
 	 *
-	 * @param string $symbol Symbol.
+	 * @param string|null $symbol Symbol.
 	 */
 	public function set_symbol( $symbol ) {
 		$this->symbol = $symbol;
@@ -146,7 +146,7 @@ class Currency {
 	/**
 	 * Get name.
 	 *
-	 * @return null|string
+	 * @return string|null
 	 */
 	public function get_name() {
 		return $this->name;
@@ -155,7 +155,7 @@ class Currency {
 	/**
 	 * Set name.
 	 *
-	 * @param string $name Currency name.
+	 * @param string|null $name Currency name.
 	 */
 	public function set_name( $name ) {
 		$this->name = $name;
