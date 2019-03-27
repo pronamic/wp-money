@@ -14,7 +14,7 @@ namespace Pronamic\WordPress\Money;
  * Taxed Money
  *
  * @author Remco Tolsma
- * @version 1.2.0
+ * @version 1.2.1
  * @since   1.2.0
  */
 class TaxedMoney extends Money {

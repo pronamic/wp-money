@@ -17,7 +17,7 @@ use WP_UnitTestCase;
  * Money
  *
  * @author Remco Tolsma
- * @version 1.2.0
+ * @version 1.2.1
  * @since   1.0.0
  */
 class MoneyTest extends WP_UnitTestCase {
@@ -169,6 +169,8 @@ class MoneyTest extends WP_UnitTestCase {
 	/**
 	 * Test minor units.
 	 *
+	 * @since 1.2.1
+	 *
 	 * @dataProvider minor_units_provider
 	 *
 	 * @param string $currency Currency.
@@ -182,6 +184,8 @@ class MoneyTest extends WP_UnitTestCase {
 
 	/**
 	 * Minor units provider.
+	 *
+	 * @since 1.2.1
 	 *
 	 * @return array
 	 */

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "404fcfe28be1e7061904e754d4a59f43",
+    "content-hash": "1c6d5b86a0c239671fbd370bc3b6f2f4",
     "packages": [],
     "packages-dev": [
         {
@@ -225,10 +225,10 @@
         },
         {
             "name": "koodimonni-language/de_de",
-            "version": "5.1",
+            "version": "5.1.1",
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/translation/core/5.1/de_DE.zip"
+                "url": "https://downloads.wordpress.org/translation/core/5.1.1/de_DE.zip"
             },
             "require": {
                 "koodimonni-plugin-language/akismet-de_de": "*",
@@ -256,10 +256,10 @@
         },
         {
             "name": "koodimonni-language/fr_fr",
-            "version": "5.1",
+            "version": "5.1.1",
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/translation/core/5.1/fr_FR.zip"
+                "url": "https://downloads.wordpress.org/translation/core/5.1.1/fr_FR.zip"
             },
             "require": {
                 "koodimonni-plugin-language/akismet-fr_fr": "*",
@@ -287,10 +287,10 @@
         },
         {
             "name": "koodimonni-language/nl_nl",
-            "version": "5.1",
+            "version": "5.1.1",
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/translation/core/5.1/nl_NL.zip"
+                "url": "https://downloads.wordpress.org/translation/core/5.1.1/nl_NL.zip"
             },
             "require": {
                 "koodimonni-plugin-language/akismet-nl_nl": "*",
@@ -432,10 +432,10 @@
         },
         {
             "name": "koodimonni-plugin-language/woocommerce-de_de",
-            "version": "3.5.5",
+            "version": "3.5.7",
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/translation/plugin/woocommerce/3.5.5/de_DE.zip"
+                "url": "https://downloads.wordpress.org/translation/plugin/woocommerce/3.5.7/de_DE.zip"
             },
             "require": {
                 "koodimonni/composer-dropin-installer": ">=0.2.3"
@@ -451,10 +451,10 @@
         },
         {
             "name": "koodimonni-plugin-language/woocommerce-fr_fr",
-            "version": "3.5.5",
+            "version": "3.5.7",
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/translation/plugin/woocommerce/3.5.5/fr_FR.zip"
+                "url": "https://downloads.wordpress.org/translation/plugin/woocommerce/3.5.7/fr_FR.zip"
             },
             "require": {
                 "koodimonni/composer-dropin-installer": ">=0.2.3"
@@ -470,10 +470,10 @@
         },
         {
             "name": "koodimonni-plugin-language/woocommerce-nl_nl",
-            "version": "3.5.5",
+            "version": "3.5.7",
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/translation/plugin/woocommerce/3.5.5/nl_NL.zip"
+                "url": "https://downloads.wordpress.org/translation/plugin/woocommerce/3.5.7/nl_NL.zip"
             },
             "require": {
                 "koodimonni/composer-dropin-installer": ">=0.2.3"
@@ -546,10 +546,10 @@
         },
         {
             "name": "koodimonni-theme-language/twentyeleven-de_de",
-            "version": "3.1",
+            "version": "3.2",
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/translation/theme/twentyeleven/3.1/de_DE.zip"
+                "url": "https://downloads.wordpress.org/translation/theme/twentyeleven/3.2/de_DE.zip"
             },
             "require": {
                 "koodimonni/composer-dropin-installer": ">=0.2.3"
@@ -1795,6 +1795,7 @@
                 "mock",
                 "xunit"
             ],
+            "abandoned": true,
             "time": "2015-10-02T06:51:40+00:00"
         },
         {
@@ -1846,15 +1847,16 @@
         },
         {
             "name": "roots/wordpress",
-            "version": "5.1",
+            "version": "5.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WordPress/WordPress.git",
-                "reference": "5.1"
+                "reference": "5.1.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WordPress/WordPress/zipball/5.1"
+                "url": "https://api.github.com/repos/WordPress/WordPress/zipball/5.1.1",
+                "reference": "5.1.1"
             },
             "require": {
                 "php": ">=5.3.2",
@@ -1868,17 +1870,17 @@
             "authors": [
                 {
                     "name": "WordPress Community",
-                    "homepage": "http://wordpress.org/about/"
+                    "homepage": "https://wordpress.org/about/"
                 }
             ],
             "description": "WordPress is web software you can use to create a beautiful website or blog.",
-            "homepage": "http://wordpress.org/",
+            "homepage": "https://wordpress.org/",
             "keywords": [
                 "blog",
                 "cms",
                 "wordpress"
             ],
-            "time": "2019-02-22T00:57:46+00:00"
+            "time": "2019-03-13T14:18:06+00:00"
         },
         {
             "name": "roots/wordpress-core-installer",
@@ -2856,7 +2858,7 @@
         },
         {
             "name": "wp-phpunit/wp-phpunit",
-            "version": "5.1.0",
+            "version": "5.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wp-phpunit/wp-phpunit.git",

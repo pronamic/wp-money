@@ -14,7 +14,7 @@ namespace Pronamic\WordPress\Money;
  * Money
  *
  * @author Remco Tolsma
- * @version 1.2.0
+ * @version 1.2.1
  * @since   1.0.0
  */
 class Money {
@@ -119,6 +119,8 @@ class Money {
 	 *   EUR 2 decimals: 1000
 	 *   BHD 3 decimals: 10000
 	 *   NLG 4 decimals: 100000
+	 *
+	 * @since 1.2.1
 	 *
 	 * @return int
 	 */

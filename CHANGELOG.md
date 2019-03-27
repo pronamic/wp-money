@@ -7,6 +7,10 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [1.2.1] - 2019-03-27
+- Added `get_minor_units` method based on decimals of currency.
+- Updated copyright to 2005-2019 Pronamic.
+
 ## [1.2.0] - 2018-12-10
 - Added a `get_cents` method.
 - Introduced a TaxedMoney class.
