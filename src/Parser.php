@@ -3,7 +3,7 @@
  * Parser
  *
  * @author    Pronamic <info@pronamic.eu>
- * @copyright 2005-2018 Pronamic
+ * @copyright 2005-2019 Pronamic
  * @license   GPL-3.0-or-later
  * @package   Pronamic\WordPress\Money
  */
@@ -14,7 +14,7 @@ namespace Pronamic\WordPress\Money;
  * Parser
  *
  * @author  Remco Tolsma
- * @version 1.2.0
+ * @version 1.2.1
  * @since   1.1.0
  */
 class Parser {

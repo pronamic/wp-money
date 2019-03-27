@@ -3,7 +3,7 @@
  * Money
  *
  * @author    Pronamic <info@pronamic.eu>
- * @copyright 2005-2018 Pronamic
+ * @copyright 2005-2019 Pronamic
  * @license   GPL-3.0-or-later
  * @package   Pronamic\WordPress\Money
  */
@@ -17,7 +17,7 @@ use WP_UnitTestCase;
  * Money
  *
  * @author Remco Tolsma
- * @version 1.2.0
+ * @version 1.2.1
  * @since   1.0.0
  */
 class MoneyTest extends WP_UnitTestCase {
@@ -164,5 +164,37 @@ class MoneyTest extends WP_UnitTestCase {
 		$money = new Money( 0.00010, 'BTC' );
 
 		$this->assertEquals( 0.01, $money->get_cents() );
+	}
+
+	/**
+	 * Test minor units.
+	 *
+	 * @since 1.2.1
+	 *
+	 * @dataProvider minor_units_provider
+	 *
+	 * @param string $currency Currency.
+	 * @param int    $expected Expected value.
+	 */
+	public function test_minor_units( $currency, $expected ) {
+		$money = new Money( 10, $currency );
+
+		$this->assertEquals( $expected, $money->get_minor_units() );
+	}
+
+	/**
+	 * Minor units provider.
+	 *
+	 * @since 1.2.1
+	 *
+	 * @return array
+	 */
+	public function minor_units_provider() {
+		return array(
+			array( 'JPY', 10 ),
+			array( 'EUR', 1000 ),
+			array( 'BHD', 10000 ),
+			array( 'NLG', 100000 ),
+		);
 	}
 }

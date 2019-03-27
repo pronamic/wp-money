@@ -3,7 +3,7 @@
  * Money
  *
  * @author    Pronamic <info@pronamic.eu>
- * @copyright 2005-2018 Pronamic
+ * @copyright 2005-2019 Pronamic
  * @license   GPL-3.0-or-later
  * @package   Pronamic\WordPress\Money
  */
@@ -14,7 +14,7 @@ namespace Pronamic\WordPress\Money;
  * Money
  *
  * @author Remco Tolsma
- * @version 1.2.0
+ * @version 1.2.1
  * @since   1.0.0
  */
 class Money {
@@ -109,6 +109,38 @@ class Money {
 	 */
 	public function get_cents() {
 		return $this->value * 100;
+	}
+
+	/**
+	 * Get amount in minor units.
+	 *
+	 * Examples for value 10:
+	 *   JPY 0 decimals: 10
+	 *   EUR 2 decimals: 1000
+	 *   BHD 3 decimals: 10000
+	 *   NLG 4 decimals: 100000
+	 *
+	 * @since 1.2.1
+	 *
+	 * @return int
+	 */
+	public function get_minor_units() {
+		// Use 2 decimals by default (most common).
+		$decimals = 2;
+
+		// Get number of decimals from currency if available.
+		if ( $this->get_currency() ) {
+			$decimals = $this->currency->get_number_decimals();
+		}
+
+		// Return amount in minor units.
+		if ( function_exists( 'bcmul' ) ) {
+			$minor_units = bcmul( $this->value, pow( 10, $decimals ), 0 );
+		} else {
+			$minor_units = $this->value * pow( 10, $decimals );
+		}
+
+		return (int) (string) $minor_units;
 	}
 
 	/**
