@@ -108,6 +108,10 @@ class Money {
 	 * @return float
 	 */
 	public function get_cents() {
+		if ( function_exists( 'bcmul' ) ) {
+			return (float) bcmul( $this->value, 100 );
+		}
+
 		return $this->value * 100;
 	}
 
