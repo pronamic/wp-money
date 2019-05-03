@@ -69,7 +69,9 @@ class Money {
 			$format = self::get_default_format();
 		}
 
-		if ( isset( $this->currency ) ) {
+		$alphabetic_code = $this->currency->get_alphabetic_code();
+
+		if ( ! empty( $alphabetic_code ) ) {
 			return sprintf(
 				$format,
 				$this->currency->get_symbol(),
