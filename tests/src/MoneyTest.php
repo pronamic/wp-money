@@ -176,8 +176,8 @@ class MoneyTest extends WP_UnitTestCase {
 	 * @param string $currency Currency.
 	 * @param int    $expected Expected value.
 	 */
-	public function test_minor_units( $currency, $expected ) {
-		$money = new Money( 10, $currency );
+	public function test_minor_units( $currency, $value, $expected ) {
+		$money = new Money( $value, $currency );
 
 		$this->assertEquals( $expected, $money->get_minor_units() );
 	}
@@ -191,10 +191,29 @@ class MoneyTest extends WP_UnitTestCase {
 	 */
 	public function minor_units_provider() {
 		return array(
-			array( 'JPY', 10 ),
-			array( 'EUR', 1000 ),
-			array( 'BHD', 10000 ),
-			array( 'NLG', 100000 ),
+			// Value 10.
+			array( 'JPY', 10, 10 ),
+			array( 'EUR', 10, 1000 ),
+			array( 'BHD', 10, 10000 ),
+			array( 'NLG', 10, 100000 ),
+
+			// Value 100.65.
+			array( 'JPY', 100.65, 100 ),
+			array( 'EUR', 100.65, 10065 ),
+			array( 'BHD', 100.65, 100650 ),
+			array( 'NLG', 100.65, 1006500 ),
+
+			// Value 100.655.
+			array( 'JPY', 100.655, 100 ),
+			array( 'EUR', 100.655, 10065 ),
+			array( 'BHD', 100.655, 100655 ),
+			array( 'NLG', 100.655, 1006550 ),
+
+			// Value 0.00010.
+			array( 'JPY', 0.00010, 0 ),
+			array( 'EUR', 0.00010, 0 ),
+			array( 'BHD', 0.00010, 0 ),
+			array( 'NLG', 0.00010, 1 ),
 		);
 	}
 }
