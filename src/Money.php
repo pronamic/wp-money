@@ -108,13 +108,11 @@ class Money {
 	 * Get cents.
 	 *
 	 * @return float
+	 *
+	 * @deprecated 1.2.2 Use `Money::get_minor_units()` instead.
 	 */
 	public function get_cents() {
-		if ( function_exists( 'bcmul' ) ) {
-			return (float) bcmul( $this->value, 100 );
-		}
-
-		return $this->value * 100;
+		return (float) $this->get_minor_units();
 	}
 
 	/**

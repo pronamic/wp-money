@@ -161,9 +161,9 @@ class MoneyTest extends WP_UnitTestCase {
 
 		$this->assertEquals( 10065, $money->get_cents() );
 
-		$money = new Money( 0.00010, 'BTC' );
+		$money = new Money( 0.00010, 'NLG' );
 
-		$this->assertEquals( 0.01, $money->get_cents() );
+		$this->assertEquals( 1, $money->get_cents() );
 	}
 
 	/**
@@ -214,6 +214,12 @@ class MoneyTest extends WP_UnitTestCase {
 			array( 'EUR', 0.00010, 0 ),
 			array( 'BHD', 0.00010, 0 ),
 			array( 'NLG', 0.00010, 1 ),
+
+			// No currency.
+			array( null, 10, 1000 ),
+			array( null, 100.65, 10065 ),
+			array( null, 100.655, 10065 ),
+			array( null, 0.00010, 0 ),
 		);
 	}
 }
