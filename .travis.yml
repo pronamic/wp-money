@@ -52,8 +52,9 @@ cache:
     - $HOME/.composer/cache
 
 before_install:
-  # Install latest version of Node.js (https://github.com/creationix/nvm).
-  - if [ "${TRAVIS_DIST_PRECISE}" == "1" ]; then nvm install node; fi
+  # Install Node.js version 11 (https://github.com/creationix/nvm).
+  # Node.js 12.0+ requires newer version of libc, https://medium.com/@nodejs/introducing-node-js-12-76c41a1b3f3f.
+  - if [ "${TRAVIS_DIST_PRECISE}" == "1" ]; then nvm install 11; fi
   # Create database for PHPUnit tests.
   - mysql -e 'CREATE DATABASE wp_phpunit_tests;'
   # Remove Xdebug for a huge performance increase:
