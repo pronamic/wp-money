@@ -173,8 +173,9 @@ class MoneyTest extends WP_UnitTestCase {
 	 *
 	 * @dataProvider minor_units_provider
 	 *
-	 * @param string $currency Currency.
-	 * @param int    $expected Expected value.
+	 * @param string    $currency Currency.
+	 * @param int|float $value    Money value to test.
+	 * @param int       $expected Expected value.
 	 */
 	public function test_minor_units( $currency, $value, $expected ) {
 		$money = new Money( $value, $currency );
