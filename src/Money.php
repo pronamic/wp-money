@@ -84,6 +84,32 @@ class Money {
 	}
 
 	/**
+	 * Format.
+	 *
+	 * @param string|null $format Format.
+	 *
+	 * @return string
+	 */
+	public function format( $format = null ) {
+		if ( is_null( $format ) ) {
+			$format = '%2$s';
+		}
+
+		$alphabetic_code = $this->currency->get_alphabetic_code();
+
+		if ( ! empty( $alphabetic_code ) ) {
+			return sprintf(
+				$format,
+				$this->currency->get_symbol(),
+				number_format( $this->get_value(), $this->get_currency()->get_number_decimals(), '.', '' ),
+				$this->currency->get_alphabetic_code()
+			);
+		}
+
+		return number_format( $this->get_value(), 2, '.', '' );
+	}
+
+	/**
 	 * Get value.
 	 *
 	 * @return float Amount value.
