@@ -31,3 +31,4 @@ function pronamic_money_load_plugin_textdomain() {
 }
 
 add_action( 'init', 'pronamic_money_load_plugin_textdomain' );
+add_action( 'change_locale', 'pronamic_money_load_plugin_textdomain' );

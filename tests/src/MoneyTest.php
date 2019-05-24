@@ -82,7 +82,6 @@ class MoneyTest extends WP_UnitTestCase {
 	 * @param string $expected Expected default format.
 	 */
 	public function test_default_format( $locale, $expected ) {
-		// Note: Switching from nl_NL to fr_FR back to nl_NL is not working correctly (bug?).
 		switch_to_locale( $locale );
 
 		$value = Money::get_default_format();
@@ -97,7 +96,6 @@ class MoneyTest extends WP_UnitTestCase {
 	 * @return array
 	 */
 	public function default_format_provider() {
-		// Note: Switching from nl_NL to fr_FR back to nl_NL is not working correctly (bug?).
 		return array(
 			array( 'en_US', '%1$s%2$s %3$s' ),
 			array( 'fr_FR', '%1$s%2$s %3$s' ),
@@ -118,7 +116,6 @@ class MoneyTest extends WP_UnitTestCase {
 	 * @dataProvider format_provider
 	 */
 	public function test_format( $locale, $currency, $value, $expected ) {
-		// Note: Switching from nl_NL to fr_FR back to nl_NL is not working correctly (bug?).
 		switch_to_locale( $locale );
 
 		$money = new Money( $value, $currency );
@@ -136,7 +133,6 @@ class MoneyTest extends WP_UnitTestCase {
 	 * @return array
 	 */
 	public function format_provider() {
-		// Note: Switching from nl_NL to fr_FR back to nl_NL is not working correctly (bug?).
 		return array(
 			// Dutch.
 			array( 'nl_NL', 'EUR', 49.7512, '€ 49,75' ),
