@@ -46,9 +46,9 @@
 		"phpunit": "vendor/bin/phpunit",
 		"post-autoload-dump": [
 			"for file in languages/*.mo ; do ln -f -s ../../../../../../$file vendor/wp-phpunit/wp-phpunit/data/languages/plugins/. ; done",
-			"for file in vendor/koodimonni-language/*/* ; do ln -f -s ../../../../../$file vendor/wp-phpunit/wp-phpunit/data/languages/. ; done",
-			"for file in vendor/koodimonni-plugin-language/*/* ; do ln -f -s ../../../../../$file vendor/wp-phpunit/wp-phpunit/data/languages/plugins/. ; done",
-			"for file in vendor/koodimonni-theme-language/*/* ; do ln -f -s ../../../../../$file vendor/wp-phpunit/wp-phpunit/data/languages/themes/. ; done"
+			"for file in vendor/koodimonni-language/*/*.mo ; do ln -f -s ../../../../../$file vendor/wp-phpunit/wp-phpunit/data/languages/. ; done",
+			"for file in vendor/koodimonni-plugin-language/*/*.mo ; do ln -f -s ../../../../../../$file vendor/wp-phpunit/wp-phpunit/data/languages/plugins/. ; done",
+			"for file in vendor/koodimonni-theme-language/*/*.mo ; do ln -f -s ../../../../../../$file vendor/wp-phpunit/wp-phpunit/data/languages/themes/. ; done"
 		]
 	}
 }
