@@ -74,6 +74,8 @@ class Currencies {
 			$currencies = array();
 
 			/**
+			 * Data.
+			 *
 			 * @psalm-suppress UnresolvableInclude
 			 *
 			 * @var array
