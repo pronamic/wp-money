@@ -11,7 +11,6 @@
 namespace Pronamic\WordPress\Money;
 
 use Pronamic\WordPress\Money\Calculator\BcMathCalculator;
-use Pronamic\WordPress\Money\Calculator\GmpCalculator;
 use Pronamic\WordPress\Money\Calculator\PhpCalculator;
 
 /**

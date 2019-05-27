@@ -21,6 +21,13 @@ use WP_UnitTestCase;
  */
 class ParserTest extends WP_UnitTestCase {
 	/**
+	 * Parser.
+	 *
+	 * @var Parser
+	 */
+	private $parser;
+
+	/**
 	 * Setup.
 	 */
 	public function setUp() {
