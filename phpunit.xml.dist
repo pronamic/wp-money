@@ -9,7 +9,7 @@
 	convertWarningsToExceptions="true"
 >
 	<testsuites>
-		<testsuite>
+		<testsuite name="Pronamic Money">
 			<directory suffix=".php">./tests/src</directory>
 		</testsuite>
 	</testsuites>
