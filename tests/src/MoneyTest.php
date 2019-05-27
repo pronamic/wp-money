@@ -82,7 +82,6 @@ class MoneyTest extends WP_UnitTestCase {
 	 * @param string $expected Expected default format.
 	 */
 	public function test_default_format( $locale, $expected ) {
-		// Note: Switching from nl_NL to fr_FR back to nl_NL is not working correctly (bug?).
 		switch_to_locale( $locale );
 
 		$value = Money::get_default_format();
@@ -97,7 +96,6 @@ class MoneyTest extends WP_UnitTestCase {
 	 * @return array
 	 */
 	public function default_format_provider() {
-		// Note: Switching from nl_NL to fr_FR back to nl_NL is not working correctly (bug?).
 		return array(
 			array( 'en_US', '%1$s%2$s %3$s' ),
 			array( 'fr_FR', '%1$s%2$s %3$s' ),
@@ -106,7 +104,7 @@ class MoneyTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test format.
+	 * Test format i18n.
 	 *
 	 * @link https://github.com/WordPress/WordPress/blob/4.9.5/wp-includes/l10n.php
 	 *
@@ -115,10 +113,9 @@ class MoneyTest extends WP_UnitTestCase {
 	 * @param float  $value    Money value.
 	 * @param string $expected Expected format.
 	 *
-	 * @dataProvider format_provider
+	 * @dataProvider format_i18n_provider
 	 */
-	public function test_format( $locale, $currency, $value, $expected ) {
-		// Note: Switching from nl_NL to fr_FR back to nl_NL is not working correctly (bug?).
+	public function test_format_i18n( $locale, $currency, $value, $expected ) {
 		switch_to_locale( $locale );
 
 		$money = new Money( $value, $currency );
@@ -131,12 +128,11 @@ class MoneyTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Format provider.
+	 * Format i18n provider.
 	 *
 	 * @return array
 	 */
-	public function format_provider() {
-		// Note: Switching from nl_NL to fr_FR back to nl_NL is not working correctly (bug?).
+	public function format_i18n_provider() {
 		return array(
 			// Dutch.
 			array( 'nl_NL', 'EUR', 49.7512, '€ 49,75' ),
@@ -150,6 +146,53 @@ class MoneyTest extends WP_UnitTestCase {
 
 			// French.
 			array( 'fr_FR', 'USD', 1234567890.1234, '$1 234 567 890,12 USD' ),
+		);
+	}
+
+	/**
+	 * Test format i18n without trailing zeros.
+	 *
+	 * @link         https://github.com/WordPress/WordPress/blob/4.9.5/wp-includes/l10n.php
+	 *
+	 * @param string $locale   Locale.
+	 * @param string $currency Money currency.
+	 * @param float  $value    Money value.
+	 * @param string $expected Expected format.
+	 *
+	 * @dataProvider format_i18n_non_trailing_zeros_provider
+	 */
+	public function test_format_i18n_non_trailing_zeros( $locale, $currency, $value, $expected ) {
+		switch_to_locale( $locale );
+
+		$money = new Money( $value, $currency );
+
+		$string = $money->format_i18n_non_trailing_zeros();
+
+		$this->assertEquals( $locale, get_locale() );
+
+		/* translators: 1: currency symbol, 2: amount value, 3: currency code, note: use non-breaking space! */
+		$this->assertEquals( $expected, $string, 'Locale: ' . get_locale() . ' Money format: ' . Money::get_default_format() . ' Test: ' . _x( '%1$s%2$s %3$s', 'money format', 'pronamic-money' ) );
+	}
+
+	/**
+	 * Format i18n without trailing zeros provider.
+	 *
+	 * @return array
+	 */
+	public function format_i18n_non_trailing_zeros_provider() {
+		return array(
+			// Dutch.
+			array( 'nl_NL', 'EUR', 49.7512, '€ 49,75' ),
+			array( 'nl_NL', 'NLG', 49, 'G 49' ),
+			array( 'nl_NL', 'USD', 49.00, '$ 49' ),
+			array( 'nl_NL', 'USD', 1234567890.00, '$ 1.234.567.890' ),
+
+			// English.
+			array( 'en_US', 'EUR', 49.7512, '€49.75 EUR' ),
+			array( 'en_US', 'USD', 1234567890.00, '$1,234,567,890 USD' ),
+
+			// French.
+			array( 'fr_FR', 'USD', 1234567890, '$1 234 567 890 USD' ),
 		);
 	}
 

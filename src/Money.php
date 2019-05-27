@@ -93,15 +93,45 @@ class Money {
 		$alphabetic_code = $this->currency->get_alphabetic_code();
 
 		if ( ! empty( $alphabetic_code ) ) {
+			$number_decimals = $this->currency->get_number_decimals();
+
+			// Handle non trailing zero formatter.
+			if ( false !== strpos( $format, '%2$NTZ' ) ) {
+				$decimals = substr( $this->format(), ( - 1 * $number_decimals ), $number_decimals );
+
+				if ( 0 === (int) $decimals ) {
+					$number_decimals = 0;
+				}
+
+				$format = str_replace( '%2$NTZ', '%2$s', $format );
+			}
+
 			return sprintf(
 				$format,
 				$this->currency->get_symbol(),
-				number_format_i18n( $this->get_value(), $this->currency->get_number_decimals() ),
+				number_format_i18n( $this->get_value(), $number_decimals ),
 				$this->currency->get_alphabetic_code()
 			);
 		}
 
 		return number_format_i18n( $this->get_value(), 2 );
+	}
+
+	/**
+	 * Format i18n without trailing zeros.
+	 *
+	 * @param string|null $format Format.
+	 *
+	 * @return string
+	 */
+	public function format_i18n_non_trailing_zeros( $format = null ) {
+		if ( is_null( $format ) ) {
+			$format = self::get_default_format();
+		}
+
+		$format = str_replace( '%2$s', '%2$NTZ', $format );
+
+		return $this->format_i18n( $format );
 	}
 
 	/**
