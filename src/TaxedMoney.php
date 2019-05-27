@@ -49,7 +49,7 @@ class TaxedMoney extends Money {
 
 			$one_percent_value = $calculator->divide( strval( $value ), $calculator->add( strval( 100 ), strval( $tax_percentage ) ) );
 
-			$tax_value = $calculator->multiply( $one_percent_value, $tax_percentage );
+			$tax_value = $calculator->multiply( strvaL( $one_percent_value ), $tax_percentage );
 		}
 
 		$this->set_tax_value( $tax_value );

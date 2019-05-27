@@ -73,6 +73,11 @@ class Currencies {
 		if ( is_readable( $file ) ) {
 			$currencies = array();
 
+			/**
+			 * @psalm-suppress UnresolvableInclude
+			 *
+			 * @var array
+			 */
 			$data = require $file;
 
 			foreach ( $data as $info ) {

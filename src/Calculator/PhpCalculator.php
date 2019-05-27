@@ -83,7 +83,7 @@ class PhpCalculator implements Calculator {
 	 * @param string           $value   Value.
 	 * @param int|float|string $divisor Divisor.
 	 *
-	 * @return string
+	 * @return string|null
 	 */
 	public function divide( $value, $divisor ) {
 		$result = floatval( $value ) / floatval( $divisor );
