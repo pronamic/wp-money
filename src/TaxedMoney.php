@@ -82,6 +82,7 @@ class TaxedMoney extends Money {
 	 * Set tax value.
 	 *
 	 * @param float|int|string|null $value Tax value.
+	 * @return void
 	 */
 	public function set_tax_value( $value ) {
 		$this->tax_value = ( null === $value ? null : floatval( $value ) );
@@ -114,6 +115,7 @@ class TaxedMoney extends Money {
 	 * 1.5% =   1.5
 	 *
 	 * @param string|int|float|null $percentage Tax percentage.
+	 * @return void
 	 */
 	public function set_tax_percentage( $percentage ) {
 		$this->tax_percentage = ( null === $percentage ? null : floatval( $percentage ) );

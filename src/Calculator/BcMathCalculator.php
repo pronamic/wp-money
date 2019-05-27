@@ -10,6 +10,7 @@
 
 namespace Pronamic\WordPress\Money\Calculator;
 
+use Exception;
 use Pronamic\WordPress\Money\Calculator;
 
 /**
@@ -89,6 +90,7 @@ class BcMathCalculator implements Calculator {
 	 * {@inheritdoc}
 	 *
 	 * @link https://github.com/moneyphp/money/blob/v3.2.1/src/Calculator/BcMathCalculator.php#L74-L82
+	 * @link https://php.net/bcdiv
 	 *
 	 * @param string           $value   Value.
 	 * @param int|float|string $divisor Divisor.
@@ -96,6 +98,12 @@ class BcMathCalculator implements Calculator {
 	 * @return string
 	 */
 	public function divide( $value, $divisor ) {
-		return bcdiv( $value, strval( $divisor ), $this->scale );
+		$result = bcdiv( $value, strval( $divisor ), $this->scale );
+
+		if ( null == $result ) {
+			throw new Exception( 'Divisor is 0.' );
+		}
+
+		return $result;
 	}
 }

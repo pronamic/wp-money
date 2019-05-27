@@ -38,7 +38,7 @@ class Money {
 	/**
 	 * Calculator.
 	 *
-	 * @var Calculator
+	 * @var Calculator|null
 	 */
 	private static $calculator;
 
@@ -107,9 +107,9 @@ class Money {
 
 			return sprintf(
 				$format,
-				$this->currency->get_symbol(),
+				strval( $this->currency->get_symbol() ),
 				number_format_i18n( $this->get_value(), $number_decimals ),
-				$this->currency->get_alphabetic_code()
+				strval( $this->currency->get_alphabetic_code() )
 			);
 		}
 
@@ -150,9 +150,9 @@ class Money {
 		if ( ! empty( $alphabetic_code ) ) {
 			return sprintf(
 				$format,
-				$this->currency->get_symbol(),
+				strvaL( $this->currency->get_symbol() ),
 				number_format( $this->get_value(), $this->get_currency()->get_number_decimals(), '.', '' ),
-				$this->currency->get_alphabetic_code()
+				strval( $this->currency->get_alphabetic_code() )
 			);
 		}
 
@@ -216,6 +216,7 @@ class Money {
 	 * Set value.
 	 *
 	 * @param mixed $value Amount value.
+	 * @return void
 	 */
 	public function set_value( $value ) {
 		$this->value = floatval( $value );
@@ -226,6 +227,7 @@ class Money {
 	 *
 	 * @deprecated 1.2.0
 	 * @param mixed $value Amount value.
+	 * @return void
 	 */
 	public function set_amount( $value ) {
 		_deprecated_function( __METHOD__, '1.2.0', 'Money::set_value()' );
@@ -246,6 +248,7 @@ class Money {
 	 * Set currency.
 	 *
 	 * @param string|Currency $currency Currency.
+	 * @return void
 	 */
 	public function set_currency( $currency ) {
 		if ( $currency instanceof Currency ) {
@@ -312,11 +315,15 @@ class Money {
 	 * @throws \RuntimeException If cannot find calculator for money calculations.
 	 */
 	private static function initialize_calculator() {
-		$calculators = self::$calculators;
+		$calculator_classes = self::$calculators;
 
-		foreach ( $calculators as $calculator ) {
-			if ( $calculator::supported() ) {
-				return new $calculator();
+		foreach ( $calculator_classes as $calculator_class ) {
+			if ( $calculator_class::supported() ) {
+				$calculator = new $calculator_class();
+
+				if ( $calculator instanceof Calculator ) {
+					return $calculator;
+				}
 			}
 		}
 
