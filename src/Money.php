@@ -10,6 +10,10 @@
 
 namespace Pronamic\WordPress\Money;
 
+use Pronamic\WordPress\Money\Calculator\BcMathCalculator;
+use Pronamic\WordPress\Money\Calculator\GmpCalculator;
+use Pronamic\WordPress\Money\Calculator\PhpCalculator;
+
 /**
  * Money
  *
@@ -33,12 +37,29 @@ class Money {
 	private $currency;
 
 	/**
+	 * Calculator.
+	 *
+	 * @var Calculator
+	 */
+	private static $calculator;
+
+	/**
+	 * Calculators.
+	 *
+	 * @var array
+	 */
+	private static $calculators = [
+		BcMathCalculator::class,
+		PhpCalculator::class,
+	];
+
+	/**
 	 * Construct and initialize money object.
 	 *
-	 * @param string|int|float     $value    Amount value.
-	 * @param Currency|string|null $currency Currency.
+	 * @param string|int|float $value    Amount value.
+	 * @param Currency|string  $currency Currency.
 	 */
-	public function __construct( $value = 0, $currency = null ) {
+	public function __construct( $value = 0, $currency = 'EUR' ) {
 		$this->set_value( $value );
 		$this->set_currency( $currency );
 	}
@@ -155,22 +176,11 @@ class Money {
 	 * @return int
 	 */
 	public function get_minor_units() {
-		// Use 2 decimals by default (most common).
-		$decimals = 2;
+		$calculator = $this->get_calculator();
 
-		// Get number of decimals from currency if available.
-		if ( $this->get_currency() ) {
-			$decimals = $this->currency->get_number_decimals();
-		}
+		$minor_units = $calculator->multiply( strval( $this->get_value() ), pow( 10, $this->currency->get_number_decimals() ) );
 
-		// Return amount in minor units.
-		if ( function_exists( 'bcmul' ) ) {
-			$minor_units = bcmul( $this->value, pow( 10, $decimals ), 0 );
-		} else {
-			$minor_units = $this->value * pow( 10, $decimals );
-		}
-
-		return (int) (string) $minor_units;
+		return (int) $minor_units;
 	}
 
 	/**
@@ -206,10 +216,10 @@ class Money {
 	/**
 	 * Set currency.
 	 *
-	 * @param string $currency Currency.
+	 * @param string|Currency $currency Currency.
 	 */
 	public function set_currency( $currency ) {
-		if ( is_object( $currency ) && is_a( $currency, __NAMESPACE__ . '\Currency' ) ) {
+		if ( $currency instanceof Currency ) {
 			$this->currency = $currency;
 
 			return;
@@ -225,5 +235,75 @@ class Money {
 	 */
 	public function __toString() {
 		return $this->format_i18n();
+	}
+
+	/**
+	 * Returns a new Money object that represents
+	 * the sum of this and an other Money object.
+	 *
+	 * @param Money $addend Addend.
+	 *
+	 * @return Money
+	 */
+	public function add( Money $addend ) {
+		$value = $this->get_value();
+
+		$calculator = $this->get_calculator();
+
+		$value = $calculator->add( strval( $value ), strval( $addend->get_value() ) );
+
+		return new self( $value, $this->get_currency() );
+	}
+
+	/**
+	 * Returns a new Money object that represents
+	 * the difference of this and an other Money object.
+	 *
+	 * @link https://github.com/moneyphp/money/blob/v3.2.1/src/Money.php#L235-L255
+	 *
+	 * @param Money $subtrahend Subtrahend.
+	 *
+	 * @return Money
+	 */
+	public function subtract( Money $subtrahend ) {
+		$value = $this->get_value();
+
+		$calculator = $this->get_calculator();
+
+		$value = $calculator->subtract( strval( $value ), strval( $subtrahend->get_value() ) );
+
+		return new self( $value, $this->get_currency() );
+	}
+
+	/**
+	 * Initialize calculator.
+	 *
+	 * @return Calculator
+	 *
+	 * @throws \RuntimeException If cannot find calculator for money calculations.
+	 */
+	private static function initialize_calculator() {
+		$calculators = self::$calculators;
+
+		foreach ( $calculators as $calculator ) {
+			if ( $calculator::supported() ) {
+				return new $calculator();
+			}
+		}
+
+		throw new \RuntimeException( 'Cannot find calculator for money calculations' );
+	}
+
+	/**
+	 * Get calculator.
+	 *
+	 * @return Calculator
+	 */
+	protected function get_calculator() {
+		if ( null === self::$calculator ) {
+			self::$calculator = self::initialize_calculator();
+		}
+
+		return self::$calculator;
 	}
 }

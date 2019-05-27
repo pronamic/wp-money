@@ -23,7 +23,7 @@ class Currencies {
 	/**
 	 * Map of known currencies indexed by code.
 	 *
-	 * @var array
+	 * @var array|null
 	 */
 	private static $currencies;
 

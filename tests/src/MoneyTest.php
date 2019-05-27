@@ -223,4 +223,19 @@ class MoneyTest extends WP_UnitTestCase {
 			array( null, 0.00010, 0 ),
 		);
 	}
+
+	/**
+	 * Test add.
+	 *
+	 * @since 1.3.0
+	 */
+	public function test_add() {
+		$money_1 = new Money( 99.75, 'EUR' );
+
+		$money_2 = new Money( 0.25, 'EUR' );
+
+		$money_3 = $money_1->add( $money_2 );
+
+		$this->assertEquals( 100, $money_3->get_value() );
+	}
 }

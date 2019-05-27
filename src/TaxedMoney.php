@@ -35,17 +35,21 @@ class TaxedMoney extends Money {
 	/**
 	 * Construct and initialize money object.
 	 *
-	 * @param string|int|float     $value          Amount value.
-	 * @param Currency|string|null $currency       Currency.
-	 * @param string|int|float     $tax_value      Tax value.
-	 * @param string|int|float     $tax_percentage Tax percentage.
+	 * @param string|int|float $value          Amount value.
+	 * @param Currency|string  $currency       Currency.
+	 * @param string|int|float $tax_value      Tax value.
+	 * @param string|int|float $tax_percentage Tax percentage.
 	 */
-	public function __construct( $value = 0, $currency = null, $tax_value = null, $tax_percentage = null ) {
+	public function __construct( $value = 0, $currency = 'EUR', $tax_value = null, $tax_percentage = null ) {
 		parent::__construct( $value, $currency );
 
 		// Calculate tax amount if tax percentage is set.
 		if ( null === $tax_value && null !== $tax_percentage ) {
-			$tax_value = ( $value / ( 100 + $tax_percentage ) ) * $tax_percentage;
+			$calculator = $this->get_calculator();
+
+			$one_percent_value = $calculator->divide( strval( $value ), $calculator->add( strval( 100 ), strval( $tax_percentage ) ) );
+
+			$tax_value = $calculator->multiply( $one_percent_value, $tax_percentage );
 		}
 
 		$this->set_tax_value( $tax_value );
@@ -77,7 +81,7 @@ class TaxedMoney extends Money {
 	/**
 	 * Set tax value.
 	 *
-	 * @param float|null $value Tax value.
+	 * @param float|int|string|null $value Tax value.
 	 */
 	public function set_tax_value( $value ) {
 		$this->tax_value = ( null === $value ? null : floatval( $value ) );
@@ -95,7 +99,7 @@ class TaxedMoney extends Money {
 	/**
 	 * Get tax percentage.
 	 *
-	 * @return float
+	 * @return float|null
 	 */
 	public function get_tax_percentage() {
 		return $this->tax_percentage;
@@ -130,20 +134,12 @@ class TaxedMoney extends Money {
 	 * @return Money
 	 */
 	public function get_excluding_tax() {
-		$value = $this->get_value();
+		$tax_amount = $this->get_tax_amount();
 
-		$use_bcmath = extension_loaded( 'bcmath' );
-
-		if ( $use_bcmath ) {
-			// Use non-locale aware float value.
-			// @link http://php.net/sprintf.
-			$string = sprintf( '%F', $value );
-
-			$value = bcsub( $string, $this->get_tax_value(), 8 );
-		} else {
-			$value -= $this->get_tax_value();
+		if ( null === $tax_amount ) {
+			return $this->get_including_tax();
 		}
 
-		return new Money( $value, $this->get_currency() );
+		return $this->subtract( $tax_amount );
 	}
 }
