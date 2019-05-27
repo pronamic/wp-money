@@ -96,11 +96,13 @@ class BcMathCalculator implements Calculator {
 	 * @param int|float|string $divisor Divisor.
 	 *
 	 * @return string
+	 *
+	 * @throws Exception Throws exception when `bcdiv` result is null, happens when divisor is 0.
 	 */
 	public function divide( $value, $divisor ) {
 		$result = bcdiv( $value, strval( $divisor ), $this->scale );
 
-		if ( null == $result ) {
+		if ( null === $result ) {
 			throw new Exception( 'Divisor is 0.' );
 		}
 
