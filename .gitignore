@@ -1,3 +1,6 @@
+# Builds
+/build/
+
 # Composer
 /composer.lock
 /vendor/
