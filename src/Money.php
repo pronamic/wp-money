@@ -308,6 +308,46 @@ class Money {
 	}
 
 	/**
+	 * Returns a new Money object that represents
+	 * the multiplied value of this Money object.
+	 *
+	 * @link https://github.com/moneyphp/money/blob/v3.2.1/src/Money.php#L299-L316
+	 *
+	 * @param int|float|string $multiplier Multiplier.
+	 *
+	 * @return Money
+	 */
+	public function multiply( $multiplier ) {
+		$value = $this->get_value();
+
+		$calculator = $this->get_calculator();
+
+		$value = $calculator->multiply( strval( $value ), $multiplier );
+
+		return new self( $value, $this->get_currency() );
+	}
+
+	/**
+	 * Returns a new Money object that represents
+	 * the divided value of this Money object.
+	 *
+	 * @link https://github.com/moneyphp/money/blob/v3.2.1/src/Money.php#L318-L341
+	 *
+	 * @param int|float|string $divisor Divisor.
+	 *
+	 * @return Money
+	 */
+	public function divide( $divisor ) {
+		$value = $this->get_value();
+
+		$calculator = $this->get_calculator();
+
+		$value = $calculator->divide( strval( $value ), $divisor );
+
+		return new self( $value, $this->get_currency() );
+	}
+
+	/**
 	 * Initialize calculator.
 	 *
 	 * @return Calculator
