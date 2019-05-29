@@ -344,6 +344,10 @@ class Money {
 
 		$value = $calculator->divide( strval( $value ), $divisor );
 
+		if ( null === $value ) {
+			$value = $this->get_value();
+		}
+
 		return new self( $value, $this->get_currency() );
 	}
 
