@@ -7,6 +7,15 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [1.2.2] - 2019-07-22
+- Fix floating point precision issue when converting to cents.
+- Add method `Money::format()` which uses the number of decimals from currency.
+- Add method `Money::format_i18n_non_trailing_zeros()` and `%2$NTZ` formatting directive.
+- Add calculator classes and functions.
+- Add ISO 4217 currencies.
+- Deprecate `Money::get_cents()` in favor of `Money::get_minor_units()`.
+- Require PHP >= 5.6.20.
+
 ## [1.2.1] - 2019-03-27
 - Added `get_minor_units` method based on decimals of currency.
 - Updated copyright to 2005-2019 Pronamic.
@@ -22,7 +31,8 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## 1.0.0
 - First release.
 
-[unreleased]: https://github.com/pronamic/wp-money/compare/1.2.1...HEAD
+[unreleased]: https://github.com/pronamic/wp-money/compare/1.2.2...HEAD
+[1.2.2]: https://github.com/pronamic/wp-money/compare/1.2.1...1.2.2
 [1.2.1]: https://github.com/pronamic/wp-money/compare/1.2.0...1.2.1
 [1.2.0]: https://github.com/pronamic/wp-money/compare/1.1.0...1.2.0
 [1.1.0]: https://github.com/pronamic/wp-money/compare/1.0.0...1.1.0

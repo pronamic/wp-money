@@ -16,7 +16,7 @@ use Exception;
  * Parser
  *
  * @author  Remco Tolsma
- * @version 1.2.1
+ * @version 1.2.2
  * @since   1.1.0
  */
 class Parser {

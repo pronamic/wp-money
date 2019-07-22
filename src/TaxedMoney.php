@@ -14,7 +14,7 @@ namespace Pronamic\WordPress\Money;
  * Taxed Money
  *
  * @author Remco Tolsma
- * @version 1.2.1
+ * @version 1.2.2
  * @since   1.2.0
  */
 class TaxedMoney extends Money {
@@ -49,7 +49,7 @@ class TaxedMoney extends Money {
 
 			$one_percent_value = $calculator->divide( strval( $value ), $calculator->add( strval( 100 ), strval( $tax_percentage ) ) );
 
-			$tax_value = $calculator->multiply( strvaL( $one_percent_value ), $tax_percentage );
+			$tax_value = $calculator->multiply( strval( $one_percent_value ), $tax_percentage );
 		}
 
 		$this->set_tax_value( $tax_value );
