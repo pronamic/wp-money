@@ -12,7 +12,9 @@ env:
 jobs:
   include:
     - php: 7.3
-      env: WP_VERSION=^5.0 COVERAGE=1 PHPCS=1
+      env: WP_VERSION=^5.1 COVERAGE=1 PHPCS=1 PHPSTAN=1 PSALM=1
+    - php: 7.3
+      env: WP_VERSION=^5.0
     - php: 7.2
       env: WP_VERSION=^4.9
     - php: 7.2
@@ -22,28 +24,17 @@ jobs:
     - php: 7.3
       env: WP_MULTISITE=1
     - php: 7.3
-      env: PHPSTAN=1
-    - php: 7.3
       env: PHPMD=1
-    - php: 7.3
-      env: PSALM=1
     - php: 7.2
     - php: 7.1
     - php: 7.0
     - php: 5.6
-    - php: 5.5
-    - php: 5.4
-    - php: 5.3
-      dist: precise
-      env: TRAVIS_DIST_PRECISE=1
     - php: nightly
     - php: hhvm
   allow_failures:
     - php: hhvm
     - php: nightly
     - env: PHPMD=1
-    - env: PHPSTAN=1
-    - env: PSALM=1
 
 cache:
   directories:
@@ -52,8 +43,6 @@ cache:
     - $HOME/.composer/cache
 
 before_install:
-  # Install latest version of Node.js (https://github.com/creationix/nvm).
-  - if [ "${TRAVIS_DIST_PRECISE}" == "1" ]; then nvm install node; fi
   # Create database for PHPUnit tests.
   - mysql -e 'CREATE DATABASE wp_phpunit_tests;'
   # Remove Xdebug for a huge performance increase:
@@ -82,7 +71,7 @@ install:
   # Install Composer packages.
   - composer install
   # Test on specific WordPress version.
-  - composer require --dev --update-with-dependencies roots/wordpress:${WP_VERSION} wp-phpunit/wp-phpunit:${WP_VERSION}
+  - if [ "$WP_VERSION" != "*" ]; then composer require --dev --update-with-dependencies roots/wordpress:${WP_VERSION} wp-phpunit/wp-phpunit:${WP_VERSION}; fi
   # List available packages.
   - composer show
 

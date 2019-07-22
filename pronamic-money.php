@@ -4,7 +4,7 @@
  * Plugin URI: https://www.pronamic.eu/plugins/pronamic-money/
  * Description: WordPress Money library.
  *
- * Version: 1.2.1
+ * Version: 1.2.2
  * Requires at least: 4.7
  *
  * Author: Pronamic
@@ -31,3 +31,4 @@ function pronamic_money_load_plugin_textdomain() {
 }
 
 add_action( 'init', 'pronamic_money_load_plugin_textdomain' );
+add_action( 'change_locale', 'pronamic_money_load_plugin_textdomain' );

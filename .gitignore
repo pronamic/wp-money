@@ -1,10 +1,15 @@
+# Builds
+/build/
+
 # Composer
+/composer.lock
 /vendor/
 
 # dotenv
 .env
 
 # Node.js
+/package-lock.json
 /node_modules/
 
 # WordPress

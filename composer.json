@@ -8,9 +8,7 @@
 		}
 	},
 	"config": {
-		"platform": {
-			"php": "5.3.3"
-		}
+		"sort-packages": true
 	},
 	"repositories": [
 		{
@@ -19,7 +17,7 @@
 		}
 	],
 	"require": {
-		"php": ">=5.3"
+		"php": ">=5.6.20"
 	},
 	"require-dev": {
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.5",
@@ -30,8 +28,8 @@
 		"phpcompatibility/php-compatibility": "^9.1",
 		"phpcompatibility/phpcompatibility-wp": "^2.0",
 		"phpmd/phpmd": "^2.4",
-		"phpunit/phpunit": "^4.8",
-		"roots/wordpress": "^5.1",
+		"phpunit/phpunit": "^5.0 || ^6.0",
+		"roots/wordpress": "^5.2",
 		"squizlabs/php_codesniffer": "^2.9",
 		"vlucas/phpdotenv": "^2.0",
 		"wp-coding-standards/wpcs": "^1.2",
@@ -46,9 +44,9 @@
 		"phpunit": "vendor/bin/phpunit",
 		"post-autoload-dump": [
 			"for file in languages/*.mo ; do ln -f -s ../../../../../../$file vendor/wp-phpunit/wp-phpunit/data/languages/plugins/. ; done",
-			"for file in vendor/koodimonni-language/*/* ; do ln -f -s ../../../../../$file vendor/wp-phpunit/wp-phpunit/data/languages/. ; done",
-			"for file in vendor/koodimonni-plugin-language/*/* ; do ln -f -s ../../../../../$file vendor/wp-phpunit/wp-phpunit/data/languages/plugins/. ; done",
-			"for file in vendor/koodimonni-theme-language/*/* ; do ln -f -s ../../../../../$file vendor/wp-phpunit/wp-phpunit/data/languages/themes/. ; done"
+			"for file in vendor/koodimonni-language/*/*.mo ; do ln -f -s ../../../../../$file vendor/wp-phpunit/wp-phpunit/data/languages/. ; done",
+			"for file in vendor/koodimonni-plugin-language/*/*.mo ; do ln -f -s ../../../../../../$file vendor/wp-phpunit/wp-phpunit/data/languages/plugins/. ; done",
+			"for file in vendor/koodimonni-theme-language/*/*.mo ; do ln -f -s ../../../../../../$file vendor/wp-phpunit/wp-phpunit/data/languages/themes/. ; done"
 		]
 	}
 }

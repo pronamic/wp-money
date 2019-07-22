@@ -14,7 +14,7 @@ namespace Pronamic\WordPress\Money;
  * Currency
  *
  * @author  Remco Tolsma
- * @version 1.2.1
+ * @version 1.2.2
  * @since   1.0.0
  */
 class Currency {
@@ -73,6 +73,7 @@ class Currency {
 	 * Set alphabetic code.
 	 *
 	 * @param string|null $alphabetic_code Alphabetic code.
+	 * @return void
 	 */
 	public function set_alphabetic_code( $alphabetic_code ) {
 		$this->alphabetic_code = $alphabetic_code;
@@ -91,6 +92,7 @@ class Currency {
 	 * Set numeric code.
 	 *
 	 * @param string|null $numeric_code Numeric code.
+	 * @return void
 	 */
 	public function set_numeric_code( $numeric_code ) {
 		$this->numeric_code = $numeric_code;
@@ -109,6 +111,7 @@ class Currency {
 	 * Set symbol.
 	 *
 	 * @param string|null $symbol Symbol.
+	 * @return void
 	 */
 	public function set_symbol( $symbol ) {
 		$this->symbol = $symbol;
@@ -127,6 +130,7 @@ class Currency {
 	 * Set number decimals.
 	 *
 	 * @param int $number_decimals Number of decimals.
+	 * @return void
 	 */
 	public function set_number_decimals( $number_decimals ) {
 		$this->number_decimals = intval( $number_decimals );
@@ -156,6 +160,7 @@ class Currency {
 	 * Set name.
 	 *
 	 * @param string|null $name Currency name.
+	 * @return void
 	 */
 	public function set_name( $name ) {
 		$this->name = $name;

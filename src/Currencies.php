@@ -16,14 +16,14 @@ namespace Pronamic\WordPress\Money;
  * @link https://github.com/moneyphp/money/blob/v3.1.3/resources/currency.php
  *
  * @author  Remco Tolsma
- * @version 1.2.1
+ * @version 1.2.2
  * @since   1.0.0
  */
 class Currencies {
 	/**
 	 * Map of known currencies indexed by code.
 	 *
-	 * @var array
+	 * @var array|null
 	 */
 	private static $currencies;
 
@@ -73,6 +73,13 @@ class Currencies {
 		if ( is_readable( $file ) ) {
 			$currencies = array();
 
+			/**
+			 * Data.
+			 *
+			 * @psalm-suppress UnresolvableInclude
+			 *
+			 * @var array
+			 */
 			$data = require $file;
 
 			foreach ( $data as $info ) {

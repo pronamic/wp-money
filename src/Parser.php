@@ -10,11 +10,13 @@
 
 namespace Pronamic\WordPress\Money;
 
+use Exception;
+
 /**
  * Parser
  *
  * @author  Remco Tolsma
- * @version 1.2.1
+ * @version 1.2.2
  * @since   1.1.0
  */
 class Parser {
@@ -26,6 +28,8 @@ class Parser {
 	 * @param string $string String to parse as money.
 	 *
 	 * @return Money
+	 *
+	 * @throws Exception Throws exception when parsing string fails.
 	 */
 	public function parse( $string ) {
 		global $wp_locale;
@@ -68,6 +72,10 @@ class Parser {
 
 		// Filter.
 		$value = filter_var( $string, FILTER_VALIDATE_FLOAT );
+
+		if ( false === $value ) {
+			throw new Exception( 'Could not parse value to money object.' );
+		}
 
 		return new Money( $value );
 	}

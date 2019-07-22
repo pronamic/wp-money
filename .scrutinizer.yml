@@ -1,5 +1,6 @@
 build:
   environment:
+    php: 7.3.0
     variables:
       WP_TESTS_DB_NAME: 'wp_phpunit_tests'
       WP_TESTS_DB_USER: 'root'
@@ -12,6 +13,11 @@ build:
     override:
       - composer install --ignore-platform-reqs --no-interaction
   nodes:
+    analysis:
+      tests:
+        override:
+          - php-scrutinizer-run
+
     coverage:
       tests:
         override:

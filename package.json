@@ -1,6 +1,6 @@
 {
 	"name": "wp-money",
-	"version": "1.2.1",
+	"version": "1.2.2",
 	"description": "WordPress Money library.",
 	"repository": {
 		"type": "git",
@@ -25,6 +25,6 @@
 		"grunt-phplint": "0.1.0",
 		"grunt-phpunit": "^0.3.6",
 		"grunt-wp-i18n": "^1.0.3",
-		"load-grunt-tasks": "^4.0.0"
+		"load-grunt-tasks": "^5.0.0"
 	}
 }

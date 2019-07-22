@@ -16,10 +16,17 @@ use WP_UnitTestCase;
  * Parser
  *
  * @author  Remco Tolsma
- * @version 1.2.1
+ * @version 1.2.2
  * @since   1.1.0
  */
 class ParserTest extends WP_UnitTestCase {
+	/**
+	 * Parser.
+	 *
+	 * @var Parser
+	 */
+	private $parser;
+
 	/**
 	 * Setup.
 	 */

@@ -17,7 +17,7 @@ use WP_UnitTestCase;
  * Money
  *
  * @author Remco Tolsma
- * @version 1.2.1
+ * @version 1.2.2
  * @since   1.0.0
  */
 class MoneyTest extends WP_UnitTestCase {
@@ -82,7 +82,6 @@ class MoneyTest extends WP_UnitTestCase {
 	 * @param string $expected Expected default format.
 	 */
 	public function test_default_format( $locale, $expected ) {
-		// Note: Switching from nl_NL to fr_FR back to nl_NL is not working correctly (bug?).
 		switch_to_locale( $locale );
 
 		$value = Money::get_default_format();
@@ -97,7 +96,6 @@ class MoneyTest extends WP_UnitTestCase {
 	 * @return array
 	 */
 	public function default_format_provider() {
-		// Note: Switching from nl_NL to fr_FR back to nl_NL is not working correctly (bug?).
 		return array(
 			array( 'en_US', '%1$s%2$s %3$s' ),
 			array( 'fr_FR', '%1$s%2$s %3$s' ),
@@ -106,7 +104,7 @@ class MoneyTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test format.
+	 * Test format i18n.
 	 *
 	 * @link https://github.com/WordPress/WordPress/blob/4.9.5/wp-includes/l10n.php
 	 *
@@ -115,10 +113,9 @@ class MoneyTest extends WP_UnitTestCase {
 	 * @param float  $value    Money value.
 	 * @param string $expected Expected format.
 	 *
-	 * @dataProvider format_provider
+	 * @dataProvider format_i18n_provider
 	 */
-	public function test_format( $locale, $currency, $value, $expected ) {
-		// Note: Switching from nl_NL to fr_FR back to nl_NL is not working correctly (bug?).
+	public function test_format_i18n( $locale, $currency, $value, $expected ) {
 		switch_to_locale( $locale );
 
 		$money = new Money( $value, $currency );
@@ -131,12 +128,11 @@ class MoneyTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Format provider.
+	 * Format i18n provider.
 	 *
 	 * @return array
 	 */
-	public function format_provider() {
-		// Note: Switching from nl_NL to fr_FR back to nl_NL is not working correctly (bug?).
+	public function format_i18n_provider() {
 		return array(
 			// Dutch.
 			array( 'nl_NL', 'EUR', 49.7512, '€ 49,75' ),
@@ -154,6 +150,53 @@ class MoneyTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Test format i18n without trailing zeros.
+	 *
+	 * @link         https://github.com/WordPress/WordPress/blob/4.9.5/wp-includes/l10n.php
+	 *
+	 * @param string $locale   Locale.
+	 * @param string $currency Money currency.
+	 * @param float  $value    Money value.
+	 * @param string $expected Expected format.
+	 *
+	 * @dataProvider format_i18n_non_trailing_zeros_provider
+	 */
+	public function test_format_i18n_non_trailing_zeros( $locale, $currency, $value, $expected ) {
+		switch_to_locale( $locale );
+
+		$money = new Money( $value, $currency );
+
+		$string = $money->format_i18n_non_trailing_zeros();
+
+		$this->assertEquals( $locale, get_locale() );
+
+		/* translators: 1: currency symbol, 2: amount value, 3: currency code, note: use non-breaking space! */
+		$this->assertEquals( $expected, $string, 'Locale: ' . get_locale() . ' Money format: ' . Money::get_default_format() . ' Test: ' . _x( '%1$s%2$s %3$s', 'money format', 'pronamic-money' ) );
+	}
+
+	/**
+	 * Format i18n without trailing zeros provider.
+	 *
+	 * @return array
+	 */
+	public function format_i18n_non_trailing_zeros_provider() {
+		return array(
+			// Dutch.
+			array( 'nl_NL', 'EUR', 49.7512, '€ 49,75' ),
+			array( 'nl_NL', 'NLG', 49, 'G 49' ),
+			array( 'nl_NL', 'USD', 49.00, '$ 49' ),
+			array( 'nl_NL', 'USD', 1234567890.00, '$ 1.234.567.890' ),
+
+			// English.
+			array( 'en_US', 'EUR', 49.7512, '€49.75 EUR' ),
+			array( 'en_US', 'USD', 1234567890.00, '$1,234,567,890 USD' ),
+
+			// French.
+			array( 'fr_FR', 'USD', 1234567890, '$1 234 567 890 USD' ),
+		);
+	}
+
+	/**
 	 * Test cents.
 	 */
 	public function test_cents() {
@@ -161,9 +204,9 @@ class MoneyTest extends WP_UnitTestCase {
 
 		$this->assertEquals( 10065, $money->get_cents() );
 
-		$money = new Money( 0.00010, 'BTC' );
+		$money = new Money( 0.00010, 'NLG' );
 
-		$this->assertEquals( 0.01, $money->get_cents() );
+		$this->assertEquals( 1, $money->get_cents() );
 	}
 
 	/**
@@ -173,11 +216,12 @@ class MoneyTest extends WP_UnitTestCase {
 	 *
 	 * @dataProvider minor_units_provider
 	 *
-	 * @param string $currency Currency.
-	 * @param int    $expected Expected value.
+	 * @param string    $currency Currency.
+	 * @param int|float $value    Money value to test.
+	 * @param int       $expected Expected value.
 	 */
-	public function test_minor_units( $currency, $expected ) {
-		$money = new Money( 10, $currency );
+	public function test_minor_units( $currency, $value, $expected ) {
+		$money = new Money( $value, $currency );
 
 		$this->assertEquals( $expected, $money->get_minor_units() );
 	}
@@ -191,10 +235,50 @@ class MoneyTest extends WP_UnitTestCase {
 	 */
 	public function minor_units_provider() {
 		return array(
-			array( 'JPY', 10 ),
-			array( 'EUR', 1000 ),
-			array( 'BHD', 10000 ),
-			array( 'NLG', 100000 ),
+			// Value 10.
+			array( 'JPY', 10, 10 ),
+			array( 'EUR', 10, 1000 ),
+			array( 'BHD', 10, 10000 ),
+			array( 'NLG', 10, 100000 ),
+
+			// Value 100.65.
+			array( 'JPY', 100.65, 100 ),
+			array( 'EUR', 100.65, 10065 ),
+			array( 'BHD', 100.65, 100650 ),
+			array( 'NLG', 100.65, 1006500 ),
+
+			// Value 100.655.
+			array( 'JPY', 100.655, 100 ),
+			array( 'EUR', 100.655, 10065 ),
+			array( 'BHD', 100.655, 100655 ),
+			array( 'NLG', 100.655, 1006550 ),
+
+			// Value 0.00010.
+			array( 'JPY', 0.00010, 0 ),
+			array( 'EUR', 0.00010, 0 ),
+			array( 'BHD', 0.00010, 0 ),
+			array( 'NLG', 0.00010, 1 ),
+
+			// No currency.
+			array( null, 10, 1000 ),
+			array( null, 100.65, 10065 ),
+			array( null, 100.655, 10065 ),
+			array( null, 0.00010, 0 ),
 		);
+	}
+
+	/**
+	 * Test add.
+	 *
+	 * @since 1.3.0
+	 */
+	public function test_add() {
+		$money_1 = new Money( 99.75, 'EUR' );
+
+		$money_2 = new Money( 0.25, 'EUR' );
+
+		$money_3 = $money_1->add( $money_2 );
+
+		$this->assertEquals( 100, $money_3->get_value() );
 	}
 }
