@@ -17,8 +17,8 @@ use Pronamic\WordPress\Money\Calculator;
  * BC Math Calculator
  *
  * @author  Remco Tolsma
- * @version 1.2.1
- * @since   1.0.0
+ * @version 1.2.2
+ * @since   1.2.2
  */
 class BcMathCalculator implements Calculator {
 	/**

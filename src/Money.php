@@ -17,7 +17,7 @@ use Pronamic\WordPress\Money\Calculator\PhpCalculator;
  * Money
  *
  * @author Remco Tolsma
- * @version 1.2.1
+ * @version 1.2.2
  * @since   1.0.0
  */
 class Money {
@@ -47,10 +47,10 @@ class Money {
 	 *
 	 * @var array
 	 */
-	private static $calculators = [
+	private static $calculators = array(
 		BcMathCalculator::class,
 		PhpCalculator::class,
-	];
+	);
 
 	/**
 	 * Construct and initialize money object.
