@@ -56,9 +56,15 @@ class ParserTest extends WP_UnitTestCase {
 		$wp_locale->number_format['thousands_sep'] = $thousands_sep;
 		$wp_locale->number_format['decimal_point'] = $decimal_sep;
 
-		$money = $this->parser->parse( $string );
+		try {
+			$money = $this->parser->parse( $string );
 
-		$this->assertEquals( $expected, $money->get_value() );
+			$value = $money->get_value();
+		} catch ( \Exception $e ) {
+			$value = null;
+		}
+
+		$this->assertEquals( $expected, $value );
 	}
 
 	/**
@@ -68,7 +74,7 @@ class ParserTest extends WP_UnitTestCase {
 	 */
 	public function string_to_amount_provider() {
 		return array(
-			// Thousands seperator is '' and decimal seperator is '.'.
+			// Thousands separator is '' and decimal separator is '.'.
 			array( '', '.', '1', 1 ),
 			array( '', '.', '2,5', 2.5 ),
 			array( '', '.', '2,50', 2.5 ),
@@ -77,7 +83,7 @@ class ParserTest extends WP_UnitTestCase {
 			array( '', '.', '1250.75', 1250.75 ),
 			array( '', '.', '1.250,00', 1250 ),
 			array( '', '.', '2.500,75', 2500.75 ),
-			// Thousands seperator is '.' and decimal seperator is ','.
+			// Thousands separator is '.' and decimal separator is ','.
 			array( '.', ',', '1', 1 ),
 			array( '.', ',', '2,5', 2.5 ),
 			array( '.', ',', '2,50', 2.5 ),
@@ -87,7 +93,7 @@ class ParserTest extends WP_UnitTestCase {
 			array( '.', ',', '2.500,75', 2500.75 ),
 			array( '.', ',', '2.500,750', 2500.75 ),
 			array( '.', ',', '1.234.567.890', 1234567890 ),
-			// Thousands seperator is ',' and decimal seperator is '.'.
+			// Thousands separator is ',' and decimal separator is '.'.
 			array( ',', '.', '1', 1 ),
 			array( ',', '.', '2.5', 2.5 ),
 			array( ',', '.', '2.50', 2.5 ),
@@ -96,18 +102,18 @@ class ParserTest extends WP_UnitTestCase {
 			array( ',', '.', '1,250.00', 1250 ),
 			array( ',', '.', '2,500.75', 2500.75 ),
 			array( ',', '.', '2,500.', 2500 ),
-			// Thousands seperator is ' ' and decimal seperator is '.'.
+			// Thousands separator is ' ' and decimal separator is '.'.
 			array( ' ', '.', '2 500.75', 2500.75 ),
-			// Thousands seperator is 't' and decimal seperator is '.'.
+			// Thousands separator is 't' and decimal separator is '.'.
 			array( 't', '.', '2t500.75', 2500.75 ),
 			array( 't', '.', '2t500.7', 2500.7 ),
-			// Thousands seperator is 't' and decimal seperator is '-'.
+			// Thousands separator is 't' and decimal separator is '-'.
 			array( 't', '-', '2t500-75', 2500.75 ),
 			array( 't', '-', '2t500-7', 2500.7 ),
-			// Thousands seperator is 't' and decimal seperator is ' '.
+			// Thousands separator is 't' and decimal separator is ' '.
 			array( 't', ' ', '2t500 75', 2500.75 ),
 			array( 't', ' ', '2t500 7', 2500.7 ),
-			// Thousands seperator is ' ' and decimal seperator is 'd'.
+			// Thousands separator is ' ' and decimal separator is 'd'.
 			array( ' ', 'd', '2 500d75', 2500.75 ),
 			array( ' ', 'd', '2 500d7', 2500.7 ),
 			array( ' ', 'd', '-2 500d75', -2500.75 ),

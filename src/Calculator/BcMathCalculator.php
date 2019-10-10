@@ -10,7 +10,6 @@
 
 namespace Pronamic\WordPress\Money\Calculator;
 
-use Exception;
 use Pronamic\WordPress\Money\Calculator;
 
 /**
