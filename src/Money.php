@@ -207,7 +207,10 @@ class Money {
 	public function get_minor_units() {
 		$calculator = $this->get_calculator();
 
-		$minor_units = $calculator->multiply( strval( $this->get_value() ), pow( 10, $this->currency->get_number_decimals() ) );
+		// Use non-locale aware float value.
+		$value = \sprintf( '%F', $this->get_value() );
+
+		$minor_units = $calculator->multiply( $value, pow( 10, $this->currency->get_number_decimals() ) );
 
 		return (int) $minor_units;
 	}
@@ -282,7 +285,11 @@ class Money {
 
 		$calculator = $this->get_calculator();
 
-		$value = $calculator->add( strval( $value ), strval( $addend->get_value() ) );
+		// Use non-locale aware float value.
+		$value  = \sprintf( '%F', $value );
+		$addend = \sprintf( '%F', $addend->get_value() );
+
+		$value = $calculator->add( $value, $addend );
 
 		return new self( $value, $this->get_currency() );
 	}
@@ -302,7 +309,11 @@ class Money {
 
 		$calculator = $this->get_calculator();
 
-		$value = $calculator->subtract( strval( $value ), strval( $subtrahend->get_value() ) );
+		// Use non-locale aware float value.
+		$value      = \sprintf( '%F', $value );
+		$subtrahend = \sprintf( '%F', $subtrahend->get_value() );
+
+		$value = $calculator->subtract( $value, $subtrahend->get_value() );
 
 		return new self( $value, $this->get_currency() );
 	}
@@ -322,7 +333,11 @@ class Money {
 
 		$calculator = $this->get_calculator();
 
-		$value = $calculator->multiply( strval( $value ), $multiplier );
+		// Use non-locale aware float value.
+		$value      = \sprintf( '%F', $value );
+		$multiplier = \sprintf( '%F', $multiplier );
+
+		$value = $calculator->multiply( $value, $multiplier );
 
 		return new self( $value, $this->get_currency() );
 	}
@@ -342,7 +357,11 @@ class Money {
 
 		$calculator = $this->get_calculator();
 
-		$value = $calculator->divide( strval( $value ), $divisor );
+		// Use non-locale aware float value.
+		$value   = \sprintf( '%F', $value );
+		$divisor = \sprintf( '%F', $divisor );
+
+		$value = $calculator->divide( $value, $divisor );
 
 		if ( null === $value ) {
 			$value = $this->get_value();
