@@ -313,7 +313,7 @@ class Money {
 		$value      = \sprintf( '%F', $value );
 		$subtrahend = \sprintf( '%F', $subtrahend->get_value() );
 
-		$value = $calculator->subtract( $value, $subtrahend->get_value() );
+		$value = $calculator->subtract( $value, $subtrahend );
 
 		return new self( $value, $this->get_currency() );
 	}
