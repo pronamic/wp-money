@@ -150,7 +150,7 @@ class Money {
 		if ( ! empty( $alphabetic_code ) ) {
 			return sprintf(
 				$format,
-				strvaL( $this->currency->get_symbol() ),
+				strval( $this->currency->get_symbol() ),
 				number_format( $this->get_value(), $this->get_currency()->get_number_decimals(), '.', '' ),
 				strval( $this->currency->get_alphabetic_code() )
 			);
