@@ -7,6 +7,10 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [1.2.3] - 2019-12-18
+- Fix calling method on string in subtraction.
+- Use non-locale aware float values.
+
 ## [1.2.2] - 2019-07-22
 - Fix floating point precision issue when converting to cents.
 - Add method `Money::format()` which uses the number of decimals from currency.
@@ -31,7 +35,8 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## 1.0.0
 - First release.
 
-[unreleased]: https://github.com/pronamic/wp-money/compare/1.2.2...HEAD
+[unreleased]: https://github.com/pronamic/wp-money/compare/1.2.3...HEAD
+[1.2.3]: https://github.com/pronamic/wp-money/compare/1.2.2...1.2.3
 [1.2.2]: https://github.com/pronamic/wp-money/compare/1.2.1...1.2.2
 [1.2.1]: https://github.com/pronamic/wp-money/compare/1.2.0...1.2.1
 [1.2.0]: https://github.com/pronamic/wp-money/compare/1.1.0...1.2.0
