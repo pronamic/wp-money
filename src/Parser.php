@@ -36,15 +36,15 @@ class Parser {
 
 		$decimal_sep = $wp_locale->number_format['decimal_point'];
 
-		// Seperators.
-		$seperators = array( $decimal_sep, '.', ',' );
-		$seperators = array_unique( array_filter( $seperators ) );
+		// Separators.
+		$separators = array( $decimal_sep, '.', ',' );
+		$separators = array_unique( array_filter( $separators ) );
 
 		// Check.
 		foreach ( array( - 3, - 2 ) as $i ) {
 			$test = substr( $string, $i, 1 );
 
-			if ( in_array( $test, $seperators, true ) ) {
+			if ( in_array( $test, $separators, true ) ) {
 				$decimal_sep = $test;
 
 				break;
