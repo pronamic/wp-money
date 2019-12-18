@@ -1,6 +1,6 @@
 {
 	"name": "wp-money",
-	"version": "1.2.2",
+	"version": "1.2.3",
 	"description": "WordPress Money library.",
 	"repository": {
 		"type": "git",
