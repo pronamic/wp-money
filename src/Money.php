@@ -291,7 +291,12 @@ class Money {
 
 		$value = $calculator->add( $value, $addend );
 
-		return new self( $value, $this->get_currency() );
+		// Return clone.
+		$result = clone $this;
+
+		$result->set_value( $value );
+
+		return $result;
 	}
 
 	/**
@@ -315,7 +320,12 @@ class Money {
 
 		$value = $calculator->subtract( $value, $subtrahend );
 
-		return new self( $value, $this->get_currency() );
+		// Return clone.
+		$result = clone $this;
+
+		$result->set_value( $value );
+
+		return $result;
 	}
 
 	/**
@@ -339,7 +349,12 @@ class Money {
 
 		$value = $calculator->multiply( $value, $multiplier );
 
-		return new self( $value, $this->get_currency() );
+		// Return clone.
+		$result = clone $this;
+
+		$result->set_value( $value );
+
+		return $result;
 	}
 
 	/**
@@ -367,7 +382,12 @@ class Money {
 			$value = $this->get_value();
 		}
 
-		return new self( $value, $this->get_currency() );
+		// Return clone.
+		$result = clone $this;
+
+		$result->set_value( $value );
+
+		return $result;
 	}
 
 	/**
