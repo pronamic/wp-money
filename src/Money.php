@@ -291,7 +291,6 @@ class Money {
 
 		$value = $calculator->add( $value, $addend );
 
-		// Return clone.
 		$result = clone $this;
 
 		$result->set_value( $value );
@@ -320,7 +319,6 @@ class Money {
 
 		$value = $calculator->subtract( $value, $subtrahend );
 
-		// Return clone.
 		$result = clone $this;
 
 		$result->set_value( $value );
@@ -349,7 +347,6 @@ class Money {
 
 		$value = $calculator->multiply( $value, $multiplier );
 
-		// Return clone.
 		$result = clone $this;
 
 		$result->set_value( $value );
@@ -382,7 +379,6 @@ class Money {
 			$value = $this->get_value();
 		}
 
-		// Return clone.
 		$result = clone $this;
 
 		$result->set_value( $value );
