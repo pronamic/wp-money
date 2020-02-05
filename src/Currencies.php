@@ -23,14 +23,14 @@ class Currencies {
 	/**
 	 * Map of known currencies indexed by code.
 	 *
-	 * @var array|null
+	 * @var array<string, Currency>|null
 	 */
 	private static $currencies;
 
 	/**
 	 * Get currencies.
 	 *
-	 * @return array
+	 * @return array<string, Currency>
 	 */
 	public static function get_currencies() {
 		if ( is_null( self::$currencies ) ) {
@@ -63,7 +63,7 @@ class Currencies {
 	 * Load currencies.
 	 *
 	 * @link https://github.com/moneyphp/money/blob/v3.1.3/src/Currencies/ISOCurrencies.php#L90-L102
-	 * @return array
+	 * @return array<string, Currency>
 	 *
 	 * @throws \RuntimeException Throws runtime exception if currencies could not be loaded from file.
 	 */
@@ -78,7 +78,7 @@ class Currencies {
 			 *
 			 * @psalm-suppress UnresolvableInclude
 			 *
-			 * @var array
+			 * @var array<int, array<string, mixed>>
 			 */
 			$data = require $file;
 

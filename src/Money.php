@@ -45,7 +45,7 @@ class Money {
 	/**
 	 * Calculators.
 	 *
-	 * @var array
+	 * @var array<int, string>
 	 */
 	private static $calculators = array(
 		BcMathCalculator::class,
