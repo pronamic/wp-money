@@ -486,7 +486,7 @@ return array(
 		'alphabetic_code' => 'INR',
 		'numeric_code'    => '356',
 		'name'            => __( 'Indian Rupee', 'pronamic-money' ),
-		'symbol'          => null,
+		'symbol'          => '₹',
 		'number_decimals' => 2,
 	),
 	array(
