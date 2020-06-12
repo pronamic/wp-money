@@ -221,7 +221,7 @@ class Money {
 	 * @param mixed $value Amount value.
 	 * @return void
 	 */
-	public function set_value( $value ) {
+	final public function set_value( $value ) {
 		$this->value = floatval( $value );
 	}
 
@@ -253,7 +253,7 @@ class Money {
 	 * @param string|Currency $currency Currency.
 	 * @return void
 	 */
-	public function set_currency( $currency ) {
+	final public function set_currency( $currency ) {
 		if ( $currency instanceof Currency ) {
 			$this->currency = $currency;
 

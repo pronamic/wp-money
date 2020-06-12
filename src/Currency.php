@@ -132,7 +132,7 @@ class Currency {
 	 * @param int $number_decimals Number of decimals.
 	 * @return void
 	 */
-	public function set_number_decimals( $number_decimals ) {
+	final public function set_number_decimals( $number_decimals ) {
 		$this->number_decimals = intval( $number_decimals );
 	}
 
