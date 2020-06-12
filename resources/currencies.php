@@ -626,13 +626,14 @@ return array(
 		'alphabetic_code' => 'LSL',
 		'numeric_code'    => '426',
 		'name'            => __( 'Lesotho Loti', 'pronamic-money' ),
+		'number_decimals' => 2,
+
 		/*
 		 * Symbol based on plural form "maloti". The one-loti note employs the symbol L.
 		 *
 		 * @link https://en.wikipedia.org/wiki/Currency_symbol#List_of_currency_symbols_currently_in_use
 		 */
 		'symbol'          => 'M',
-		'number_decimals' => 2,
 	),
 	array(
 		'alphabetic_code' => 'LYD',
@@ -988,13 +989,14 @@ return array(
 		'alphabetic_code' => 'SZL',
 		'numeric_code'    => '748',
 		'name'            => __( 'Swazi Lilangeni', 'pronamic-money' ),
+		'number_decimals' => 2,
+
 		/*
 		 * Symbol based on the plural form "emalangeni" However the one-lilageni note employs the currency symbol L.
 		 *
 		 * @link https://en.wikipedia.org/wiki/Currency_symbol#List_of_currency_symbols_currently_in_use
 		 */
 		'symbol'          => 'E',
-		'number_decimals' => 2,
 	),
 	array(
 		'alphabetic_code' => 'THB',
