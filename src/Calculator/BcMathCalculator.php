@@ -16,7 +16,7 @@ use Pronamic\WordPress\Money\Calculator;
  * BC Math Calculator
  *
  * @author  Remco Tolsma
- * @version 1.2.2
+ * @version 1.2.5
  * @since   1.2.2
  */
 class BcMathCalculator implements Calculator {
@@ -54,6 +54,10 @@ class BcMathCalculator implements Calculator {
 	 * @return string
 	 */
 	public function add( $value, $addend ) {
+		if ( ! \is_numeric( $value ) || ! \is_numeric( $addend ) ) {
+			return $value;
+		}
+
 		return bcadd( $value, $addend, $this->scale );
 	}
 
@@ -68,6 +72,10 @@ class BcMathCalculator implements Calculator {
 	 * @return string
 	 */
 	public function subtract( $value, $subtrahend ) {
+		if ( ! \is_numeric( $value ) || ! \is_numeric( $subtrahend ) ) {
+			return $value;
+		}
+
 		return bcsub( $value, $subtrahend, $this->scale );
 	}
 
@@ -82,7 +90,13 @@ class BcMathCalculator implements Calculator {
 	 * @return string
 	 */
 	public function multiply( $value, $multiplier ) {
-		return bcmul( $value, strval( $multiplier ), $this->scale );
+		$multiplier = strval( $multiplier );
+
+		if ( ! \is_numeric( $value ) || ! \is_numeric( $multiplier ) ) {
+			return $value;
+		}
+
+		return bcmul( $value, $multiplier, $this->scale );
 	}
 
 	/**
@@ -97,6 +111,12 @@ class BcMathCalculator implements Calculator {
 	 * @return string|null
 	 */
 	public function divide( $value, $divisor ) {
-		return bcdiv( $value, strval( $divisor ), $this->scale );
+		$divisor = strval( $divisor );
+
+		if ( ! \is_numeric( $value ) || ! \is_numeric( $divisor ) ) {
+			return $value;
+		}
+
+		return bcdiv( $value, $divisor, $this->scale );
 	}
 }

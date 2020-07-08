@@ -17,7 +17,7 @@ use Pronamic\WordPress\Money\Calculator\PhpCalculator;
  * Money
  *
  * @author Remco Tolsma
- * @version 1.2.2
+ * @version 1.2.5
  * @since   1.0.0
  */
 class Money {
@@ -45,7 +45,7 @@ class Money {
 	/**
 	 * Calculators.
 	 *
-	 * @var array
+	 * @var array<int, string>
 	 */
 	private static $calculators = array(
 		BcMathCalculator::class,
@@ -221,7 +221,7 @@ class Money {
 	 * @param mixed $value Amount value.
 	 * @return void
 	 */
-	public function set_value( $value ) {
+	final public function set_value( $value ) {
 		$this->value = floatval( $value );
 	}
 
@@ -253,7 +253,7 @@ class Money {
 	 * @param string|Currency $currency Currency.
 	 * @return void
 	 */
-	public function set_currency( $currency ) {
+	final public function set_currency( $currency ) {
 		if ( $currency instanceof Currency ) {
 			$this->currency = $currency;
 

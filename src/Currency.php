@@ -14,7 +14,7 @@ namespace Pronamic\WordPress\Money;
  * Currency
  *
  * @author  Remco Tolsma
- * @version 1.2.2
+ * @version 1.2.5
  * @since   1.0.0
  */
 class Currency {
@@ -132,7 +132,7 @@ class Currency {
 	 * @param int $number_decimals Number of decimals.
 	 * @return void
 	 */
-	public function set_number_decimals( $number_decimals ) {
+	final public function set_number_decimals( $number_decimals ) {
 		$this->number_decimals = intval( $number_decimals );
 	}
 

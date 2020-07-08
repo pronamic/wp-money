@@ -16,7 +16,7 @@ use WP_UnitTestCase;
  * Parser
  *
  * @author  Remco Tolsma
- * @version 1.2.2
+ * @version 1.2.5
  * @since   1.1.0
  */
 class ParserTest extends WP_UnitTestCase {
@@ -83,6 +83,11 @@ class ParserTest extends WP_UnitTestCase {
 			array( '', '.', '1250.75', 1250.75 ),
 			array( '', '.', '1.250,00', 1250 ),
 			array( '', '.', '2.500,75', 2500.75 ),
+			array( '', '.', '2500,75-', -2500.75 ),
+			array( '', '.', '-2500,75', -2500.75 ),
+			array( '', '.', '2500-', -2500 ),
+			array( '', '.', '-2500', -2500 ),
+			array( '', '.', '1-', -1 ),
 			// Thousands separator is '.' and decimal separator is ','.
 			array( '.', ',', '1', 1 ),
 			array( '.', ',', '2,5', 2.5 ),
@@ -93,6 +98,11 @@ class ParserTest extends WP_UnitTestCase {
 			array( '.', ',', '2.500,75', 2500.75 ),
 			array( '.', ',', '2.500,750', 2500.75 ),
 			array( '.', ',', '1.234.567.890', 1234567890 ),
+			array( '.', ',', '2.500,75-', -2500.75 ),
+			array( '.', ',', '-2.500,75', -2500.75 ),
+			array( '.', ',', '2.500-', -2500 ),
+			array( '.', ',', '-2.500', -2500 ),
+			array( '.', ',', '1-', -1 ),
 			// Thousands separator is ',' and decimal separator is '.'.
 			array( ',', '.', '1', 1 ),
 			array( ',', '.', '2.5', 2.5 ),
@@ -102,6 +112,11 @@ class ParserTest extends WP_UnitTestCase {
 			array( ',', '.', '1,250.00', 1250 ),
 			array( ',', '.', '2,500.75', 2500.75 ),
 			array( ',', '.', '2,500.', 2500 ),
+			array( ',', '.', '2,500.75-', -2500.75 ),
+			array( ',', '.', '-2,500.75', -2500.75 ),
+			array( ',', '.', '2,500-', -2500 ),
+			array( ',', '.', '-2,500', -2500 ),
+			array( ',', '.', '1-', -1 ),
 			// Thousands separator is ' ' and decimal separator is '.'.
 			array( ' ', '.', '2 500.75', 2500.75 ),
 			// Thousands separator is 't' and decimal separator is '.'.
@@ -119,6 +134,12 @@ class ParserTest extends WP_UnitTestCase {
 			array( ' ', 'd', '-2 500d75', -2500.75 ),
 			array( ' ', 'd', '-2 500d7', -2500.7 ),
 			// Other.
+			array( '.', ',', 'EUR 1.250', 1250 ),
+			array( '.', ',', 'EUR 1.250,75', 1250.75 ),
+			array( '.', ',', 'EUR -1.250', -1250 ),
+			array( '.', ',', 'EUR -1.250,75', -1250.75 ),
+			array( '.', ',', '1.250,-', 1250 ),
+			array( '.', ',', '-1.250,-', -1250 ),
 			array( '', '', '123456789', 123456789 ),
 			array( false, false, '123 456 789', 123456789 ),
 		);
