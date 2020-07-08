@@ -17,7 +17,7 @@ use Pronamic\WordPress\Money\Calculator\PhpCalculator;
  * Money
  *
  * @author Remco Tolsma
- * @version 1.2.2
+ * @version 1.2.5
  * @since   1.0.0
  */
 class Money {
