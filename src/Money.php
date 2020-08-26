@@ -107,9 +107,9 @@ class Money {
 
 			return sprintf(
 				$format,
-				strval( $this->currency->get_symbol() ),
+				(string) $this->currency->get_symbol(),
 				number_format_i18n( $this->get_value(), $number_decimals ),
-				strval( $this->currency->get_alphabetic_code() )
+				strval( $alphabetic_code )
 			);
 		}
 
@@ -150,9 +150,9 @@ class Money {
 		if ( ! empty( $alphabetic_code ) ) {
 			return sprintf(
 				$format,
-				strval( $this->currency->get_symbol() ),
+				(string) $this->currency->get_symbol(),
 				number_format( $this->get_value(), $this->get_currency()->get_number_decimals(), '.', '' ),
-				strval( $this->currency->get_alphabetic_code() )
+				strval( $alphabetic_code )
 			);
 		}
 
