@@ -5,7 +5,9 @@
 
 ## Actions
 
-*This project does not contain any WordPress actions.*## Filters
+*This project does not contain any WordPress actions.*
+
+## Filters
 
 ### `pronamic_money_default_format`
 
