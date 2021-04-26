@@ -18,13 +18,13 @@
  * GitHub URI: https://github.com/pronamic/wp-money
  *
  * @author    Pronamic <info@pronamic.eu>
- * @copyright 2005-2020 Pronamic
+ * @copyright 2005-2021 Pronamic
  * @license   GPL-3.0-or-later
  * @package   Pronamic\WordPress\Pay
  */
 
 /**
- * Pronamic Money load plugin textdomain.
+ * Pronamic Money load plugin text domain.
  */
 function pronamic_money_load_plugin_textdomain() {
 	load_plugin_textdomain( 'pronamic-money', false, basename( dirname( __FILE__ ) ) . '/languages' );

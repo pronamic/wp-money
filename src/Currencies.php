@@ -3,7 +3,7 @@
  * Currencies
  *
  * @author    Pronamic <info@pronamic.eu>
- * @copyright 2005-2020 Pronamic
+ * @copyright 2005-2021 Pronamic
  * @license   GPL-3.0-or-later
  * @package   Pronamic\WordPress\Money
  */
@@ -70,33 +70,39 @@ class Currencies {
 	private static function load_currencies() {
 		$file = __DIR__ . '/../resources/currencies.php';
 
-		if ( is_readable( $file ) ) {
-			$currencies = array();
-
-			/**
-			 * Data.
-			 *
-			 * @psalm-suppress UnresolvableInclude
-			 *
-			 * @var array<int, array<string, mixed>>
-			 */
-			$data = require $file;
-
-			foreach ( $data as $info ) {
-				$currency = new Currency();
-
-				$currency->set_alphabetic_code( $info['alphabetic_code'] );
-				$currency->set_numeric_code( $info['numeric_code'] );
-				$currency->set_name( $info['name'] );
-				$currency->set_symbol( $info['symbol'] );
-				$currency->set_number_decimals( $info['number_decimals'] );
-
-				$currencies[ $currency->get_alphabetic_code() ] = $currency;
-			}
-
-			return $currencies;
+		if ( ! is_readable( $file ) ) {
+			throw new \RuntimeException( 'Failed to load currencies.' );
 		}
 
-		throw new \RuntimeException( 'Failed to load currencies.' );
+		$currencies = array();
+
+		/**
+		 * Data.
+		 *
+		 * @psalm-suppress UnresolvableInclude
+		 *
+		 * @var array<int, array<string, mixed>>
+		 */
+		$data = require $file;
+
+		foreach ( $data as $info ) {
+			$currency = new Currency();
+
+			$currency->set_alphabetic_code( $info['alphabetic_code'] );
+			$currency->set_numeric_code( $info['numeric_code'] );
+			$currency->set_name( $info['name'] );
+			$currency->set_symbol( $info['symbol'] );
+			$currency->set_number_decimals( $info['number_decimals'] );
+
+			$alphabetic_code = $currency->get_alphabetic_code();
+
+			if ( null === $alphabetic_code ) {
+				continue;
+			}
+
+			$currencies[ $alphabetic_code ] = $currency;
+		}
+
+		return $currencies;
 	}
 }

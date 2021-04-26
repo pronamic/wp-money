@@ -3,7 +3,7 @@
  * Money
  *
  * @author    Pronamic <info@pronamic.eu>
- * @copyright 2005-2020 Pronamic
+ * @copyright 2005-2021 Pronamic
  * @license   GPL-3.0-or-later
  * @package   Pronamic\WordPress\Money
  */
@@ -107,9 +107,9 @@ class Money {
 
 			return sprintf(
 				$format,
-				strval( $this->currency->get_symbol() ),
+				(string) $this->currency->get_symbol(),
 				number_format_i18n( $this->get_value(), $number_decimals ),
-				strval( $this->currency->get_alphabetic_code() )
+				strval( $alphabetic_code )
 			);
 		}
 
@@ -150,9 +150,9 @@ class Money {
 		if ( ! empty( $alphabetic_code ) ) {
 			return sprintf(
 				$format,
-				strval( $this->currency->get_symbol() ),
+				(string) $this->currency->get_symbol(),
 				number_format( $this->get_value(), $this->get_currency()->get_number_decimals(), '.', '' ),
-				strval( $this->currency->get_alphabetic_code() )
+				strval( $alphabetic_code )
 			);
 		}
 
