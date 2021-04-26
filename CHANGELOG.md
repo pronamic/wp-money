@@ -7,6 +7,9 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [1.2.6] - 2021-04-26
+- Happy 2021.
+
 ## [1.2.6] - 2021-01-14
 - composer bin all update
 - Added GitHub action Super-Linter.
@@ -49,6 +52,7 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 - First release.
 
 [unreleased]: https://github.com/pronamic/wp-money/compare/1.2.6...HEAD
+[1.2.6]: https://github.com/pronamic/wp-money/compare/1.2.5...1.2.6
 [1.2.6]: https://github.com/pronamic/wp-money/compare/1.2.5...1.2.6
 [1.2.5]: https://github.com/pronamic/wp-money/compare/1.2.4...1.2.5
 [1.2.4]: https://github.com/pronamic/wp-money/compare/1.2.3...1.2.4
