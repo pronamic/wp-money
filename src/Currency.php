@@ -10,6 +10,8 @@
 
 namespace Pronamic\WordPress\Money;
 
+use JsonSerializable;
+
 /**
  * Currency
  *
@@ -17,7 +19,7 @@ namespace Pronamic\WordPress\Money;
  * @version 1.2.5
  * @since   1.0.0
  */
-class Currency {
+class Currency implements JsonSerializable {
 	/**
 	 * Alphabetic code.
 	 *
@@ -164,5 +166,15 @@ class Currency {
 	 */
 	public function set_name( $name ) {
 		$this->name = $name;
+	}
+
+	/**
+	 * JSON serialize.
+	 * 
+	 * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+	 * @return string
+	 */
+	public function jsonSerialize() {
+		return $this->alphabetic_code;
 	}
 }

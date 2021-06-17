@@ -10,8 +10,8 @@
 
 namespace Pronamic\WordPress\Money;
 
-use Pronamic\WordPress\Money\Calculator\BcMathCalculator;
-use Pronamic\WordPress\Money\Calculator\PhpCalculator;
+use JsonSerializable;
+use Pronamic\WordPress\Number\Number;
 
 /**
  * Money
@@ -20,13 +20,13 @@ use Pronamic\WordPress\Money\Calculator\PhpCalculator;
  * @version 1.2.5
  * @since   1.0.0
  */
-class Money {
+class Money implements JsonSerializable {
 	/**
-	 * Amount value.
+	 * Number.
 	 *
-	 * @var float
+	 * @var Number
 	 */
-	private $value;
+	private $amount;
 
 	/**
 	 * Currency.
@@ -151,7 +151,7 @@ class Money {
 			return sprintf(
 				$format,
 				(string) $this->currency->get_symbol(),
-				number_format( $this->get_value(), $this->get_currency()->get_number_decimals(), '.', '' ),
+				number_format( $this->amount->get_value(), $this->get_currency()->get_number_decimals(), '.', '' ),
 				strval( $alphabetic_code )
 			);
 		}
@@ -162,10 +162,19 @@ class Money {
 	/**
 	 * Get value.
 	 *
-	 * @return float Amount value.
+	 * @return string Amount value.
 	 */
 	public function get_value() {
-		return $this->value;
+		return $this->amount->get_value();
+	}
+
+	/**
+	 * Get number.
+	 *
+	 * @return Number
+	 */
+	public function get_number() {
+		return $this->amount;
 	}
 
 	/**
@@ -205,14 +214,9 @@ class Money {
 	 * @return int
 	 */
 	public function get_minor_units() {
-		$calculator = $this->get_calculator();
+		$minor_units = $this->amount->multiply( Number::from_mixed( \pow( 10, $this->currency->get_number_decimals() ) ) );
 
-		// Use non-locale aware float value.
-		$value = \sprintf( '%F', $this->get_value() );
-
-		$minor_units = $calculator->multiply( $value, pow( 10, $this->currency->get_number_decimals() ) );
-
-		return (int) $minor_units;
+		return (int) $minor_units->get_value();
 	}
 
 	/**
@@ -222,7 +226,11 @@ class Money {
 	 * @return void
 	 */
 	final public function set_value( $value ) {
-		$this->value = floatval( $value );
+		if ( ! $value instanceof Number ) {
+			$value = Number::from_mixed( $value );
+		}
+
+		$this->amount = $value;
 	}
 
 	/**
@@ -273,6 +281,26 @@ class Money {
 	}
 
 	/**
+	 * JSON serialize.
+	 * 
+	 * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+	 * @return object
+	 */
+	public function jsonSerialize() {
+		$properties = array(
+			'value' => $money->get_value(),
+		);
+
+		if ( null !== $this->currency ) {
+			$properties['currency'] = $this->currency->jsonSerialize();
+		}
+
+		$object = (object) $properties;
+
+		return $object;
+	}
+
+	/**
 	 * Returns a new Money object that represents
 	 * the sum of this and an other Money object.
 	 *
@@ -281,21 +309,9 @@ class Money {
 	 * @return Money
 	 */
 	public function add( Money $addend ) {
-		$value = $this->get_value();
+		$result = $this->amount->add( $addend->get_number() );
 
-		$calculator = $this->get_calculator();
-
-		// Use non-locale aware float value.
-		$value  = \sprintf( '%F', $value );
-		$addend = \sprintf( '%F', $addend->get_value() );
-
-		$value = $calculator->add( $value, $addend );
-
-		$result = clone $this;
-
-		$result->set_value( $value );
-
-		return $result;
+		return new self( $result, $this->currency );
 	}
 
 	/**
@@ -309,21 +325,9 @@ class Money {
 	 * @return Money
 	 */
 	public function subtract( Money $subtrahend ) {
-		$value = $this->get_value();
+		$result = $this->amount->subtract( $subtrahend->get_number() );
 
-		$calculator = $this->get_calculator();
-
-		// Use non-locale aware float value.
-		$value      = \sprintf( '%F', $value );
-		$subtrahend = \sprintf( '%F', $subtrahend->get_value() );
-
-		$value = $calculator->subtract( $value, $subtrahend );
-
-		$result = clone $this;
-
-		$result->set_value( $value );
-
-		return $result;
+		return new self( $result, $this->currency );
 	}
 
 	/**
@@ -337,21 +341,9 @@ class Money {
 	 * @return Money
 	 */
 	public function multiply( $multiplier ) {
-		$value = $this->get_value();
+		$result = $this->amount->multiply( $multiplier->get_number() );
 
-		$calculator = $this->get_calculator();
-
-		// Use non-locale aware float value.
-		$value      = \sprintf( '%F', $value );
-		$multiplier = \sprintf( '%F', $multiplier );
-
-		$value = $calculator->multiply( $value, $multiplier );
-
-		$result = clone $this;
-
-		$result->set_value( $value );
-
-		return $result;
+		return new self( $result, $this->currency );
 	}
 
 	/**
@@ -365,25 +357,9 @@ class Money {
 	 * @return Money
 	 */
 	public function divide( $divisor ) {
-		$value = $this->get_value();
+		$result = $this->amount->divide( $divisor->get_number() );
 
-		$calculator = $this->get_calculator();
-
-		// Use non-locale aware float value.
-		$value   = \sprintf( '%F', $value );
-		$divisor = \sprintf( '%F', $divisor );
-
-		$value = $calculator->divide( $value, $divisor );
-
-		if ( null === $value ) {
-			$value = $this->get_value();
-		}
-
-		$result = clone $this;
-
-		$result->set_value( $value );
-
-		return $result;
+		return new self( $result, $this->currency );
 	}
 
 	/**

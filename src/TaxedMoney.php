@@ -10,6 +10,9 @@
 
 namespace Pronamic\WordPress\Money;
 
+use JsonSerializable;
+use Pronamic\WordPress\Number\Number;
+
 /**
  * Taxed Money
  *
@@ -74,10 +77,10 @@ class TaxedMoney extends Money {
 	/**
 	 * Get tax value.
 	 *
-	 * @return float|null
+	 * @return string|null
 	 */
 	public function get_tax_value() {
-		return $this->tax_value;
+		return null === $this->tax_value ? null : $this->tax_value->get_value();
 	}
 
 	/**
@@ -87,7 +90,7 @@ class TaxedMoney extends Money {
 	 * @return void
 	 */
 	public function set_tax_value( $value ) {
-		$this->tax_value = ( null === $value ? null : floatval( $value ) );
+		$this->tax_value = ( null === $value ? null : Number::from_mixed( $value ) );
 	}
 
 	/**
@@ -102,10 +105,10 @@ class TaxedMoney extends Money {
 	/**
 	 * Get tax percentage.
 	 *
-	 * @return float|null
+	 * @return string|null
 	 */
 	public function get_tax_percentage() {
-		return $this->tax_percentage;
+		return null === $this->tax_percentage ? null : $this->tax_percentage->get_value();
 	}
 
 	/**
@@ -120,7 +123,7 @@ class TaxedMoney extends Money {
 	 * @return void
 	 */
 	public function set_tax_percentage( $percentage ) {
-		$this->tax_percentage = ( null === $percentage ? null : floatval( $percentage ) );
+		$this->tax_percentage = ( null === $percentage ? null : Number::from_mixed( $percentage ) );
 	}
 
 	/**
@@ -145,5 +148,29 @@ class TaxedMoney extends Money {
 		}
 
 		return $this->subtract( $tax_amount );
+	}
+
+	/**
+	 * JSON serialize.
+	 * 
+	 * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+	 * @return object
+	 */
+	public function jsonSerialize() {
+		$object = parent::jsonSerialize();
+
+		$properties = (array) $object;
+
+		if ( null !== $this->tax_value ) {
+			$properties['tax_value'] = $this->tax_value->jsonSerialize();
+		}
+
+		if ( null !== $this->tax_percentage ) {
+			$properties['tax_percentage'] = $this->tax_percentage->jsonSerialize();
+		}
+
+		$object = (object) $properties;
+
+		return $object;
 	}
 }

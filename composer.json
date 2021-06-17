@@ -17,7 +17,8 @@
 		}
 	],
 	"require": {
-		"php": ">=5.6.20"
+		"php": ">=5.6.20",
+		"pronamic/wp-number": "dev-main"
 	},
 	"require-dev": {
 		"bamarni/composer-bin-plugin": "^1.4",
