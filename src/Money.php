@@ -363,6 +363,19 @@ class Money implements JsonSerializable {
 	}
 
 	/**
+	 * Absolute.
+	 *
+	 * @link https://github.com/moneyphp/money/blob/v4.0.1/src/Money.php#L411-L417
+	 * @return Money
+	 */
+	public function absolute() {
+		return new self(
+			$this->amount->absolute(),
+			$this->currency
+		);
+	}
+
+	/**
 	 * Initialize calculator.
 	 *
 	 * @return Calculator
