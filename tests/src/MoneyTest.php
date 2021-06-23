@@ -202,11 +202,23 @@ class MoneyTest extends WP_UnitTestCase {
 	public function test_cents() {
 		$money = new Money( 100.65, 'EUR' );
 
-		$this->assertEquals( 10065, $money->get_cents() );
+		$this->assertEquals(
+			10065,
+			/**
+			 * @scrutinizer ignore-deprecated
+			 */
+			$money->get_cents()
+		);
 
 		$money = new Money( 0.00010, 'NLG' );
 
-		$this->assertEquals( 1, $money->get_cents() );
+		$this->assertEquals(
+			1,
+			/**
+			 * @scrutinizer ignore-deprecated
+			 */
+			$money->get_cents()
+		);
 	}
 
 	/**

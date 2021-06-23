@@ -119,7 +119,7 @@ class TaxedMoney extends Money {
 	 *   6% =   6
 	 * 1.5% =   1.5
 	 *
-	 * @param string|int|float|null $percentage Tax percentage.
+	 * @param mixed $percentage Tax percentage.
 	 * @return void
 	 */
 	public function set_tax_percentage( $percentage ) {
