@@ -241,13 +241,11 @@ class Money implements JsonSerializable {
 	 * @return void
 	 */
 	final public function set_currency( $currency ) {
-		if ( $currency instanceof Currency ) {
-			$this->currency = $currency;
-
-			return;
+		if ( ! $currency instanceof Currency ) {
+			$currency = Currency::get_instance( $currency );
 		}
 
-		$this->currency = Currency::get_instance( $currency );
+		$this->currency = $currency;
 	}
 
 	/**
