@@ -17,7 +17,7 @@ use Pronamic\WordPress\Number\Number;
  * Taxed Money
  *
  * @author Remco Tolsma
- * @version 1.2.2
+ * @version 2.0.0
  * @since   1.2.0
  */
 class TaxedMoney extends Money {
