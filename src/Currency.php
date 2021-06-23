@@ -86,8 +86,18 @@ class Currency implements JsonSerializable {
 	 *
 	 * @param string $alphabetic_code Alphabetic code.
 	 * @return void
+	 * @throws \InvalidArgumentException Throws invalid argument exception if code is not 3 characters.
 	 */
 	public function set_alphabetic_code( $alphabetic_code ) {
+		if ( 3 !== \strlen( $alphabetic_code ) ) {
+			throw new \InvalidArgumentException(
+				\sprintf(
+					'The alphabetical code of a currency must consist of 3 characters: %s.',
+					$alphabetic_code
+				)
+			);
+		}
+
 		$this->alphabetic_code = $alphabetic_code;
 	}
 
