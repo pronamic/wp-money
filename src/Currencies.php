@@ -48,15 +48,13 @@ class Currencies {
 	 * @return Currency
 	 */
 	public static function get_currency( $alphabetic_code ) {
-		$currency = new Currency( $alphabetic_code );
-
 		$currencies = self::get_currencies();
 
-		if ( isset( $currencies[ $alphabetic_code ] ) ) {
-			$currency = $currencies[ $alphabetic_code ];
+		if ( \array_key_exists( $alphabetic_code, $currencies ) ) {
+			return $currencies[ $alphabetic_code ];
 		}
 
-		return $currency;
+		return new Currency( $alphabetic_code );
 	}
 
 	/**
