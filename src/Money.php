@@ -55,8 +55,8 @@ class Money implements JsonSerializable {
 	/**
 	 * Construct and initialize money object.
 	 *
-	 * @param string|int|float $value    Amount value.
-	 * @param Currency|string  $currency Currency.
+	 * @param mixed           $value    Amount value.
+	 * @param Currency|string $currency Currency.
 	 */
 	public function __construct( $value = 0, $currency = 'EUR' ) {
 		$this->set_value( $value );
@@ -226,11 +226,7 @@ class Money implements JsonSerializable {
 	 * @return void
 	 */
 	final public function set_value( $value ) {
-		if ( ! $value instanceof Number ) {
-			$value = Number::from_mixed( $value );
-		}
-
-		$this->amount = $value;
+		$this->amount = Number::from_mixed( $value );
 	}
 
 	/**

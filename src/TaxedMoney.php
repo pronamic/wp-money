@@ -38,23 +38,23 @@ class TaxedMoney extends Money {
 	/**
 	 * Construct and initialize money object.
 	 *
-	 * @param string|int|float $value          Amount value.
+	 * @param mixed            $value          Amount value.
 	 * @param Currency|string  $currency       Currency.
-	 * @param string|int|float $tax_value      Tax value.
-	 * @param string|int|float $tax_percentage Tax percentage.
+	 * @param mixed            $tax_value      Tax value.
+	 * @param mixed            $tax_percentage Tax percentage.
 	 */
 	public function __construct( $value = 0, $currency = 'EUR', $tax_value = null, $tax_percentage = null ) {
+		$value = Number::from_mixed( $value );
+
 		parent::__construct( $value, $currency );
 
 		// Calculate tax amount if tax percentage is set.
 		if ( null === $tax_value && null !== $tax_percentage ) {
-			$calculator = $this->get_calculator();
+			$tax_percentage = Number::from_mixed( $tax_percentage );
 
-			$one_percent_value = $calculator->divide( strval( $value ), $calculator->add( strval( 100 ), strval( $tax_percentage ) ) );
+			$one_percent_value = $value->divide( Number::from_int( 100 )->add( $tax_percentage ) );
 
-			if ( null !== $one_percent_value ) {
-				$tax_value = $calculator->multiply( strval( $one_percent_value ), $tax_percentage );
-			}
+			$tax_value = $one_percent_value->multiply( $tax_percentage );
 		}
 
 		$this->set_tax_value( $tax_value );
