@@ -626,13 +626,13 @@ return array(
 		'LSL',
 		'426',
 		__( 'Lesotho Loti', 'pronamic-money' ),
-		2,
 		/**
 		 * Symbol based on plural form "maloti". The one-loti note employs the symbol L.
 		 *
 		 * @link https://en.wikipedia.org/wiki/Currency_symbol#List_of_currency_symbols_currently_in_use
 		 */
-		'M'
+		'M',
+		2
 	),
 	new Currency(
 		'LYD',
