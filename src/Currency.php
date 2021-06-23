@@ -58,11 +58,18 @@ class Currency implements JsonSerializable {
 	/**
 	 * Construct and initialize currency object.
 	 *
-	 * @param string $alphabetic_code Alphabetic currency code.
+	 * @param string      $alphabetic_code Alphabetic currency code.
+	 * @param string|null $numeric_code    Numeric code.
+	 * @param string|null $name            Name.
+	 * @param string|null $symbol          Symbol.
+	 * @param int         $number_decimals Number decimals.
 	 */
-	public function __construct( $alphabetic_code ) {
+	public function __construct( $alphabetic_code, $numeric_code, $name, $symbol, $number_decimals = 2 ) {
 		$this->set_alphabetic_code( $alphabetic_code );
-		$this->set_number_decimals( 2 );
+		$this->set_numeric_code( $numeric_code );
+		$this->set_name( $name );
+		$this->set_symbol( $symbol );
+		$this->set_number_decimals( $number_decimals );
 	}
 
 	/**

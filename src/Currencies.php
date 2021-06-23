@@ -65,7 +65,6 @@ class Currencies {
 	 * @link https://github.com/moneyphp/money/blob/v3.1.3/src/Currencies/ISOCurrencies.php#L90-L102
 	 * @return array<string, Currency>
 	 * @throws \RuntimeException Throws runtime exception if currencies could not be loaded from file.
-	 * @throws \Exception Throws exception if alphabetic code does not exists.
 	 */
 	private static function load_currencies() {
 		$file = __DIR__ . '/../resources/currencies.php';
@@ -85,19 +84,8 @@ class Currencies {
 		 */
 		$data = require $file;
 
-		foreach ( $data as $info ) {
-			if ( ! \array_key_exists( 'alphabetic_code', $info ) ) {
-				throw new \Exception( 'Alphabetic code is required.' );
-			}
-
-			$alphabetic_code = \strval( $info['alphabetic_code'] );
-
-			$currency = new Currency( $alphabetic_code );
-
-			$currency->set_numeric_code( $info['numeric_code'] );
-			$currency->set_name( $info['name'] );
-			$currency->set_symbol( $info['symbol'] );
-			$currency->set_number_decimals( $info['number_decimals'] );
+		foreach ( $data as $currency ) {
+			$alphabetic_code = $currency->get_alphabetic_code();
 
 			$currencies[ $alphabetic_code ] = $currency;
 		}
