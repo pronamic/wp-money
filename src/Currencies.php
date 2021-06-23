@@ -64,8 +64,8 @@ class Currencies {
 	 *
 	 * @link https://github.com/moneyphp/money/blob/v3.1.3/src/Currencies/ISOCurrencies.php#L90-L102
 	 * @return array<string, Currency>
-	 *
 	 * @throws \RuntimeException Throws runtime exception if currencies could not be loaded from file.
+	 * @throws \Exception Throws exception if alphabetic code does not exists.
 	 */
 	private static function load_currencies() {
 		$file = __DIR__ . '/../resources/currencies.php';
