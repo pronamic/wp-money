@@ -170,7 +170,7 @@ class Currency implements JsonSerializable {
 
 	/**
 	 * JSON serialize.
-	 * 
+	 *
 	 * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
 	 * @return string
 	 */

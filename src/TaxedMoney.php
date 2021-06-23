@@ -152,7 +152,7 @@ class TaxedMoney extends Money {
 
 	/**
 	 * JSON serialize.
-	 * 
+	 *
 	 * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
 	 * @return object
 	 */
