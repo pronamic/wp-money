@@ -23,7 +23,7 @@ class Currency implements JsonSerializable {
 	/**
 	 * Alphabetic code.
 	 *
-	 * @var string|null
+	 * @var string
 	 */
 	private $alphabetic_code;
 
@@ -57,15 +57,18 @@ class Currency implements JsonSerializable {
 
 	/**
 	 * Construct and initialize currency object.
+	 *
+	 * @param string $alphabetic_code Alphabetic currency code.
 	 */
-	public function __construct() {
+	public function __construct( $alphabetic_code ) {
+		$this->set_alphabetic_code( $alphabetic_code );
 		$this->set_number_decimals( 2 );
 	}
 
 	/**
 	 * Get alphabetic code.
 	 *
-	 * @return string|null
+	 * @return string
 	 */
 	public function get_alphabetic_code() {
 		return $this->alphabetic_code;
@@ -74,7 +77,7 @@ class Currency implements JsonSerializable {
 	/**
 	 * Set alphabetic code.
 	 *
-	 * @param string|null $alphabetic_code Alphabetic code.
+	 * @param string $alphabetic_code Alphabetic code.
 	 * @return void
 	 */
 	public function set_alphabetic_code( $alphabetic_code ) {

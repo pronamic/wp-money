@@ -24,24 +24,24 @@ class TaxedMoney extends Money {
 	/**
 	 * Tax value.
 	 *
-	 * @var float|null
+	 * @var Number|null
 	 */
 	private $tax_value;
 
 	/**
 	 * Tax percentage.
 	 *
-	 * @var float|null
+	 * @var Number|null
 	 */
 	private $tax_percentage;
 
 	/**
 	 * Construct and initialize money object.
 	 *
-	 * @param mixed            $value          Amount value.
-	 * @param Currency|string  $currency       Currency.
-	 * @param mixed            $tax_value      Tax value.
-	 * @param mixed            $tax_percentage Tax percentage.
+	 * @param mixed           $value          Amount value.
+	 * @param Currency|string $currency       Currency.
+	 * @param mixed           $tax_value      Tax value.
+	 * @param mixed           $tax_percentage Tax percentage.
 	 */
 	public function __construct( $value = 0, $currency = 'EUR', $tax_value = null, $tax_percentage = null ) {
 		$value = Number::from_mixed( $value );

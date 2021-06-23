@@ -48,7 +48,7 @@ class Currencies {
 	 * @return Currency
 	 */
 	public static function get_currency( $alphabetic_code ) {
-		$currency = new Currency();
+		$currency = new Currency( $alphabetic_code );
 
 		$currencies = self::get_currencies();
 
@@ -86,19 +86,18 @@ class Currencies {
 		$data = require $file;
 
 		foreach ( $data as $info ) {
-			$currency = new Currency();
+			if ( ! \array_key_exists( 'alphabetic_code', $info ) ) {
+				throw new \Exception( 'Alphabetic code is required.' );
+			}
 
-			$currency->set_alphabetic_code( $info['alphabetic_code'] );
+			$alphabetic_code = \strval( $info['alphabetic_code'] );
+
+			$currency = new Currency( $alphabetic_code );
+
 			$currency->set_numeric_code( $info['numeric_code'] );
 			$currency->set_name( $info['name'] );
 			$currency->set_symbol( $info['symbol'] );
 			$currency->set_number_decimals( $info['number_decimals'] );
-
-			$alphabetic_code = $currency->get_alphabetic_code();
-
-			if ( null === $alphabetic_code ) {
-				continue;
-			}
 
 			$currencies[ $alphabetic_code ] = $currency;
 		}

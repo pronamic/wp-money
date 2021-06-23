@@ -36,23 +36,6 @@ class Money implements JsonSerializable {
 	private $currency;
 
 	/**
-	 * Calculator.
-	 *
-	 * @var Calculator|null
-	 */
-	private static $calculator;
-
-	/**
-	 * Calculators.
-	 *
-	 * @var array<int, string>
-	 */
-	private static $calculators = array(
-		BcMathCalculator::class,
-		PhpCalculator::class,
-	);
-
-	/**
 	 * Construct and initialize money object.
 	 *
 	 * @param mixed           $value    Amount value.
@@ -108,12 +91,12 @@ class Money implements JsonSerializable {
 			return sprintf(
 				$format,
 				(string) $this->currency->get_symbol(),
-				number_format_i18n( $this->get_value(), $number_decimals ),
+				$this->amount->format_i18n( $number_decimals ),
 				strval( $alphabetic_code )
 			);
 		}
 
-		return number_format_i18n( $this->get_value(), 2 );
+		return $this->amount->format_i18n( 2 );
 	}
 
 	/**
@@ -151,12 +134,12 @@ class Money implements JsonSerializable {
 			return sprintf(
 				$format,
 				(string) $this->currency->get_symbol(),
-				number_format( $this->amount->get_value(), $this->get_currency()->get_number_decimals(), '.', '' ),
+				$this->amount->format_i18n( $this->get_currency()->get_number_decimals() ),
 				strval( $alphabetic_code )
 			);
 		}
 
-		return number_format( $this->get_value(), 2, '.', '' );
+		return $this->amount->format( 2 );
 	}
 
 	/**
@@ -181,7 +164,7 @@ class Money implements JsonSerializable {
 	 * Get amount.
 	 *
 	 * @deprecated 1.2.0
-	 * @return float Amount value.
+	 * @return string Amount value.
 	 */
 	public function get_amount() {
 		_deprecated_function( __METHOD__, '1.2.0', 'Money::get_value()' );
@@ -284,7 +267,7 @@ class Money implements JsonSerializable {
 	 */
 	public function jsonSerialize() {
 		$properties = array(
-			'value' => $money->get_value(),
+			'value' => $this->amount->get_value(),
 		);
 
 		if ( null !== $this->currency ) {
@@ -332,12 +315,14 @@ class Money implements JsonSerializable {
 	 *
 	 * @link https://github.com/moneyphp/money/blob/v3.2.1/src/Money.php#L299-L316
 	 *
-	 * @param int|float|string $multiplier Multiplier.
+	 * @param mixed $multiplier Multiplier.
 	 *
 	 * @return Money
 	 */
 	public function multiply( $multiplier ) {
-		$result = $this->amount->multiply( $multiplier->get_number() );
+		$multiplier = Number::from_mixed( $multiplier );
+
+		$result = $this->amount->multiply( $multiplier );
 
 		return new self( $result, $this->currency );
 	}
@@ -348,12 +333,14 @@ class Money implements JsonSerializable {
 	 *
 	 * @link https://github.com/moneyphp/money/blob/v3.2.1/src/Money.php#L318-L341
 	 *
-	 * @param int|float|string $divisor Divisor.
+	 * @param mixed $divisor Divisor.
 	 *
 	 * @return Money
 	 */
 	public function divide( $divisor ) {
-		$result = $this->amount->divide( $divisor->get_number() );
+		$divisor = Number::from_mixed( $divisor );
+
+		$result = $this->amount->divide( $divisor );
 
 		return new self( $result, $this->currency );
 	}
@@ -369,41 +356,5 @@ class Money implements JsonSerializable {
 			$this->amount->absolute(),
 			$this->currency
 		);
-	}
-
-	/**
-	 * Initialize calculator.
-	 *
-	 * @return Calculator
-	 *
-	 * @throws \RuntimeException If cannot find calculator for money calculations.
-	 */
-	private static function initialize_calculator() {
-		$calculator_classes = self::$calculators;
-
-		foreach ( $calculator_classes as $calculator_class ) {
-			if ( $calculator_class::supported() ) {
-				$calculator = new $calculator_class();
-
-				if ( $calculator instanceof Calculator ) {
-					return $calculator;
-				}
-			}
-		}
-
-		throw new \RuntimeException( 'Cannot find calculator for money calculations' );
-	}
-
-	/**
-	 * Get calculator.
-	 *
-	 * @return Calculator
-	 */
-	protected function get_calculator() {
-		if ( null === self::$calculator ) {
-			self::$calculator = self::initialize_calculator();
-		}
-
-		return self::$calculator;
 	}
 }
