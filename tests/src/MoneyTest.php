@@ -205,6 +205,8 @@ class MoneyTest extends WP_UnitTestCase {
 		$this->assertEquals(
 			10065,
 			/**
+			 * Ignore deprecated `get_cents()` in Scrutinizer.
+			 *
 			 * @scrutinizer ignore-deprecated
 			 */
 			$money->get_cents()
@@ -215,6 +217,8 @@ class MoneyTest extends WP_UnitTestCase {
 		$this->assertEquals(
 			1,
 			/**
+			 * Ignore deprecated `get_cents()` in Scrutinizer.
+			 *
 			 * @scrutinizer ignore-deprecated
 			 */
 			$money->get_cents()
