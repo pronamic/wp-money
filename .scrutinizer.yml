@@ -22,7 +22,7 @@ build:
       WP_TESTS_DB_HOST: 'localhost'
 
   services:
-    mysql: 5.7
+    mariadb: 10.6
 
   dependencies:
     override:
