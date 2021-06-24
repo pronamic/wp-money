@@ -52,7 +52,8 @@ class TaxedMoney extends Money {
 		if ( null === $tax_value && null !== $tax_percentage ) {
 			$tax_percentage = Number::from_mixed( $tax_percentage );
 
-			$percentage = Number::from_int( 100 )->add( $tax_percentage );
+			$percentage = Number::from_string( '100' );
+			$percentage = $percentage->add( $tax_percentage );
 
 			$one_percent_value = $value->divide( $percentage );
 
