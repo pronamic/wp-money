@@ -271,15 +271,12 @@ jobs:
       - name: List Composer packages
         run: composer show
 
-      - name: PHPLint
-        run: composer run-script phplint
-
-      - name: PHPUnit test suite
+      - name: PHPUnit coverage
         env:
           WP_TESTS_DB_HOST: 127.0.0.1:${{ job.services.mysql.ports['3306'] }}
-        run: composer run-script phpunit
+        run: composer run-script coverage
 
-      - name: Coveralls code coverage
+      - name: Publish coverage
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
