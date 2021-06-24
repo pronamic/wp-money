@@ -22,19 +22,15 @@
 	},
 	"require-dev": {
 		"bamarni/composer-bin-plugin": "^1.4",
-		"dealerdirect/phpcodesniffer-composer-installer": "^0.7",
 		"koodimonni-language/de_de": "*",
 		"koodimonni-language/fr_fr": "*",
 		"koodimonni-language/nl_nl": "*",
 		"php-coveralls/php-coveralls": "^2.4",
-		"phpcompatibility/php-compatibility": "^9.1",
-		"phpcompatibility/phpcompatibility-wp": "^2.0",
 		"phpmd/phpmd": "^2.4",
 		"phpunit/phpunit": "^5.7 || ^6.0",
+		"pronamic/wp-coding-standards": "dev-main",
 		"roots/wordpress": "^5.6",
-		"squizlabs/php_codesniffer": "^3.4",
 		"vlucas/phpdotenv": "^2.0",
-		"wp-coding-standards/wpcs": "^2.3",
 		"wp-phpunit/wp-phpunit": "^5.6"
 	},
 	"scripts": {
