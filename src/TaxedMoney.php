@@ -55,6 +55,12 @@ class TaxedMoney extends Money {
 			$percentage = Number::from_string( '100' );
 			$percentage = $percentage->add( $tax_percentage );
 
+			/**
+			 * For some reason, Scrutinizer thinks the `add` function return a
+			 * `int|double` in the `$percentage` variable.
+			 * 
+			 * @scrutinizer ignore-type
+			 */
 			$one_percent_value = $value->divide( $percentage );
 
 			$tax_value = $one_percent_value->multiply( $tax_percentage );
