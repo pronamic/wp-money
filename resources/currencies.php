@@ -988,13 +988,13 @@ return array(
 		'SZL',
 		'748',
 		__( 'Swazi Lilangeni', 'pronamic-money' ),
-		2,
 		/**
 		 * Symbol based on the plural form "emalangeni" However the one-lilageni note employs the currency symbol L.
 		 *
 		 * @link https://en.wikipedia.org/wiki/Currency_symbol#List_of_currency_symbols_currently_in_use
 		 */
-		'E'
+		'E',
+		2
 	),
 	new Currency(
 		'THB',
