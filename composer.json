@@ -28,7 +28,7 @@
 		"php-coveralls/php-coveralls": "^2.4",
 		"phpmd/phpmd": "^2.4",
 		"phpunit/phpunit": "^5.7 || ^6.0",
-		"pronamic/wp-coding-standards": "dev-main",
+		"pronamic/wp-coding-standards": "^1.0",
 		"roots/wordpress": "^5.6",
 		"vlucas/phpdotenv": "^2.0",
 		"wp-phpunit/wp-phpunit": "^5.6"
