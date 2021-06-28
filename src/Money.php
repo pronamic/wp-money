@@ -134,7 +134,7 @@ class Money implements JsonSerializable {
 			return sprintf(
 				$format,
 				(string) $this->currency->get_symbol(),
-				$this->amount->format_i18n( $this->get_currency()->get_number_decimals() ),
+				$this->amount->format( $this->get_currency()->get_number_decimals() ),
 				strval( $alphabetic_code )
 			);
 		}
