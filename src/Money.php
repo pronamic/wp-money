@@ -143,6 +143,36 @@ class Money implements JsonSerializable {
 	}
 
 	/**
+	 * Number format.
+	 * 
+	 * @param int         $decimals            Precision of the number of decimal places.
+	 * @param string|null $decimal_separator   Sets the separator for the decimal point.
+	 * @param string|null $thousands_separator Sets the thousands separator.
+	 * @return string
+	 */
+	public function number_format( $decimals = null, $decimal_separator = '.', $thousands_separator = ',' ) {
+		if ( null === $decimals ) {
+			$decimals = $this->currency->get_number_decimals();
+		}
+
+		return $this->amount->format( $decimals, $decimal_separator, $thousands_separator );
+	}
+
+	/**
+	 * Number format i18n.
+	 * 
+	 * @param int $decimals Precision of the number of decimal places.
+	 * @return string
+	 */
+	public function number_format_i18n( $decimals = null ) {
+		if ( null === $decimals ) {
+			$decimals = $this->currency->get_number_decimals();
+		}
+
+		return $this->amount->format_i18n( $decimals );
+	}
+
+	/**
 	 * Get value.
 	 *
 	 * @return string Amount value.
