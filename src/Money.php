@@ -222,14 +222,13 @@ class Money implements JsonSerializable {
 	 *   BHD 3 decimals: 10000
 	 *   NLG 4 decimals: 100000
 	 *
+	 * @link https://en.wikipedia.org/wiki/Cent_(currency)
+	 * @link https://simple.wikipedia.org/wiki/ISO_4217
 	 * @since 1.2.1
-	 *
-	 * @return int
+	 * @return Number
 	 */
 	public function get_minor_units() {
-		$minor_units = $this->amount->multiply( Number::from_mixed( \pow( 10, $this->currency->get_number_decimals() ) ) );
-
-		return (int) $minor_units->get_value();
+		return $this->amount->multiply( Number::from_mixed( \pow( 10, $this->currency->get_number_decimals() ) ) );
 	}
 
 	/**
