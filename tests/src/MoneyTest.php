@@ -197,35 +197,6 @@ class MoneyTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test cents.
-	 */
-	public function test_cents() {
-		$money = new Money( 100.65, 'EUR' );
-
-		$this->assertEquals(
-			10065,
-			/**
-			 * Ignore deprecated `get_cents()` in Scrutinizer.
-			 *
-			 * @scrutinizer ignore-deprecated
-			 */
-			$money->get_cents()
-		);
-
-		$money = new Money( 0.00010, 'NLG' );
-
-		$this->assertEquals(
-			1,
-			/**
-			 * Ignore deprecated `get_cents()` in Scrutinizer.
-			 *
-			 * @scrutinizer ignore-deprecated
-			 */
-			$money->get_cents()
-		);
-	}
-
-	/**
 	 * Test minor units.
 	 *
 	 * @since 1.2.1
@@ -239,7 +210,7 @@ class MoneyTest extends WP_UnitTestCase {
 	public function test_minor_units( $currency, $value, $expected ) {
 		$money = new Money( $value, $currency );
 
-		$this->assertEquals( $expected, $money->get_minor_units() );
+		$this->assertSame( $expected, $money->get_minor_units()->to_int() );
 	}
 
 	/**
