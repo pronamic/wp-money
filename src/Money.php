@@ -203,17 +203,6 @@ class Money implements JsonSerializable {
 	}
 
 	/**
-	 * Get cents.
-	 *
-	 * @return float
-	 *
-	 * @deprecated 1.2.2 Use `Money::get_minor_units()` instead.
-	 */
-	public function get_cents() {
-		return (float) $this->get_minor_units();
-	}
-
-	/**
 	 * Get amount in minor units.
 	 *
 	 * Examples for value 10:
