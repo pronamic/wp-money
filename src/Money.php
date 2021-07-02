@@ -306,7 +306,7 @@ class Money implements JsonSerializable {
 	public function add( Money $addend ) {
 		$result = $this->amount->add( $addend->get_number() );
 
-		return new self( $result, $this->currency );
+		return new static( $result, $this->currency );
 	}
 
 	/**
@@ -322,7 +322,7 @@ class Money implements JsonSerializable {
 	public function subtract( Money $subtrahend ) {
 		$result = $this->amount->subtract( $subtrahend->get_number() );
 
-		return new self( $result, $this->currency );
+		return new static( $result, $this->currency );
 	}
 
 	/**
@@ -340,7 +340,7 @@ class Money implements JsonSerializable {
 
 		$result = $this->amount->multiply( $multiplier );
 
-		return new self( $result, $this->currency );
+		return new static( $result, $this->currency );
 	}
 
 	/**
@@ -358,7 +358,7 @@ class Money implements JsonSerializable {
 
 		$result = $this->amount->divide( $divisor );
 
-		return new self( $result, $this->currency );
+		return new static( $result, $this->currency );
 	}
 
 	/**
@@ -368,7 +368,7 @@ class Money implements JsonSerializable {
 	 * @return Money
 	 */
 	public function absolute() {
-		return new self(
+		return new static(
 			$this->amount->absolute(),
 			$this->currency
 		);
