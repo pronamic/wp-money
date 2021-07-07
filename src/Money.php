@@ -73,30 +73,25 @@ class Money implements JsonSerializable {
 		}
 
 		$alphabetic_code = $this->currency->get_alphabetic_code();
+		$number_decimals = $this->currency->get_number_decimals();
 
-		if ( ! empty( $alphabetic_code ) ) {
-			$number_decimals = $this->currency->get_number_decimals();
+		// Handle non trailing zero formatter.
+		if ( false !== \strpos( $format, '%2$NTZ' ) ) {
+			$decimals = \substr( $this->format(), ( - 1 * $number_decimals ), $number_decimals );
 
-			// Handle non trailing zero formatter.
-			if ( false !== strpos( $format, '%2$NTZ' ) ) {
-				$decimals = substr( $this->format(), ( - 1 * $number_decimals ), $number_decimals );
-
-				if ( 0 === (int) $decimals ) {
-					$number_decimals = 0;
-				}
-
-				$format = str_replace( '%2$NTZ', '%2$s', $format );
+			if ( 0 === (int) $decimals ) {
+				$number_decimals = 0;
 			}
 
-			return sprintf(
-				$format,
-				(string) $this->currency->get_symbol(),
-				$this->amount->format_i18n( $number_decimals ),
-				strval( $alphabetic_code )
-			);
+			$format = \str_replace( '%2$NTZ', '%2$s', $format );
 		}
 
-		return $this->amount->format_i18n( 2 );
+		return \sprintf(
+			$format,
+			(string) $this->currency->get_symbol(),
+			$this->amount->format_i18n( $number_decimals ),
+			\strval( $alphabetic_code )
+		);
 	}
 
 	/**
@@ -130,16 +125,12 @@ class Money implements JsonSerializable {
 
 		$alphabetic_code = $this->currency->get_alphabetic_code();
 
-		if ( ! empty( $alphabetic_code ) ) {
-			return sprintf(
-				$format,
-				(string) $this->currency->get_symbol(),
-				$this->amount->format( $this->get_currency()->get_number_decimals() ),
-				strval( $alphabetic_code )
-			);
-		}
-
-		return $this->amount->format( 2 );
+		return \sprintf(
+			$format,
+			(string) $this->currency->get_symbol(),
+			$this->amount->format( $this->get_currency()->get_number_decimals() ),
+			\strval( $alphabetic_code )
+		);
 	}
 
 	/**
