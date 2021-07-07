@@ -50,7 +50,8 @@ class TaxedMoneyTest extends WP_UnitTestCase {
 	public function test_json() {
 		$money = new TaxedMoney( '121', 'EUR', null, '21' );
 
-		$this->assertJsonStringEqualsJsonString( '
+		$this->assertJsonStringEqualsJsonString(
+			'
 			{
 				"value": "121",
 				"currency": "EUR",
