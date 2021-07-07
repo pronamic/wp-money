@@ -278,4 +278,27 @@ class MoneyTest extends WP_UnitTestCase {
 			\wp_json_encode( $money )
 		);
 	}
+
+	/**
+	 * Test number format.
+	 */
+	public function test_number_format() {
+		$money = new Money( 12345678.90, 'EUR' );
+
+		$this->assertSame( '12345678.90', $money->number_format( null, '.', '' ) );
+		$this->assertSame( '12,345,678.90', $money->number_format( null, '.', ',' ) );
+		$this->assertSame( '12345678.9', $money->number_format( 1, '.', '' ) );
+	}
+
+	/**
+	 * Test number format i18n.
+	 */
+	public function test_number_format_i18n() {
+		\switch_to_locale( 'en_US' );
+
+		$money = new Money( 12345678.90, 'EUR' );
+
+		$this->assertSame( '12,345,678.90', $money->number_format_i18n( null ) );
+		$this->assertSame( '12,345,678.9', $money->number_format_i18n( 1 ) );
+	}
 }
