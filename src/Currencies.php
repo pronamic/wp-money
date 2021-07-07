@@ -67,10 +67,6 @@ class Currencies {
 	private static function load_currencies() {
 		$file = __DIR__ . '/../resources/currencies.php';
 
-		if ( ! is_readable( $file ) ) {
-			throw new \RuntimeException( 'Failed to load currencies.' );
-		}
-
 		$currencies = array();
 
 		/**
