@@ -238,7 +238,11 @@ class Money implements JsonSerializable {
 	 * @return string
 	 */
 	public function __toString() {
-		return $this->format_i18n();
+		return \sprintf(
+			'%s %s',
+			$this->currency->get_alphabetic_code(),
+			$this->amount->format( $this->get_currency()->get_number_decimals() )
+		);
 	}
 
 	/**

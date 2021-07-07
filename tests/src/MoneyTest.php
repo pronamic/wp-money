@@ -336,4 +336,16 @@ class MoneyTest extends WP_UnitTestCase {
 		
 		$this->assertSame( '123.00', $money_2->number_format( null, '.', '' ) );
 	}
+
+	/**
+	 * Test to string.
+	 */
+	public function test_to_string() {
+		$money = new Money( '-123', 'EUR' );
+
+		$string = (string) $money;
+
+		$this->assertSame( 'EUR -123.00', $string );
+
+	}
 }
