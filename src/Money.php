@@ -182,18 +182,6 @@ class Money implements JsonSerializable {
 	}
 
 	/**
-	 * Get amount.
-	 *
-	 * @deprecated 1.2.0
-	 * @return string Amount value.
-	 */
-	public function get_amount() {
-		_deprecated_function( __METHOD__, '1.2.0', 'Money::get_value()' );
-
-		return $this->get_value();
-	}
-
-	/**
 	 * Get amount in minor units.
 	 *
 	 * Examples for value 10:
@@ -219,19 +207,6 @@ class Money implements JsonSerializable {
 	 */
 	final public function set_value( $value ) {
 		$this->amount = Number::from_mixed( $value );
-	}
-
-	/**
-	 * Set amount.
-	 *
-	 * @deprecated 1.2.0
-	 * @param mixed $value Amount value.
-	 * @return void
-	 */
-	public function set_amount( $value ) {
-		_deprecated_function( __METHOD__, '1.2.0', 'Money::set_value()' );
-
-		$this->set_value( $value );
 	}
 
 	/**
