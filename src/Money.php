@@ -282,17 +282,10 @@ class Money implements JsonSerializable {
 	 * @return object
 	 */
 	public function jsonSerialize() {
-		$properties = array(
-			'value' => $this->amount->get_value(),
+		return (object) array(
+			'value'    => $this->amount->get_value(),
+			'currency' => $this->currency->jsonSerialize(),
 		);
-
-		if ( null !== $this->currency ) {
-			$properties['currency'] = $this->currency->jsonSerialize();
-		}
-
-		$object = (object) $properties;
-
-		return $object;
 	}
 
 	/**
