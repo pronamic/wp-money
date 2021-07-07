@@ -262,4 +262,20 @@ class MoneyTest extends WP_UnitTestCase {
 
 		$this->assertEquals( 100, $money_3->get_value() );
 	}
+
+	/**
+	 * Test JSON.
+	 */
+	public function test_json() {
+		$money = new Money( 99.75, 'EUR' );
+
+		$this->assertJsonStringEqualsJsonString( '
+			{
+				"value": "99.75",
+				"currency": "EUR"
+			}
+			',
+			\wp_json_encode( $money )
+		);
+	}
 }
