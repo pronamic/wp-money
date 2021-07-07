@@ -301,4 +301,39 @@ class MoneyTest extends WP_UnitTestCase {
 		$this->assertSame( '12,345,678.90', $money->number_format_i18n( null ) );
 		$this->assertSame( '12,345,678.9', $money->number_format_i18n( 1 ) );
 	}
+
+	/**
+	 * Test multiply.
+	 */
+	public function test_multiply() {
+		$money = new Money( '123', 'EUR' );
+
+		$money_2 = $money->multiply( 2 );
+
+		$this->assertSame( '246.00', $money_2->number_format( null, '.', '' ) );
+	}
+
+	/**
+	 * Test divide.
+	 */
+	public function test_divide() {
+		$money = new Money( '246', 'EUR' );
+
+		$money_2 = $money->divide( 2 );
+
+		$this->assertSame( '123.00', $money_2->number_format( null, '.', '' ) );
+	}
+
+	/**
+	 * Test absolute.
+	 */
+	public function test_absolute() {
+		$money = new Money( '-123', 'EUR' );
+
+		$this->assertSame( '-123.00', $money->number_format( null, '.', '' ) );
+
+		$money_2 = $money->absolute();
+		
+		$this->assertSame( '123.00', $money_2->number_format( null, '.', '' ) );
+	}
 }
