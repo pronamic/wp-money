@@ -55,6 +55,20 @@ class Money implements JsonSerializable {
 		/* translators: 1: currency symbol, 2: amount value, 3: currency code, note: use non-breaking space! */
 		$format = _x( '%1$s%2$s %3$s', 'money format', 'pronamic-money' );
 		// Note:               ↳ Non-breaking space.
+
+		/**
+		 * Filters the default money format.
+		 *
+		 * Default format: `%1$s%2$s %3$s`
+		 *
+		 * - 1: Currency symbol
+		 * - 2: Amount value
+		 * - 3: Currency code
+		 *
+		 * Note: use non-breaking space ` ` in money formatting.
+		 *
+		 * @param string $format Format.
+		 */
 		$format = apply_filters( 'pronamic_money_default_format', $format );
 
 		return $format;
