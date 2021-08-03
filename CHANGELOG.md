@@ -10,6 +10,18 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [2.0.0] - Unreleased
 ### Changed
 - Use `pronamic/wp-number` library.
+- Simplified JSON, always include currency, without it's just a number value.
+- Function `get_minor_units` will now return a `Number` object.
+- No longer use i18n in the 'normal' `format()` funciton.
+- Validate alphabetic code.
+
+### Added
+- Added money amount number format helper functions.
+- Added taxed money test.
+- Added test for unknown currency.
+
+### Removed
+- Removed deprecated `get_cents` function.
 
 ## [1.2.6] - 2021-04-26
 - Happy 2021.
