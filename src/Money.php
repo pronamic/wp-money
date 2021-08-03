@@ -277,13 +277,12 @@ class Money implements JsonSerializable {
 	 * the sum of this and an other Money object.
 	 *
 	 * @param Money $addend Addend.
-	 *
 	 * @return Money
 	 */
 	public function add( Money $addend ) {
 		$result = $this->amount->add( $addend->get_number() );
 
-		return new static( $result, $this->currency );
+		return new self( $result, $this->currency );
 	}
 
 	/**
@@ -291,15 +290,13 @@ class Money implements JsonSerializable {
 	 * the difference of this and an other Money object.
 	 *
 	 * @link https://github.com/moneyphp/money/blob/v3.2.1/src/Money.php#L235-L255
-	 *
 	 * @param Money $subtrahend Subtrahend.
-	 *
 	 * @return Money
 	 */
 	public function subtract( Money $subtrahend ) {
 		$result = $this->amount->subtract( $subtrahend->get_number() );
 
-		return new static( $result, $this->currency );
+		return new self( $result, $this->currency );
 	}
 
 	/**
@@ -307,9 +304,7 @@ class Money implements JsonSerializable {
 	 * the multiplied value of this Money object.
 	 *
 	 * @link https://github.com/moneyphp/money/blob/v3.2.1/src/Money.php#L299-L316
-	 *
 	 * @param mixed $multiplier Multiplier.
-	 *
 	 * @return Money
 	 */
 	public function multiply( $multiplier ) {
@@ -317,7 +312,7 @@ class Money implements JsonSerializable {
 
 		$result = $this->amount->multiply( $multiplier );
 
-		return new static( $result, $this->currency );
+		return new self( $result, $this->currency );
 	}
 
 	/**
@@ -325,9 +320,7 @@ class Money implements JsonSerializable {
 	 * the divided value of this Money object.
 	 *
 	 * @link https://github.com/moneyphp/money/blob/v3.2.1/src/Money.php#L318-L341
-	 *
 	 * @param mixed $divisor Divisor.
-	 *
 	 * @return Money
 	 */
 	public function divide( $divisor ) {
@@ -335,7 +328,7 @@ class Money implements JsonSerializable {
 
 		$result = $this->amount->divide( $divisor );
 
-		return new static( $result, $this->currency );
+		return new self( $result, $this->currency );
 	}
 
 	/**
@@ -345,7 +338,7 @@ class Money implements JsonSerializable {
 	 * @return Money
 	 */
 	public function absolute() {
-		return new static(
+		return new self(
 			$this->amount->absolute(),
 			$this->currency
 		);

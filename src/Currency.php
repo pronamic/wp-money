@@ -88,7 +88,7 @@ class Currency implements JsonSerializable {
 	 * @return void
 	 * @throws \InvalidArgumentException Throws invalid argument exception if code is not 3 characters.
 	 */
-	public function set_alphabetic_code( $alphabetic_code ) {
+	final public function set_alphabetic_code( $alphabetic_code ) {
 		if ( 3 !== \strlen( $alphabetic_code ) ) {
 			throw new \InvalidArgumentException(
 				\sprintf(
