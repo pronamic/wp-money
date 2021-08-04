@@ -5,13 +5,21 @@
 	"type": "object",
 	"required": [
 		"currency",
-		"amount"
+		"amount",
+		"tax_value",
+		"tax_percentage",
 	],
 	"properties": {
 		"currency": {
 			"type": "string"
 		},
 		"amount": {
+			"type": ["number", "string"]
+		},
+		"tax_value": {
+			"type": ["number", "string"]
+		},
+		"tax_percentage": {
 			"type": ["number", "string"]
 		}
 	}
