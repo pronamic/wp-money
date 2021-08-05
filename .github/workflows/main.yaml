@@ -271,46 +271,14 @@ jobs:
       - name: List Composer packages
         run: composer show
 
-      - name: PHPLint
-        run: composer run-script phplint
-
-      - name: PHPUnit test suite
+      - name: PHPUnit coverage
         env:
           WP_TESTS_DB_HOST: 127.0.0.1:${{ job.services.mysql.ports['3306'] }}
-        run: composer run-script phpunit
+        run: composer run-script coverage
 
-      - name: Coveralls code coverage
+      - name: Publish coverage
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           composer run-script coveralls
           bash <(curl -s https://codecov.io/bash)
-
-  es-sass-linting:
-    name: Scripts and Styles
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-
-      # https://github.com/actions/cache/blob/master/examples.md#macos-and-ubuntu
-      - uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '12'
-
-      - name: Install Node packages
-        run: npm install
-
-      - name: ESLint
-        run: npm run-script eslint
-
-      - name: Sass Lint
-        run: npm run-script sass-lint

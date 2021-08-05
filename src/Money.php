@@ -10,23 +10,23 @@
 
 namespace Pronamic\WordPress\Money;
 
-use Pronamic\WordPress\Money\Calculator\BcMathCalculator;
-use Pronamic\WordPress\Money\Calculator\PhpCalculator;
+use JsonSerializable;
+use Pronamic\WordPress\Number\Number;
 
 /**
  * Money
  *
  * @author Remco Tolsma
- * @version 1.2.5
+ * @version 2.0.0
  * @since   1.0.0
  */
-class Money {
+class Money implements JsonSerializable {
 	/**
-	 * Amount value.
+	 * Number.
 	 *
-	 * @var float
+	 * @var Number
 	 */
-	private $value;
+	private $amount;
 
 	/**
 	 * Currency.
@@ -36,27 +36,10 @@ class Money {
 	private $currency;
 
 	/**
-	 * Calculator.
-	 *
-	 * @var Calculator|null
-	 */
-	private static $calculator;
-
-	/**
-	 * Calculators.
-	 *
-	 * @var array<int, string>
-	 */
-	private static $calculators = array(
-		BcMathCalculator::class,
-		PhpCalculator::class,
-	);
-
-	/**
 	 * Construct and initialize money object.
 	 *
-	 * @param string|int|float $value    Amount value.
-	 * @param Currency|string  $currency Currency.
+	 * @param mixed           $value    Amount value.
+	 * @param Currency|string $currency Currency.
 	 */
 	public function __construct( $value = 0, $currency = 'EUR' ) {
 		$this->set_value( $value );
@@ -72,6 +55,20 @@ class Money {
 		/* translators: 1: currency symbol, 2: amount value, 3: currency code, note: use non-breaking space! */
 		$format = _x( '%1$s%2$s %3$s', 'money format', 'pronamic-money' );
 		// Note:               ↳ Non-breaking space.
+
+		/**
+		 * Filters the default money format.
+		 *
+		 * Default format: `%1$s%2$s %3$s`
+		 *
+		 * - 1: Currency symbol
+		 * - 2: Amount value
+		 * - 3: Currency code
+		 *
+		 * Note: use non-breaking space ` ` in money formatting.
+		 *
+		 * @param string $format Format.
+		 */
 		$format = apply_filters( 'pronamic_money_default_format', $format );
 
 		return $format;
@@ -90,30 +87,25 @@ class Money {
 		}
 
 		$alphabetic_code = $this->currency->get_alphabetic_code();
+		$number_decimals = $this->currency->get_number_decimals();
 
-		if ( ! empty( $alphabetic_code ) ) {
-			$number_decimals = $this->currency->get_number_decimals();
+		// Handle non trailing zero formatter.
+		if ( false !== \strpos( $format, '%2$NTZ' ) ) {
+			$decimals = \substr( $this->format(), ( - 1 * $number_decimals ), $number_decimals );
 
-			// Handle non trailing zero formatter.
-			if ( false !== strpos( $format, '%2$NTZ' ) ) {
-				$decimals = substr( $this->format(), ( - 1 * $number_decimals ), $number_decimals );
-
-				if ( 0 === (int) $decimals ) {
-					$number_decimals = 0;
-				}
-
-				$format = str_replace( '%2$NTZ', '%2$s', $format );
+			if ( 0 === (int) $decimals ) {
+				$number_decimals = 0;
 			}
 
-			return sprintf(
-				$format,
-				(string) $this->currency->get_symbol(),
-				number_format_i18n( $this->get_value(), $number_decimals ),
-				strval( $alphabetic_code )
-			);
+			$format = \str_replace( '%2$NTZ', '%2$s', $format );
 		}
 
-		return number_format_i18n( $this->get_value(), 2 );
+		return \sprintf(
+			$format,
+			(string) $this->currency->get_symbol(),
+			$this->amount->format_i18n( $number_decimals ),
+			\strval( $alphabetic_code )
+		);
 	}
 
 	/**
@@ -147,48 +139,60 @@ class Money {
 
 		$alphabetic_code = $this->currency->get_alphabetic_code();
 
-		if ( ! empty( $alphabetic_code ) ) {
-			return sprintf(
-				$format,
-				(string) $this->currency->get_symbol(),
-				number_format( $this->get_value(), $this->get_currency()->get_number_decimals(), '.', '' ),
-				strval( $alphabetic_code )
-			);
+		return \sprintf(
+			$format,
+			(string) $this->currency->get_symbol(),
+			$this->amount->format( $this->get_currency()->get_number_decimals() ),
+			\strval( $alphabetic_code )
+		);
+	}
+
+	/**
+	 * Number format.
+	 * 
+	 * @param int         $decimals            Precision of the number of decimal places.
+	 * @param string|null $decimal_separator   Sets the separator for the decimal point.
+	 * @param string|null $thousands_separator Sets the thousands separator.
+	 * @return string
+	 */
+	public function number_format( $decimals = null, $decimal_separator = '.', $thousands_separator = ',' ) {
+		if ( null === $decimals ) {
+			$decimals = $this->currency->get_number_decimals();
 		}
 
-		return number_format( $this->get_value(), 2, '.', '' );
+		return $this->amount->format( $decimals, $decimal_separator, $thousands_separator );
+	}
+
+	/**
+	 * Number format i18n.
+	 * 
+	 * @param int $decimals Precision of the number of decimal places.
+	 * @return string
+	 */
+	public function number_format_i18n( $decimals = null ) {
+		if ( null === $decimals ) {
+			$decimals = $this->currency->get_number_decimals();
+		}
+
+		return $this->amount->format_i18n( $decimals );
 	}
 
 	/**
 	 * Get value.
 	 *
-	 * @return float Amount value.
+	 * @return string Amount value.
 	 */
 	public function get_value() {
-		return $this->value;
+		return $this->amount->get_value();
 	}
 
 	/**
-	 * Get amount.
+	 * Get number.
 	 *
-	 * @deprecated 1.2.0
-	 * @return float Amount value.
+	 * @return Number
 	 */
-	public function get_amount() {
-		_deprecated_function( __METHOD__, '1.2.0', 'Money::get_value()' );
-
-		return $this->get_value();
-	}
-
-	/**
-	 * Get cents.
-	 *
-	 * @return float
-	 *
-	 * @deprecated 1.2.2 Use `Money::get_minor_units()` instead.
-	 */
-	public function get_cents() {
-		return (float) $this->get_minor_units();
+	public function get_number() {
+		return $this->amount;
 	}
 
 	/**
@@ -200,19 +204,13 @@ class Money {
 	 *   BHD 3 decimals: 10000
 	 *   NLG 4 decimals: 100000
 	 *
+	 * @link https://en.wikipedia.org/wiki/Cent_(currency)
+	 * @link https://simple.wikipedia.org/wiki/ISO_4217
 	 * @since 1.2.1
-	 *
-	 * @return int
+	 * @return Number
 	 */
 	public function get_minor_units() {
-		$calculator = $this->get_calculator();
-
-		// Use non-locale aware float value.
-		$value = \sprintf( '%F', $this->get_value() );
-
-		$minor_units = $calculator->multiply( $value, pow( 10, $this->currency->get_number_decimals() ) );
-
-		return (int) $minor_units;
+		return $this->amount->multiply( Number::from_mixed( \pow( 10, $this->currency->get_number_decimals() ) ) );
 	}
 
 	/**
@@ -222,20 +220,7 @@ class Money {
 	 * @return void
 	 */
 	final public function set_value( $value ) {
-		$this->value = floatval( $value );
-	}
-
-	/**
-	 * Set amount.
-	 *
-	 * @deprecated 1.2.0
-	 * @param mixed $value Amount value.
-	 * @return void
-	 */
-	public function set_amount( $value ) {
-		_deprecated_function( __METHOD__, '1.2.0', 'Money::set_value()' );
-
-		$this->set_value( $value );
+		$this->amount = Number::from_mixed( $value );
 	}
 
 	/**
@@ -254,13 +239,11 @@ class Money {
 	 * @return void
 	 */
 	final public function set_currency( $currency ) {
-		if ( $currency instanceof Currency ) {
-			$this->currency = $currency;
-
-			return;
+		if ( ! $currency instanceof Currency ) {
+			$currency = Currency::get_instance( $currency );
 		}
 
-		$this->currency = Currency::get_instance( $currency );
+		$this->currency = $currency;
 	}
 
 	/**
@@ -269,7 +252,24 @@ class Money {
 	 * @return string
 	 */
 	public function __toString() {
-		return $this->format_i18n();
+		return \sprintf(
+			'%s %s',
+			$this->currency->get_alphabetic_code(),
+			$this->amount->format( $this->get_currency()->get_number_decimals() )
+		);
+	}
+
+	/**
+	 * JSON serialize.
+	 *
+	 * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+	 * @return object
+	 */
+	public function jsonSerialize() {
+		return (object) array(
+			'value'    => $this->amount->get_value(),
+			'currency' => $this->currency->jsonSerialize(),
+		);
 	}
 
 	/**
@@ -277,25 +277,12 @@ class Money {
 	 * the sum of this and an other Money object.
 	 *
 	 * @param Money $addend Addend.
-	 *
 	 * @return Money
 	 */
 	public function add( Money $addend ) {
-		$value = $this->get_value();
+		$result = $this->amount->add( $addend->get_number() );
 
-		$calculator = $this->get_calculator();
-
-		// Use non-locale aware float value.
-		$value  = \sprintf( '%F', $value );
-		$addend = \sprintf( '%F', $addend->get_value() );
-
-		$value = $calculator->add( $value, $addend );
-
-		$result = clone $this;
-
-		$result->set_value( $value );
-
-		return $result;
+		return new self( $result, $this->currency );
 	}
 
 	/**
@@ -303,27 +290,13 @@ class Money {
 	 * the difference of this and an other Money object.
 	 *
 	 * @link https://github.com/moneyphp/money/blob/v3.2.1/src/Money.php#L235-L255
-	 *
 	 * @param Money $subtrahend Subtrahend.
-	 *
 	 * @return Money
 	 */
 	public function subtract( Money $subtrahend ) {
-		$value = $this->get_value();
+		$result = $this->amount->subtract( $subtrahend->get_number() );
 
-		$calculator = $this->get_calculator();
-
-		// Use non-locale aware float value.
-		$value      = \sprintf( '%F', $value );
-		$subtrahend = \sprintf( '%F', $subtrahend->get_value() );
-
-		$value = $calculator->subtract( $value, $subtrahend );
-
-		$result = clone $this;
-
-		$result->set_value( $value );
-
-		return $result;
+		return new self( $result, $this->currency );
 	}
 
 	/**
@@ -331,27 +304,15 @@ class Money {
 	 * the multiplied value of this Money object.
 	 *
 	 * @link https://github.com/moneyphp/money/blob/v3.2.1/src/Money.php#L299-L316
-	 *
-	 * @param int|float|string $multiplier Multiplier.
-	 *
+	 * @param mixed $multiplier Multiplier.
 	 * @return Money
 	 */
 	public function multiply( $multiplier ) {
-		$value = $this->get_value();
+		$multiplier = Number::from_mixed( $multiplier );
 
-		$calculator = $this->get_calculator();
+		$result = $this->amount->multiply( $multiplier );
 
-		// Use non-locale aware float value.
-		$value      = \sprintf( '%F', $value );
-		$multiplier = \sprintf( '%F', $multiplier );
-
-		$value = $calculator->multiply( $value, $multiplier );
-
-		$result = clone $this;
-
-		$result->set_value( $value );
-
-		return $result;
+		return new self( $result, $this->currency );
 	}
 
 	/**
@@ -359,66 +320,27 @@ class Money {
 	 * the divided value of this Money object.
 	 *
 	 * @link https://github.com/moneyphp/money/blob/v3.2.1/src/Money.php#L318-L341
-	 *
-	 * @param int|float|string $divisor Divisor.
-	 *
+	 * @param mixed $divisor Divisor.
 	 * @return Money
 	 */
 	public function divide( $divisor ) {
-		$value = $this->get_value();
+		$divisor = Number::from_mixed( $divisor );
 
-		$calculator = $this->get_calculator();
+		$result = $this->amount->divide( $divisor );
 
-		// Use non-locale aware float value.
-		$value   = \sprintf( '%F', $value );
-		$divisor = \sprintf( '%F', $divisor );
-
-		$value = $calculator->divide( $value, $divisor );
-
-		if ( null === $value ) {
-			$value = $this->get_value();
-		}
-
-		$result = clone $this;
-
-		$result->set_value( $value );
-
-		return $result;
+		return new self( $result, $this->currency );
 	}
 
 	/**
-	 * Initialize calculator.
+	 * Absolute.
 	 *
-	 * @return Calculator
-	 *
-	 * @throws \RuntimeException If cannot find calculator for money calculations.
+	 * @link https://github.com/moneyphp/money/blob/v4.0.1/src/Money.php#L411-L417
+	 * @return Money
 	 */
-	private static function initialize_calculator() {
-		$calculator_classes = self::$calculators;
-
-		foreach ( $calculator_classes as $calculator_class ) {
-			if ( $calculator_class::supported() ) {
-				$calculator = new $calculator_class();
-
-				if ( $calculator instanceof Calculator ) {
-					return $calculator;
-				}
-			}
-		}
-
-		throw new \RuntimeException( 'Cannot find calculator for money calculations' );
-	}
-
-	/**
-	 * Get calculator.
-	 *
-	 * @return Calculator
-	 */
-	protected function get_calculator() {
-		if ( null === self::$calculator ) {
-			self::$calculator = self::initialize_calculator();
-		}
-
-		return self::$calculator;
+	public function absolute() {
+		return new self(
+			$this->amount->absolute(),
+			$this->currency
+		);
 	}
 }

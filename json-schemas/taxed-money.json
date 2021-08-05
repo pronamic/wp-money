@@ -1,0 +1,26 @@
+{
+	"$id": "https://github.com/pronamic/wp-money/blob/develop/json-schemas/taxed-money.json",
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "Pronamic WordPress taxed money object.",
+	"type": "object",
+	"required": [
+		"currency",
+		"amount",
+		"tax_value",
+		"tax_percentage",
+	],
+	"properties": {
+		"currency": {
+			"type": "string"
+		},
+		"amount": {
+			"type": ["number", "string"]
+		},
+		"tax_value": {
+			"type": ["number", "string"]
+		},
+		"tax_percentage": {
+			"type": ["number", "string"]
+		}
+	}
+}

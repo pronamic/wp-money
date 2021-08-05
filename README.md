@@ -1,5 +1,8 @@
 # WordPress Money
 
+[![codecov](https://codecov.io/gh/pronamic/wp-money/branch/develop/graph/badge.svg?token=IqgPWjpzKf)](https://codecov.io/gh/pronamic/wp-money)
+[![Coverage Status](https://coveralls.io/repos/github/pronamic/wp-money/badge.svg?branch=develop)](https://coveralls.io/github/pronamic/wp-money?branch=develop)
+
 ## Non-breaking space
 
 In the money format it is smart to use a non-breaking space:

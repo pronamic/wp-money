@@ -197,19 +197,6 @@ class MoneyTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test cents.
-	 */
-	public function test_cents() {
-		$money = new Money( 100.65, 'EUR' );
-
-		$this->assertEquals( 10065, $money->get_cents() );
-
-		$money = new Money( 0.00010, 'NLG' );
-
-		$this->assertEquals( 1, $money->get_cents() );
-	}
-
-	/**
 	 * Test minor units.
 	 *
 	 * @since 1.2.1
@@ -223,7 +210,7 @@ class MoneyTest extends WP_UnitTestCase {
 	public function test_minor_units( $currency, $value, $expected ) {
 		$money = new Money( $value, $currency );
 
-		$this->assertEquals( $expected, $money->get_minor_units() );
+		$this->assertSame( $expected, $money->get_minor_units()->to_int() );
 	}
 
 	/**
@@ -258,12 +245,6 @@ class MoneyTest extends WP_UnitTestCase {
 			array( 'EUR', 0.00010, 0 ),
 			array( 'BHD', 0.00010, 0 ),
 			array( 'NLG', 0.00010, 1 ),
-
-			// No currency.
-			array( null, 10, 1000 ),
-			array( null, 100.65, 10065 ),
-			array( null, 100.655, 10065 ),
-			array( null, 0.00010, 0 ),
 		);
 	}
 
@@ -280,5 +261,92 @@ class MoneyTest extends WP_UnitTestCase {
 		$money_3 = $money_1->add( $money_2 );
 
 		$this->assertEquals( 100, $money_3->get_value() );
+	}
+
+	/**
+	 * Test JSON.
+	 */
+	public function test_json() {
+		$money = new Money( 99.75, 'EUR' );
+
+		$this->assertJsonStringEqualsJsonString(
+			'
+			{
+				"value": "99.75",
+				"currency": "EUR"
+			}
+			',
+			\wp_json_encode( $money )
+		);
+	}
+
+	/**
+	 * Test number format.
+	 */
+	public function test_number_format() {
+		$money = new Money( 12345678.90, 'EUR' );
+
+		$this->assertSame( '12345678.90', $money->number_format( null, '.', '' ) );
+		$this->assertSame( '12,345,678.90', $money->number_format( null, '.', ',' ) );
+		$this->assertSame( '12345678.9', $money->number_format( 1, '.', '' ) );
+	}
+
+	/**
+	 * Test number format i18n.
+	 */
+	public function test_number_format_i18n() {
+		\switch_to_locale( 'en_US' );
+
+		$money = new Money( 12345678.90, 'EUR' );
+
+		$this->assertSame( '12,345,678.90', $money->number_format_i18n( null ) );
+		$this->assertSame( '12,345,678.9', $money->number_format_i18n( 1 ) );
+	}
+
+	/**
+	 * Test multiply.
+	 */
+	public function test_multiply() {
+		$money = new Money( '123', 'EUR' );
+
+		$money_2 = $money->multiply( 2 );
+
+		$this->assertSame( '246.00', $money_2->number_format( null, '.', '' ) );
+	}
+
+	/**
+	 * Test divide.
+	 */
+	public function test_divide() {
+		$money = new Money( '246', 'EUR' );
+
+		$money_2 = $money->divide( 2 );
+
+		$this->assertSame( '123.00', $money_2->number_format( null, '.', '' ) );
+	}
+
+	/**
+	 * Test absolute.
+	 */
+	public function test_absolute() {
+		$money = new Money( '-123', 'EUR' );
+
+		$this->assertSame( '-123.00', $money->number_format( null, '.', '' ) );
+
+		$money_2 = $money->absolute();
+		
+		$this->assertSame( '123.00', $money_2->number_format( null, '.', '' ) );
+	}
+
+	/**
+	 * Test to string.
+	 */
+	public function test_to_string() {
+		$money = new Money( '-123', 'EUR' );
+
+		$string = (string) $money;
+
+		$this->assertSame( 'EUR -123.00', $string );
+
 	}
 }

@@ -10,18 +10,20 @@
 
 namespace Pronamic\WordPress\Money;
 
+use JsonSerializable;
+
 /**
  * Currency
  *
  * @author  Remco Tolsma
- * @version 1.2.5
+ * @version 2.0.0
  * @since   1.0.0
  */
-class Currency {
+class Currency implements JsonSerializable {
 	/**
 	 * Alphabetic code.
 	 *
-	 * @var string|null
+	 * @var string
 	 */
 	private $alphabetic_code;
 
@@ -55,15 +57,25 @@ class Currency {
 
 	/**
 	 * Construct and initialize currency object.
+	 *
+	 * @param string      $alphabetic_code Alphabetic currency code.
+	 * @param string|null $numeric_code    Numeric code.
+	 * @param string|null $name            Name.
+	 * @param string|null $symbol          Symbol.
+	 * @param int         $number_decimals Number decimals.
 	 */
-	public function __construct() {
-		$this->set_number_decimals( 2 );
+	public function __construct( $alphabetic_code, $numeric_code = null, $name = null, $symbol = null, $number_decimals = 2 ) {
+		$this->set_alphabetic_code( $alphabetic_code );
+		$this->set_numeric_code( $numeric_code );
+		$this->set_name( $name );
+		$this->set_symbol( $symbol );
+		$this->set_number_decimals( $number_decimals );
 	}
 
 	/**
 	 * Get alphabetic code.
 	 *
-	 * @return string|null
+	 * @return string
 	 */
 	public function get_alphabetic_code() {
 		return $this->alphabetic_code;
@@ -72,10 +84,20 @@ class Currency {
 	/**
 	 * Set alphabetic code.
 	 *
-	 * @param string|null $alphabetic_code Alphabetic code.
+	 * @param string $alphabetic_code Alphabetic code.
 	 * @return void
+	 * @throws \InvalidArgumentException Throws invalid argument exception if code is not 3 characters.
 	 */
-	public function set_alphabetic_code( $alphabetic_code ) {
+	final public function set_alphabetic_code( $alphabetic_code ) {
+		if ( 3 !== \strlen( $alphabetic_code ) ) {
+			throw new \InvalidArgumentException(
+				\sprintf(
+					'The alphabetical code of a currency must consist of 3 characters: %s.',
+					$alphabetic_code
+				)
+			);
+		}
+
 		$this->alphabetic_code = $alphabetic_code;
 	}
 
@@ -164,5 +186,15 @@ class Currency {
 	 */
 	public function set_name( $name ) {
 		$this->name = $name;
+	}
+
+	/**
+	 * JSON serialize.
+	 *
+	 * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+	 * @return string
+	 */
+	public function jsonSerialize() {
+		return $this->alphabetic_code;
 	}
 }

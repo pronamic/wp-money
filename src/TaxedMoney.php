@@ -10,48 +10,60 @@
 
 namespace Pronamic\WordPress\Money;
 
+use JsonSerializable;
+use Pronamic\WordPress\Number\Number;
+
 /**
  * Taxed Money
  *
  * @author Remco Tolsma
- * @version 1.2.2
+ * @version 2.0.0
  * @since   1.2.0
  */
 class TaxedMoney extends Money {
 	/**
 	 * Tax value.
 	 *
-	 * @var float|null
+	 * @var Number|null
 	 */
 	private $tax_value;
 
 	/**
 	 * Tax percentage.
 	 *
-	 * @var float|null
+	 * @var Number|null
 	 */
 	private $tax_percentage;
 
 	/**
 	 * Construct and initialize money object.
 	 *
-	 * @param string|int|float $value          Amount value.
-	 * @param Currency|string  $currency       Currency.
-	 * @param string|int|float $tax_value      Tax value.
-	 * @param string|int|float $tax_percentage Tax percentage.
+	 * @param mixed           $value          Amount value.
+	 * @param Currency|string $currency       Currency.
+	 * @param mixed           $tax_value      Tax value.
+	 * @param mixed           $tax_percentage Tax percentage.
 	 */
 	public function __construct( $value = 0, $currency = 'EUR', $tax_value = null, $tax_percentage = null ) {
+		$value = Number::from_mixed( $value );
+
 		parent::__construct( $value, $currency );
 
 		// Calculate tax amount if tax percentage is set.
 		if ( null === $tax_value && null !== $tax_percentage ) {
-			$calculator = $this->get_calculator();
+			$tax_percentage = Number::from_mixed( $tax_percentage );
 
-			$one_percent_value = $calculator->divide( strval( $value ), $calculator->add( strval( 100 ), strval( $tax_percentage ) ) );
+			$percentage = Number::from_string( '100' );
+			$percentage = $percentage->add( $tax_percentage );
 
-			if ( null !== $one_percent_value ) {
-				$tax_value = $calculator->multiply( strval( $one_percent_value ), $tax_percentage );
-			}
+			/**
+			 * For some reason, Scrutinizer thinks the `add` function return a
+			 * `int|double` in the `$percentage` variable.
+			 * 
+			 * @scrutinizer ignore-type
+			 */
+			$one_percent_value = $value->divide( $percentage );
+
+			$tax_value = $one_percent_value->multiply( $tax_percentage );
 		}
 
 		$this->set_tax_value( $tax_value );
@@ -74,10 +86,10 @@ class TaxedMoney extends Money {
 	/**
 	 * Get tax value.
 	 *
-	 * @return float|null
+	 * @return string|null
 	 */
 	public function get_tax_value() {
-		return $this->tax_value;
+		return null === $this->tax_value ? null : $this->tax_value->get_value();
 	}
 
 	/**
@@ -87,7 +99,7 @@ class TaxedMoney extends Money {
 	 * @return void
 	 */
 	public function set_tax_value( $value ) {
-		$this->tax_value = ( null === $value ? null : floatval( $value ) );
+		$this->tax_value = ( null === $value ? null : Number::from_mixed( $value ) );
 	}
 
 	/**
@@ -102,10 +114,10 @@ class TaxedMoney extends Money {
 	/**
 	 * Get tax percentage.
 	 *
-	 * @return float|null
+	 * @return string|null
 	 */
 	public function get_tax_percentage() {
-		return $this->tax_percentage;
+		return null === $this->tax_percentage ? null : $this->tax_percentage->get_value();
 	}
 
 	/**
@@ -116,11 +128,11 @@ class TaxedMoney extends Money {
 	 *   6% =   6
 	 * 1.5% =   1.5
 	 *
-	 * @param string|int|float|null $percentage Tax percentage.
+	 * @param mixed $percentage Tax percentage.
 	 * @return void
 	 */
 	public function set_tax_percentage( $percentage ) {
-		$this->tax_percentage = ( null === $percentage ? null : floatval( $percentage ) );
+		$this->tax_percentage = ( null === $percentage ? null : Number::from_mixed( $percentage ) );
 	}
 
 	/**
@@ -145,5 +157,29 @@ class TaxedMoney extends Money {
 		}
 
 		return $this->subtract( $tax_amount );
+	}
+
+	/**
+	 * JSON serialize.
+	 *
+	 * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+	 * @return object
+	 */
+	public function jsonSerialize() {
+		$object = parent::jsonSerialize();
+
+		$properties = (array) $object;
+
+		if ( null !== $this->tax_value ) {
+			$properties['tax_value'] = $this->tax_value->jsonSerialize();
+		}
+
+		if ( null !== $this->tax_percentage ) {
+			$properties['tax_percentage'] = $this->tax_percentage->jsonSerialize();
+		}
+
+		$object = (object) $properties;
+
+		return $object;
 	}
 }
