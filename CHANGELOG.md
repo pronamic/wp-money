@@ -7,7 +7,7 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
-## [2.0.0] - Unreleased
+## [2.0.0] - 2021-08-05
 ### Changed
 - Use `pronamic/wp-number` library.
 - Simplified JSON, always include currency, without it's just a number value.
@@ -25,8 +25,6 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 
 ## [1.2.6] - 2021-04-26
 - Happy 2021.
-
-## [1.2.6] - 2021-01-14
 - composer bin all update
 - Added GitHub action Super-Linter.
 -  Fix Psalm issues.
@@ -69,7 +67,6 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 
 [unreleased]: https://github.com/pronamic/wp-money/compare/2.0.0...HEAD
 [2.0.0]: https://github.com/pronamic/wp-money/compare/1.2.6...2.0.0
-[1.2.6]: https://github.com/pronamic/wp-money/compare/1.2.5...1.2.6
 [1.2.6]: https://github.com/pronamic/wp-money/compare/1.2.5...1.2.6
 [1.2.5]: https://github.com/pronamic/wp-money/compare/1.2.4...1.2.5
 [1.2.4]: https://github.com/pronamic/wp-money/compare/1.2.3...1.2.4
