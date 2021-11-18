@@ -31,7 +31,8 @@
 		"pronamic/wp-coding-standards": "^1.0",
 		"roots/wordpress": "^5.8",
 		"vlucas/phpdotenv": "^2.0",
-		"wp-phpunit/wp-phpunit": "^5.8"
+		"wp-phpunit/wp-phpunit": "^5.8",
+		"yoast/phpunit-polyfills": "^1.0"
 	},
 	"scripts": {
 		"ci": [
