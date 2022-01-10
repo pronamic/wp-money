@@ -18,7 +18,7 @@
 	],
 	"require": {
 		"php": ">=5.6.20",
-		"pronamic/wp-number": "^1.0"
+		"pronamic/wp-number": "^1.1"
 	},
 	"require-dev": {
 		"bamarni/composer-bin-plugin": "^1.4",
@@ -31,7 +31,8 @@
 		"pronamic/wp-coding-standards": "^1.0",
 		"roots/wordpress": "^5.8",
 		"vlucas/phpdotenv": "^2.0",
-		"wp-phpunit/wp-phpunit": "^5.8"
+		"wp-phpunit/wp-phpunit": "^5.8",
+		"yoast/phpunit-polyfills": "^1.0"
 	},
 	"scripts": {
 		"ci": [

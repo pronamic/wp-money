@@ -51,3 +51,5 @@ add_filter( 'pronamic_money_default_format', 'prefix_pronamic_money_default_form
 *	https://git.tibidono.com/package/money-datatype/blob/0.1.13/src/Money/TaxedMoney.php
 *	https://frontstuff.io/how-to-handle-monetary-values-in-javascript
 *	https://github.com/sarahdayan/dinero.js
+
+[![Pronamic - Work with us](https://github.com/pronamic/brand-resources/blob/main/banners/pronamic-work-with-us-leaderboard-728x90%404x.png)](https://www.pronamic.eu/contact/)
