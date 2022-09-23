@@ -7,6 +7,9 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [2.0.2] - 2022-09-23
+- Coding standards.
+
 ## [2.0.1] - 2022-01-10
 ### Changed
 - Updated `pronamic/wp-number` library to version `1.1.0`.
@@ -69,7 +72,8 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## 1.0.0
 - First release.
 
-[unreleased]: https://github.com/pronamic/wp-money/compare/2.0.1...HEAD
+[unreleased]: https://github.com/pronamic/wp-money/compare/2.0.2...HEAD
+[2.0.2]: https://github.com/pronamic/wp-money/compare/2.0.1...2.0.2
 [2.0.1]: https://github.com/pronamic/wp-money/compare/2.0.0...2.0.1
 [2.0.0]: https://github.com/pronamic/wp-money/compare/1.2.6...2.0.0
 [1.2.6]: https://github.com/pronamic/wp-money/compare/1.2.5...1.2.6
