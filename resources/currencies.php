@@ -19,7 +19,7 @@ namespace Pronamic\WordPress\Money;
  * @author Remco Tolsma
  * @version 1.2.2
  */
-return array(
+return [
 	new Currency(
 		'AED',
 		'784',
@@ -1290,4 +1290,4 @@ return array(
 		'$',
 		2
 	),
-);
+];
