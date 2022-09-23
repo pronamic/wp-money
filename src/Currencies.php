@@ -67,7 +67,7 @@ class Currencies {
 	private static function load_currencies() {
 		$file = __DIR__ . '/../resources/currencies.php';
 
-		$currencies = array();
+		$currencies = [];
 
 		/**
 		 * Data.

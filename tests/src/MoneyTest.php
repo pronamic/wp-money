@@ -28,7 +28,7 @@ class MoneyTest extends WP_UnitTestCase {
 		parent::setUp();
 
 		if ( version_compare( PHP_VERSION, '5.4', '<' ) ) {
-			add_filter( 'number_format_i18n', array( $this, 'maybe_fix_multibyte_number_format' ), 10, 3 );
+			add_filter( 'number_format_i18n', [ $this, 'maybe_fix_multibyte_number_format' ], 10, 3 );
 		}
 	}
 
@@ -62,10 +62,10 @@ class MoneyTest extends WP_UnitTestCase {
 
 		$formatted = strtr(
 			$formatted,
-			array(
+			[
 				'd' => $dec_point,
 				't' => $thousands_sep,
-			)
+			]
 		);
 
 		return $formatted;
@@ -96,11 +96,11 @@ class MoneyTest extends WP_UnitTestCase {
 	 * @return array
 	 */
 	public function default_format_provider() {
-		return array(
-			array( 'en_US', '%1$s%2$s %3$s' ),
-			array( 'fr_FR', '%1$s%2$s %3$s' ),
-			array( 'nl_NL', '%1$s %2$s' ),
-		);
+		return [
+			[ 'en_US', '%1$s%2$s %3$s' ],
+			[ 'fr_FR', '%1$s%2$s %3$s' ],
+			[ 'nl_NL', '%1$s %2$s' ],
+		];
 	}
 
 	/**
@@ -133,20 +133,20 @@ class MoneyTest extends WP_UnitTestCase {
 	 * @return array
 	 */
 	public function format_i18n_provider() {
-		return array(
+		return [
 			// Dutch.
-			array( 'nl_NL', 'EUR', 49.7512, '€ 49,75' ),
-			array( 'nl_NL', 'NLG', 49.7512, 'G 49,7512' ),
-			array( 'nl_NL', 'USD', 49.7512, '$ 49,75' ),
-			array( 'nl_NL', 'USD', 1234567890.1234, '$ 1.234.567.890,12' ),
+			[ 'nl_NL', 'EUR', 49.7512, '€ 49,75' ],
+			[ 'nl_NL', 'NLG', 49.7512, 'G 49,7512' ],
+			[ 'nl_NL', 'USD', 49.7512, '$ 49,75' ],
+			[ 'nl_NL', 'USD', 1234567890.1234, '$ 1.234.567.890,12' ],
 
 			// English.
-			array( 'en_US', 'EUR', 49.7512, '€49.75 EUR' ),
-			array( 'en_US', 'USD', 1234567890.1234, '$1,234,567,890.12 USD' ),
+			[ 'en_US', 'EUR', 49.7512, '€49.75 EUR' ],
+			[ 'en_US', 'USD', 1234567890.1234, '$1,234,567,890.12 USD' ],
 
 			// French.
-			array( 'fr_FR', 'USD', 1234567890.1234, '$1 234 567 890,12 USD' ),
-		);
+			[ 'fr_FR', 'USD', 1234567890.1234, '$1 234 567 890,12 USD' ],
+		];
 	}
 
 	/**
@@ -180,20 +180,20 @@ class MoneyTest extends WP_UnitTestCase {
 	 * @return array
 	 */
 	public function format_i18n_non_trailing_zeros_provider() {
-		return array(
+		return [
 			// Dutch.
-			array( 'nl_NL', 'EUR', 49.7512, '€ 49,75' ),
-			array( 'nl_NL', 'NLG', 49, 'G 49' ),
-			array( 'nl_NL', 'USD', 49.00, '$ 49' ),
-			array( 'nl_NL', 'USD', 1234567890.00, '$ 1.234.567.890' ),
+			[ 'nl_NL', 'EUR', 49.7512, '€ 49,75' ],
+			[ 'nl_NL', 'NLG', 49, 'G 49' ],
+			[ 'nl_NL', 'USD', 49.00, '$ 49' ],
+			[ 'nl_NL', 'USD', 1234567890.00, '$ 1.234.567.890' ],
 
 			// English.
-			array( 'en_US', 'EUR', 49.7512, '€49.75 EUR' ),
-			array( 'en_US', 'USD', 1234567890.00, '$1,234,567,890 USD' ),
+			[ 'en_US', 'EUR', 49.7512, '€49.75 EUR' ],
+			[ 'en_US', 'USD', 1234567890.00, '$1,234,567,890 USD' ],
 
 			// French.
-			array( 'fr_FR', 'USD', 1234567890, '$1 234 567 890 USD' ),
-		);
+			[ 'fr_FR', 'USD', 1234567890, '$1 234 567 890 USD' ],
+		];
 	}
 
 	/**
@@ -221,31 +221,31 @@ class MoneyTest extends WP_UnitTestCase {
 	 * @return array
 	 */
 	public function minor_units_provider() {
-		return array(
+		return [
 			// Value 10.
-			array( 'JPY', 10, 10 ),
-			array( 'EUR', 10, 1000 ),
-			array( 'BHD', 10, 10000 ),
-			array( 'NLG', 10, 100000 ),
+			[ 'JPY', 10, 10 ],
+			[ 'EUR', 10, 1000 ],
+			[ 'BHD', 10, 10000 ],
+			[ 'NLG', 10, 100000 ],
 
 			// Value 100.65.
-			array( 'JPY', 100.65, 100 ),
-			array( 'EUR', 100.65, 10065 ),
-			array( 'BHD', 100.65, 100650 ),
-			array( 'NLG', 100.65, 1006500 ),
+			[ 'JPY', 100.65, 100 ],
+			[ 'EUR', 100.65, 10065 ],
+			[ 'BHD', 100.65, 100650 ],
+			[ 'NLG', 100.65, 1006500 ],
 
 			// Value 100.655.
-			array( 'JPY', 100.655, 100 ),
-			array( 'EUR', 100.655, 10065 ),
-			array( 'BHD', 100.655, 100655 ),
-			array( 'NLG', 100.655, 1006550 ),
+			[ 'JPY', 100.655, 100 ],
+			[ 'EUR', 100.655, 10065 ],
+			[ 'BHD', 100.655, 100655 ],
+			[ 'NLG', 100.655, 1006550 ],
 
 			// Value 0.00010.
-			array( 'JPY', 0.00010, 0 ),
-			array( 'EUR', 0.00010, 0 ),
-			array( 'BHD', 0.00010, 0 ),
-			array( 'NLG', 0.00010, 1 ),
-		);
+			[ 'JPY', 0.00010, 0 ],
+			[ 'EUR', 0.00010, 0 ],
+			[ 'BHD', 0.00010, 0 ],
+			[ 'NLG', 0.00010, 1 ],
+		];
 	}
 
 	/**

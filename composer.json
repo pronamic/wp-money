@@ -8,7 +8,13 @@
 		}
 	},
 	"config": {
-		"sort-packages": true
+		"sort-packages": true,
+		"allow-plugins": {
+			"koodimonni/composer-dropin-installer": true,
+			"dealerdirect/phpcodesniffer-composer-installer": true,
+			"roots/wordpress-core-installer": true,
+			"bamarni/composer-bin-plugin": true
+		}
 	},
 	"repositories": [
 		{
@@ -45,7 +51,7 @@
 		"coverage": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-clover build/logs/clover.xml --coverage-text",
 		"coverage-html": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-html build/coverage-html",
 		"coveralls": "vendor/bin/php-coveralls -v",
-		"phpcbf":"vendor/bin/phpcbf",
+		"phpcbf": "XDEBUG_MODE=off vendor/bin/phpcbf",
 		"phpcs": "XDEBUG_MODE=off vendor/bin/phpcs -s -v",
 		"phplint": "find src tests -name '*.php' | xargs -n 1 -P 4 php -l",
 		"phpmd": "vendor/bin/phpmd src,tests text phpmd.ruleset.xml --suffixes php",

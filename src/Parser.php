@@ -37,11 +37,11 @@ class Parser {
 		$decimal_sep = $wp_locale->number_format['decimal_point'];
 
 		// Separators.
-		$separators = array( $decimal_sep, '.', ',' );
+		$separators = [ $decimal_sep, '.', ',' ];
 		$separators = array_unique( array_filter( $separators ) );
 
 		// Check.
-		foreach ( array( - 3, - 2 ) as $i ) {
+		foreach ( [ - 3, - 2 ] as $i ) {
 			$test = substr( $string, $i, 1 );
 
 			if ( in_array( $test, $separators, true ) ) {
@@ -76,7 +76,7 @@ class Parser {
 			 *
 			 * @link https://taaladvies.net/taal/advies/vraag/275/euro_komma_en_streepje_in_de_notatie_van_hele_bedragen/
 			 */
-			if ( \in_array( $half, array( '-', '–', '—' ), true ) ) {
+			if ( \in_array( $half, [ '-', '–', '—' ], true ) ) {
 				$half = '';
 			}
 
