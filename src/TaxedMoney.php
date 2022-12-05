@@ -165,7 +165,7 @@ class TaxedMoney extends Money {
 	 * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
 	 * @return object
 	 */
-	public function jsonSerialize() {
+	public function jsonSerialize(): object {
 		$object = parent::jsonSerialize();
 
 		$properties = (array) $object;
