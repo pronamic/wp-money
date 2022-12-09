@@ -149,7 +149,7 @@ class Money implements JsonSerializable {
 
 	/**
 	 * Number format.
-	 * 
+	 *
 	 * @param int         $decimals            Precision of the number of decimal places.
 	 * @param string|null $decimal_separator   Sets the separator for the decimal point.
 	 * @param string|null $thousands_separator Sets the thousands separator.
@@ -165,7 +165,7 @@ class Money implements JsonSerializable {
 
 	/**
 	 * Number format i18n.
-	 * 
+	 *
 	 * @param int $decimals Precision of the number of decimal places.
 	 * @return string
 	 */

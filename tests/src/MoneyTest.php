@@ -334,7 +334,7 @@ class MoneyTest extends WP_UnitTestCase {
 		$this->assertSame( '-123.00', $money->number_format( null, '.', '' ) );
 
 		$money_2 = $money->absolute();
-		
+
 		$this->assertSame( '123.00', $money_2->number_format( null, '.', '' ) );
 	}
 
@@ -347,6 +347,5 @@ class MoneyTest extends WP_UnitTestCase {
 		$string = (string) $money;
 
 		$this->assertSame( 'EUR -123.00', $string );
-
 	}
 }

@@ -58,7 +58,7 @@ class TaxedMoney extends Money {
 			/**
 			 * For some reason, Scrutinizer thinks the `add` function return a
 			 * `int|double` in the `$percentage` variable.
-			 * 
+			 *
 			 * @scrutinizer ignore-type
 			 */
 			$one_percent_value = $value->divide( $percentage );

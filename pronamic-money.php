@@ -28,7 +28,7 @@
  * Pronamic Money load plugin text domain.
  */
 function pronamic_money_load_plugin_textdomain() {
-	load_plugin_textdomain( 'pronamic-money', false, basename( dirname( __FILE__ ) ) . '/languages' );
+	load_plugin_textdomain( 'pronamic-money', false, basename( __DIR__ ) . '/languages' );
 }
 
 add_action( 'init', 'pronamic_money_load_plugin_textdomain' );
