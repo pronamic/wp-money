@@ -7,6 +7,12 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [2.2.0] - 2022-12-19
+- Update `pronamic/wp-number` to version `^1.2`.
+Full set of changes: [`2.1.0...2.2.0`][2.2.0]
+
+[2.2.0]: https://github.com/pronamic/wp-money/compare/2.1.0...2.2.0
+
 ## [2.1.0] - 2022-12-19
 - Increased minimum PHP version to version `8` or higher.
 - Improved support for PHP `8.1` and `8.2`.
