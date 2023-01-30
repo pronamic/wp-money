@@ -23,7 +23,7 @@
 		}
 	],
 	"require": {
-		"php": ">=8.0",
+		"php": ">=7.4",
 		"pronamic/wp-number": "^1.2"
 	},
 	"require-dev": {
