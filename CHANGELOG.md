@@ -7,6 +7,14 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [2.2.1] - 2023-01-31
+### Composer
+
+- Changed `php` from `>=8.0` to `>=7.4`.
+Full set of changes: [`2.2.0...2.2.1`][2.2.1]
+
+[2.2.1]: https://github.com/pronamic/wp-money/compare/v2.2.0...v2.2.1
+
 ## [2.2.0] - 2022-12-19
 - Update `pronamic/wp-number` to version `^1.2`.
 Full set of changes: [`2.1.0...2.2.0`][2.2.0]
