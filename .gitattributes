@@ -1,0 +1,11 @@
+/.gitattributes    export-ignore
+/.github/          export-ignore
+/.gitignore        export-ignore
+/Gruntfile.js      export-ignore
+/phpcs.xml.dist    export-ignore
+/phpmd.ruleset.xml export-ignore
+/phpstan.neon.dist export-ignore
+/phpunit.xml.dist  export-ignore
+/psalm.xml.dist    export-ignore
+/tests/            export-ignore
+/vendor-bin/       export-ignore
