@@ -10,7 +10,7 @@
 
 namespace Pronamic\WordPress\Money;
 
-use WP_UnitTestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * Parser
@@ -19,7 +19,7 @@ use WP_UnitTestCase;
  * @version 1.2.5
  * @since   1.1.0
  */
-class ParserTest extends WP_UnitTestCase {
+class ParserTest extends TestCase {
 	/**
 	 * Parser.
 	 *
@@ -30,8 +30,8 @@ class ParserTest extends WP_UnitTestCase {
 	/**
 	 * Setup.
 	 */
-	public function setUp() {
-		parent::setUp();
+	public function set_up() {
+		parent::set_up();
 
 		$this->parser = new Parser();
 	}

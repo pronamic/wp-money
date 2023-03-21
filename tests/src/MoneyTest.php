@@ -11,7 +11,7 @@
 namespace Pronamic\WordPress\Money;
 
 use WP_Locale;
-use WP_UnitTestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * Money
@@ -20,12 +20,12 @@ use WP_UnitTestCase;
  * @version 1.2.2
  * @since   1.0.0
  */
-class MoneyTest extends WP_UnitTestCase {
+class MoneyTest extends TestCase {
 	/**
 	 * Setup.
 	 */
-	public function setUp() {
-		parent::setUp();
+	public function set_up() {
+		parent::set_up();
 
 		if ( version_compare( PHP_VERSION, '5.4', '<' ) ) {
 			add_filter( 'number_format_i18n', [ $this, 'maybe_fix_multibyte_number_format' ], 10, 3 );

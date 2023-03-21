@@ -17,3 +17,6 @@
 
 # WordPress
 /wordpress/
+
+# PHPUnit
+/.phpunit.result.cache
