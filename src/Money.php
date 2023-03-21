@@ -343,4 +343,17 @@ class Money implements JsonSerializable {
 			$this->currency
 		);
 	}
+
+	/**
+	 * Negative.
+	 *
+	 * @link https://github.com/pronamic/wp-money/issues/5
+	 * @return Money
+	 */
+	public function negative() {
+		return new self(
+			$this->amount->negative(),
+			$this->currency
+		);
+	}
 }

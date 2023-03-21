@@ -348,4 +348,23 @@ class MoneyTest extends TestCase {
 
 		$this->assertSame( 'EUR -123.00', $string );
 	}
+
+	/**
+	 * Test negative.
+	 */
+	public function test_negative() {
+		$money = new Money( '29.95', 'EUR' );
+
+		$negative = $money->negative();
+
+		$this->assertSame( '29.95', $money->number_format( null, '.', '' ) );
+		$this->assertSame( '-29.95', $negative->number_format( null, '.', '' ) );
+		
+		$money = new Money( '-149.25', 'EUR' );
+
+		$negative = $money->negative();
+
+		$this->assertSame( '-149.25', $money->number_format( null, '.', '' ) );
+		$this->assertSame( '149.25', $negative->number_format( null, '.', '' ) );
+	}
 }
