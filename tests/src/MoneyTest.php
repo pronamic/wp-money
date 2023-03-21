@@ -367,4 +367,21 @@ class MoneyTest extends TestCase {
 		$this->assertSame( '-149.25', $money->number_format( null, '.', '' ) );
 		$this->assertSame( '149.25', $negative->number_format( null, '.', '' ) );
 	}
+
+	/**
+	 * Test is zero.
+	 */
+	public function test_is_zero() {
+		$money = new Money( '0', 'EUR' );
+
+		$this->assertTrue( $money->is_zero() );
+
+		$money = new Money( '-0', 'EUR' );
+
+		$this->assertTrue( $money->is_zero() );
+
+		$money = new Money( '10', 'EUR' );
+
+		$this->assertFalse( $money->is_zero() );
+	}
 }
