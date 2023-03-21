@@ -356,4 +356,15 @@ class Money implements JsonSerializable {
 			$this->currency
 		);
 	}
+
+	/**
+	 * Checks if the value represented by this object is zero.
+	 *
+	 * @link https://github.com/moneyphp/money/blob/v4.0.1/src/Money.php#L425-L431
+	 * @link https://github.com/pronamic/wp-money/issues/7
+	 * @return bool True if zero, false otherwise.
+	 */
+	public function is_zero() {
+		return $this->amount->is_zero();
+	}
 }
