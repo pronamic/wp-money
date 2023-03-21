@@ -7,6 +7,16 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [2.4.0] - 2023-03-21
+
+### Commits
+
+- Added `is_zero()` function. ([0ebce4a](https://github.com/pronamic/wp-money/commit/0ebce4a2e13682228d7f9bb79148d42e23fd74cc))
+
+Full set of changes: [`2.3.0...2.4.0`][2.4.0]
+
+[2.4.0]: https://github.com/pronamic/wp-money/compare/v2.3.0...v2.4.0
+
 ## [2.3.0] - 2023-03-21
 
 ### Commits
