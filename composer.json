@@ -2,6 +2,7 @@
 	"name": "pronamic/wp-money",
 	"description": "WordPress Money library.",
 	"license": "GPL-3.0-or-later" ,
+	"type": "wordpress-plugin",
 	"autoload": {
 		"psr-4": {
 			"Pronamic\\WordPress\\Money\\": "src"
