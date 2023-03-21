@@ -11,7 +11,7 @@
 namespace Pronamic\WordPress\Money;
 
 use WP_Locale;
-use WP_UnitTestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * Taxed Money Test
@@ -20,7 +20,7 @@ use WP_UnitTestCase;
  * @version 1.2.2
  * @since   1.0.0
  */
-class TaxedMoneyTest extends WP_UnitTestCase {
+class TaxedMoneyTest extends TestCase {
 	/**
 	 *  Test taxed money.
 	 */

@@ -11,7 +11,7 @@
 namespace Pronamic\WordPress\Money;
 
 use WP_Locale;
-use WP_UnitTestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * Money
@@ -20,12 +20,12 @@ use WP_UnitTestCase;
  * @version 1.2.2
  * @since   1.0.0
  */
-class MoneyTest extends WP_UnitTestCase {
+class MoneyTest extends TestCase {
 	/**
 	 * Setup.
 	 */
-	public function setUp() {
-		parent::setUp();
+	public function set_up() {
+		parent::set_up();
 
 		if ( version_compare( PHP_VERSION, '5.4', '<' ) ) {
 			add_filter( 'number_format_i18n', [ $this, 'maybe_fix_multibyte_number_format' ], 10, 3 );
@@ -347,5 +347,24 @@ class MoneyTest extends WP_UnitTestCase {
 		$string = (string) $money;
 
 		$this->assertSame( 'EUR -123.00', $string );
+	}
+
+	/**
+	 * Test negative.
+	 */
+	public function test_negative() {
+		$money = new Money( '29.95', 'EUR' );
+
+		$negative = $money->negative();
+
+		$this->assertSame( '29.95', $money->number_format( null, '.', '' ) );
+		$this->assertSame( '-29.95', $negative->number_format( null, '.', '' ) );
+		
+		$money = new Money( '-149.25', 'EUR' );
+
+		$negative = $money->negative();
+
+		$this->assertSame( '-149.25', $money->number_format( null, '.', '' ) );
+		$this->assertSame( '149.25', $negative->number_format( null, '.', '' ) );
 	}
 }
