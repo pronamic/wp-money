@@ -7,6 +7,24 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [2.3.0] - 2023-03-21
+
+### Commits
+
+- Set Composer type to "wordpress-plugin". ([1951851](https://github.com/pronamic/wp-money/commit/19518518e55f18f22b484bde57e042da83c7a0af))
+- Added `negative` function. ([69f7343](https://github.com/pronamic/wp-money/commit/69f73439f1488108614d6737cc5703fdb25a68f3))
+- Use `Yoast/PHPUnit-Polyfills`. ([f100606](https://github.com/pronamic/wp-money/commit/f1006062f967856dfb52d296999fdbf76a0aeac7))
+- Created .gitattributes ([dc50445](https://github.com/pronamic/wp-money/commit/dc50445c58349e483d27a52755a6944afd650da4))
+
+### Composer
+
+- Changed `pronamic/wp-number` from `^1.2` to `v1.3.0`.
+	Release notes: https://github.com/pronamic/wp-number/releases/tag/v1.3.0
+
+Full set of changes: [`2.2.1...2.3.0`][2.3.0]
+
+[2.3.0]: https://github.com/pronamic/wp-money/compare/v2.2.1...v2.3.0
+
 ## [2.2.1] - 2023-01-31
 ### Composer
 
