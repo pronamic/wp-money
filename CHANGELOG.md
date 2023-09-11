@@ -7,6 +7,16 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [2.4.1] - 2023-09-11
+
+### Commits
+
+- Ignore /docs folder. ([7867afd](https://github.com/pronamic/wp-money/commit/7867afd50117a18cf97d4959b7f42fdc2abfd291))
+
+Full set of changes: [`2.4.0...2.4.1`][2.4.1]
+
+[2.4.1]: https://github.com/pronamic/wp-money/compare/v2.4.0...v2.4.1
+
 ## [2.4.0] - 2023-03-21
 
 ### Commits

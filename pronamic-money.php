@@ -4,7 +4,7 @@
  * Plugin URI: https://www.pronamic.eu/plugins/pronamic-money/
  * Description: WordPress Money library.
  *
- * Version: 2.4.0
+ * Version: 2.4.1
  * Requires at least: 4.7
  * Requires PHP: 7.4
  *
