@@ -7,4 +7,12 @@
 	<exclude-pattern>tests/wp-config.php</exclude-pattern>
 
 	<rule ref="PronamicWP" />
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="pronamic-money" />
+			</property>
+		</properties>
+	</rule>
 </ruleset>
