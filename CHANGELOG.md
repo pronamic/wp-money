@@ -7,6 +7,17 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [2.4.2] - 2023-10-30
+
+### Commits
+
+- Removed Grunt. ([129e649](https://github.com/pronamic/wp-money/commit/129e6499fe0d72ec9a1d22983dc7629301d54609))
+- Added `if ( ! defined( 'ABSPATH' ) )`. ([1bcefb8](https://github.com/pronamic/wp-money/commit/1bcefb81b389108c8d9a06d109afe2b16e8edf31))
+
+Full set of changes: [`2.4.1...2.4.2`][2.4.2]
+
+[2.4.2]: https://github.com/pronamic/wp-money/compare/v2.4.1...v2.4.2
+
 ## [2.4.1] - 2023-09-11
 
 ### Commits
