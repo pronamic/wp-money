@@ -7,6 +7,16 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [2.4.3] - 2023-11-06
+
+### Commits
+
+- Removed unnecessary space after "Comorian Franc". ([e5b195b](https://github.com/pronamic/wp-money/commit/e5b195b446c36721c241863549b8a5e64d82a14f))
+
+Full set of changes: [`2.4.2...2.4.3`][2.4.3]
+
+[2.4.3]: https://github.com/pronamic/wp-money/compare/v2.4.2...v2.4.3
+
 ## [2.4.2] - 2023-10-30
 
 ### Commits
