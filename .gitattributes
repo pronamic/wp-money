@@ -1,7 +1,8 @@
 /.gitattributes    export-ignore
 /.github/          export-ignore
 /.gitignore        export-ignore
-/Gruntfile.js      export-ignore
+/.phplint.yml      export-ignore
+/docs              export-ignore
 /phpcs.xml.dist    export-ignore
 /phpmd.ruleset.xml export-ignore
 /phpstan.neon.dist export-ignore

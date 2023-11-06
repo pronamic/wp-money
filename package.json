@@ -1,6 +1,6 @@
 {
 	"name": "wp-money",
-	"version": "2.4.0",
+	"version": "2.4.2",
 	"description": "WordPress Money library.",
 	"repository": {
 		"type": "git",
@@ -17,14 +17,5 @@
 	"bugs": {
 		"url": "https://github.com/pronamic/wp-money/issues"
 	},
-	"homepage": "https://github.com/pronamic/wp-money#readme",
-	"devDependencies": {
-		"grunt": "^1.0.4",
-		"grunt-checktextdomain": "^1.0.1",
-		"grunt-phpcs": "^0.4.0",
-		"grunt-phplint": "0.1.0",
-		"grunt-phpunit": "^0.3.6",
-		"grunt-wp-i18n": "^1.0.3",
-		"load-grunt-tasks": "^5.1.0"
-	}
+	"homepage": "https://github.com/pronamic/wp-money#readme"
 }
