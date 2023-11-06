@@ -555,7 +555,7 @@ return [
 	new Currency(
 		'KMF',
 		'174',
-		__( 'Comorian Franc ', 'pronamic-money' ),
+		__( 'Comorian Franc', 'pronamic-money' ),
 		'F',
 		0
 	),
