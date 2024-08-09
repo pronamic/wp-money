@@ -3,7 +3,7 @@
  * Money
  *
  * @author    Pronamic <info@pronamic.eu>
- * @copyright 2005-2023 Pronamic
+ * @copyright 2005-2024 Pronamic
  * @license   GPL-3.0-or-later
  * @package   Pronamic\WordPress\Money
  */
@@ -359,7 +359,7 @@ class MoneyTest extends TestCase {
 
 		$this->assertSame( '29.95', $money->number_format( null, '.', '' ) );
 		$this->assertSame( '-29.95', $negative->number_format( null, '.', '' ) );
-		
+
 		$money = new Money( '-149.25', 'EUR' );
 
 		$negative = $money->negative();
