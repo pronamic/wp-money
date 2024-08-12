@@ -91,7 +91,7 @@ class Parser {
 				$full = sprintf( '-%s', $full );
 
 				// Remove minus from end of half.
-				$half = \substr( (string) $half, 0, -1 );
+				$half = \substr( $half, 0, -1 );
 			}
 
 			$string = $full . '.' . $half;
