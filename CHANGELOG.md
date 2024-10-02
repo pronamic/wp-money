@@ -7,6 +7,19 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [2.4.4] - 2024-10-02
+
+### Commits
+
+- Escape `$alphabetic_code` in exception message. ([9266be4](https://github.com/pronamic/wp-money/commit/9266be4ed849a6009b27af6687f453646b0d4bbc))
+- Fixed PHPStan issue. ([3e3e948](https://github.com/pronamic/wp-money/commit/3e3e948e47e1fa556abc00266e6b5ca3f0a2f851))
+- Fixed code quality issues. ([175ad84](https://github.com/pronamic/wp-money/commit/175ad845187e5796b324ce0664e117ee9fc20b5f))
+- Happy 2024. ([5709d5d](https://github.com/pronamic/wp-money/commit/5709d5d5e1bc1b85dd667fb1e3f8885aef87b567))
+
+Full set of changes: [`2.4.3...2.4.4`][2.4.4]
+
+[2.4.4]: https://github.com/pronamic/wp-money/compare/v2.4.3...v2.4.4
+
 ## [2.4.3] - 2023-11-06
 
 ### Commits
