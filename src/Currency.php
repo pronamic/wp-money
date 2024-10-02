@@ -93,7 +93,7 @@ class Currency implements JsonSerializable {
 			throw new \InvalidArgumentException(
 				\sprintf(
 					'The alphabetical code of a currency must consist of 3 characters: %s.',
-					$alphabetic_code
+					\esc_html( $alphabetic_code )
 				)
 			);
 		}
