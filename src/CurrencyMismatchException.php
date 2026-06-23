@@ -14,7 +14,6 @@ namespace Pronamic\WordPress\Money;
  * Currency Mismatch Exception
  *
  * @author Remco Tolsma
- * @since  2.x.x
  */
 class CurrencyMismatchException extends \InvalidArgumentException {
 	/**
