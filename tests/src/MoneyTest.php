@@ -264,6 +264,30 @@ class MoneyTest extends TestCase {
 	}
 
 	/**
+	 * Test add with currency mismatch.
+	 */
+	public function test_add_currency_mismatch() {
+		$this->expectException( CurrencyMismatchException::class );
+
+		$eur = new Money( 100, 'EUR' );
+		$usd = new Money( 50, 'USD' );
+
+		$eur->add( $usd );
+	}
+
+	/**
+	 * Test subtract with currency mismatch.
+	 */
+	public function test_subtract_currency_mismatch() {
+		$this->expectException( CurrencyMismatchException::class );
+
+		$eur = new Money( 100, 'EUR' );
+		$usd = new Money( 50, 'USD' );
+
+		$eur->subtract( $usd );
+	}
+
+	/**
 	 * Test JSON.
 	 */
 	public function test_json() {

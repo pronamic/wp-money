@@ -278,8 +278,13 @@ class Money implements JsonSerializable {
 	 *
 	 * @param Money $addend Addend.
 	 * @return Money
+	 * @throws CurrencyMismatchException Throws exception if currencies don't match.
 	 */
 	public function add( Money $addend ) {
+		if ( $this->currency->get_alphabetic_code() !== $addend->get_currency()->get_alphabetic_code() ) {
+			throw CurrencyMismatchException::create( $this->currency, $addend->get_currency() );
+		}
+
 		$result = $this->amount->add( $addend->get_number() );
 
 		return new self( $result, $this->currency );
@@ -292,8 +297,13 @@ class Money implements JsonSerializable {
 	 * @link https://github.com/moneyphp/money/blob/v3.2.1/src/Money.php#L235-L255
 	 * @param Money $subtrahend Subtrahend.
 	 * @return Money
+	 * @throws CurrencyMismatchException Throws exception if currencies don't match.
 	 */
 	public function subtract( Money $subtrahend ) {
+		if ( $this->currency->get_alphabetic_code() !== $subtrahend->get_currency()->get_alphabetic_code() ) {
+			throw CurrencyMismatchException::create( $this->currency, $subtrahend->get_currency() );
+		}
+
 		$result = $this->amount->subtract( $subtrahend->get_number() );
 
 		return new self( $result, $this->currency );
