@@ -7,6 +7,16 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [2.4.5] - 2026-07-31
+
+### Commits
+
+- Throw `CurrencyMismatchException` when adding or subtracting money with different currencies. ([442c90a](https://github.com/pronamic/wp-money/commit/442c90aa9d6e5a88f2e2ca6d4baf4c3d3ebed4ef))
+
+Full set of changes: [`2.4.4...2.4.5`][2.4.5]
+
+[2.4.5]: https://github.com/pronamic/wp-money/compare/v2.4.4...v2.4.5
+
 ## [2.4.4] - 2024-10-02
 
 ### Commits
@@ -170,7 +180,7 @@ Full set of changes: [`2.0.3...2.1.0`][2.1.0]
 ## 1.0.0
 - First release.
 
-[unreleased]: https://github.com/pronamic/wp-money/compare/2.0.3...HEAD
+[unreleased]: https://github.com/pronamic/wp-money/compare/v2.4.5...HEAD
 [2.0.3]: https://github.com/pronamic/wp-money/compare/2.0.2...2.0.3
 [2.0.2]: https://github.com/pronamic/wp-money/compare/2.0.1...2.0.2
 [2.0.1]: https://github.com/pronamic/wp-money/compare/2.0.0...2.0.1
