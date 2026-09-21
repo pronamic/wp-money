@@ -5,7 +5,8 @@ All notable changes to this project will be documented in this file.
 This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a CHANGELOG](http://keepachangelog.com/).
 
 ## [Unreleased][unreleased]
--
+- Added optional `$currency` parameter to `Parser::parse()`, so a currency other than `EUR` can be specified for the parsed amount.
+
 
 ## [2.4.5] - 2026-07-31
 

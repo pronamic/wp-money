@@ -16,7 +16,7 @@ use Exception;
  * Parser
  *
  * @author  Remco Tolsma
- * @version 2.0.0
+ * @version 2.5.0
  * @since   1.1.0
  */
 class Parser {
@@ -25,13 +25,14 @@ class Parser {
 	 *
 	 * @link https://github.com/wp-pay/core/blob/2.0.2/src/Core/Util.php#L128-L176
 	 *
-	 * @param string $string String to parse as money.
+	 * @param string          $string   String to parse as money.
+	 * @param Currency|string $currency Currency for the parsed amount.
 	 *
 	 * @return Money
 	 *
 	 * @throws Exception Throws exception when parsing string fails.
 	 */
-	public function parse( $string ) {
+	public function parse( $string, $currency = 'EUR' ) {
 		global $wp_locale;
 
 		$decimal_sep = $wp_locale->number_format['decimal_point'];
@@ -111,6 +112,6 @@ class Parser {
 			throw new Exception( 'Could not parse value to money object.' );
 		}
 
-		return new Money( $value );
+		return new Money( $value, $currency );
 	}
 }

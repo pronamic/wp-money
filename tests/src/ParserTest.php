@@ -144,4 +144,22 @@ class ParserTest extends TestCase {
 			[ false, false, '123 456 789', 123456789 ],
 		];
 	}
+
+	/**
+	 * Test that the parser defaults to EUR when no currency is given.
+	 */
+	public function test_parse_default_currency() {
+		$money = $this->parser->parse( '10,00' );
+
+		$this->assertEquals( 'EUR', $money->get_currency()->get_alphabetic_code() );
+	}
+
+	/**
+	 * Test that the parser uses the given currency.
+	 */
+	public function test_parse_with_currency() {
+		$money = $this->parser->parse( '10,00', 'USD' );
+
+		$this->assertEquals( 'USD', $money->get_currency()->get_alphabetic_code() );
+	}
 }
